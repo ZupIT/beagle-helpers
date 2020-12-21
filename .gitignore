@@ -1,90 +1,112 @@
-# Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
-
-## User settings
-xcuserdata/
-
-## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
-*.xcscmblueprint
-*.xccheckout
-
-## compatibility with Xcode 3 and earlier (ignoring not required starting Xcode 4)
+.DS_Store
+HELP.md
+target/
 build/
-DerivedData/
-*.moved-aside
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
+../out/
+.gradle/
+**/.idea/*
+!**/.idea/copyright
+projectFilesBackup/
+out/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+common/gradle*
+schema/gradle*
+*.orig
 
-## Obj-C/Swift specific
-*.hmap
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
-## App packaging
-*.ipa
-*.dSYM.zip
-*.dSYM
+### IntelliJ IDEA ###
+*.iml
 
-## Playgrounds
-timeline.xctimeline
-playground.xcworkspace
+### VS Code ###
+.vscode/
+=======
+*.iml
+.gradle
+gradle.deps
+local.properties
+.DS_Store
+build/
+/captures
+.externalNativeBuild
+.cxx
 
-# Swift Package Manager
-#
-# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-# Packages/
-# Package.pins
-# Package.resolved
-# *.xcodeproj
-#
-# Xcode automatically generates this directory with a .xcworkspacedata file and xcuserdata
-# hence it is not needed unless you have added a package configuration file to your project
-# .swiftpm
+### Fastane ###
+/fastlane/report.xml
+codecov_reporter.sh
+fastlane/README.md
+fastlane/test_output/
 
-.build/
+### Jacoco ###
+jacoco.exec
 
-# CocoaPods
-#
-# We recommend against adding the Pods directory to your .gitignore. However
-# you should judge for yourself, the pros and cons are mentioned at:
-# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
-#
-Pods/
-#
-# Add this line if you want to avoid checking in source code from the Xcode workspace
-# *.xcworkspace
+# Flutter/Dart/Pub related
+flutter/**/**/doc/api/
+flutter/**/.dart_tool/
+flutter/**/.flutter-plugins
+flutter/**/.flutter-plugins-dependencies
+flutter/**/.packages
+flutter/**/.pub-cache/
+flutter/**/.pub/
+flutter/**/build/
+flutter_analyze_report.txt
+coverage/
+lcov.info
 
-# Carthage
-#
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
+# Android related
+flutter/**/**/android/**/gradle-wrapper.jar
+flutter/**/**/android/.gradle
+flutter/**/**/android/captures/
+flutter/**/**/android/gradlew
+flutter/**/**/android/gradlew.bat
+flutter/**/**/android/local.properties
+flutter/**/**/android/.gitignore
+flutter/**/**/android/**/GeneratedPluginRegistrant.java
 
-Carthage/Build/
+# iOS/XCode related
+flutter/**/**/ios/**/*.mode1v3
+flutter/**/**/ios/**/*.mode2v3
+flutter/**/**/ios/**/*.moved-aside
+flutter/**/**/ios/**/*.pbxuser
+flutter/**/**/ios/**/*.perspectivev3
+flutter/**/**/ios/**/*sync/
+flutter/**/**/ios/**/.sconsign.dblite
+flutter/**/**/ios/**/.tags*
+flutter/**/**/ios/**/.vagrant/
+flutter/**/**/ios/**/DerivedData/
+flutter/**/**/ios/**/Icon?
+flutter/**/**/ios/**/Pods/
+flutter/**/**/ios/**/.symlinks/
+flutter/**/**/ios/**/profile
+flutter/**/**/ios/**/xcuserdata
+flutter/**/**/ios/.generated/
+flutter/**/**/ios/Flutter/App.framework
+flutter/**/**/ios/Flutter/Flutter.framework
+flutter/**/**/ios/Flutter/Flutter.podspec
+flutter/**/**/ios/Flutter/Generated.xcconfig
+flutter/**/**/ios/Flutter/app.flx
+flutter/**/**/ios/Flutter/app.zip
+flutter/**/**/ios/Flutter/.last_build_id
+flutter/**/**/ios/Flutter/flutter_assets/
+flutter/**/**/ios/Flutter/flutter_export_environment.sh
+flutter/**/**/ios/ServiceDefinitions.json
+flutter/**/**/ios/Runner/GeneratedPluginRegistrant.*
 
-# Accio dependency management
-Dependencies/
-.accio/
+# Exceptions to above rules.
+!flutter/**/**/ios/**/default.mode1v3
+!flutter/**/**/ios/**/default.mode2v3
+!flutter/**/**/ios/**/default.pbxuser
+!flutter/**/**/ios/**/default.perspectivev3
+!flutter/**/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo.
-# Instead, use fastlane to re-generate the screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/#source-control
-
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots/**/*.png
-fastlane/test_output
-
-# Code Injection
-#
-# After new code Injection tools there's a generated folder /iOSInjectionProject
-# https://github.com/johnno1962/injectionforxcode
-
-iOSInjectionProject/
+### Bash ###
+nohup.out
