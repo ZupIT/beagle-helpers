@@ -16,6 +16,7 @@
 
 import Foundation
 import Beagle
+import BeagleDefaults
 
 class BeagleConfig {
 

@@ -59,17 +59,13 @@ Pod::Spec.new do |spec|
       path_source + '/**/*.swift'
     ]
 
-    beagleScaffold.resources = [
-      "**/*.xcdatamodeld"
-    ]
-
     beagleScaffold.exclude_files = [
       path_source + "/**/Test/**/*.swift",
       path_source + "/**/Tests/**/*.swift",
       path_source + "/**/*Test*.swift"
     ]
     
-    beagleScaffold.frameworks = 'Foundation', 'CoreData'
+    beagleScaffold.frameworks = 'Foundation'
     beagleScaffold.dependency 'Beagle'
   end
   

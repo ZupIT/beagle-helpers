@@ -9,24 +9,9 @@
 /* Begin PBXBuildFile section */
 		2040E1F6E9E03EEC5AF4784F /* Pods_BeagleScaffold_BeagleScaffoldTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC200BB5E8652D8357D3412D /* Pods_BeagleScaffold_BeagleScaffoldTests.framework */; };
 		252A130C258BD69B00EE5E80 /* BeagleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A12ED258BD69B00EE5E80 /* BeagleConfig.swift */; };
-		252A130E258BD69B00EE5E80 /* BeagleLoggerDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A12F0258BD69B00EE5E80 /* BeagleLoggerDefault.swift */; };
-		252A130F258BD69B00EE5E80 /* CacheLRU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A12F3258BD69B00EE5E80 /* CacheLRU.swift */; };
-		252A1310258BD69B00EE5E80 /* DoublyLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A12F4258BD69B00EE5E80 /* DoublyLinkedList.swift */; };
-		252A1312258BD69B00EE5E80 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A12F7258BD69B00EE5E80 /* CacheManager.swift */; };
-		252A1314258BD69B00EE5E80 /* CacheDiskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A12FB258BD69B00EE5E80 /* CacheDiskManager.swift */; };
-		252A1315258BD69B00EE5E80 /* CoreCache.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 252A12FC258BD69B00EE5E80 /* CoreCache.xcdatamodeld */; };
-		252A1317258BD69B00EE5E80 /* CacheEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A1300258BD69B00EE5E80 /* CacheEntity+CoreDataProperties.swift */; };
-		252A131B258BD69B00EE5E80 /* HttpRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A1308258BD69B00EE5E80 /* HttpRequestBuilder.swift */; };
-		252A131C258BD69B00EE5E80 /* NetworkClientDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A1309258BD69B00EE5E80 /* NetworkClientDefault.swift */; };
 		252A132C258BDDDA00EE5E80 /* BeagleScaffoldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A132B258BDDDA00EE5E80 /* BeagleScaffoldTests.swift */; };
 		252A132E258BDDDA00EE5E80 /* BeagleScaffold.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF590BC8258A741200AE70E5 /* BeagleScaffold.framework */; };
 		25BA5AA2258A9D2600588331 /* BeagleScaffold.h in Headers */ = {isa = PBXBuildFile; fileRef = 25BA5AA0258A9D2600588331 /* BeagleScaffold.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		25E34C34258BE2C80029AC8C /* LRUCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A12F6258BD69B00EE5E80 /* LRUCacheTests.swift */; };
-		25E34C39258BE2FE0029AC8C /* CacheManagerDefaultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A12F9258BD69B00EE5E80 /* CacheManagerDefaultTests.swift */; };
-		25E34C3C258BE3160029AC8C /* CacheDiskManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A12FF258BD69B00EE5E80 /* CacheDiskManagerTests.swift */; };
-		25E34C41258BE3200029AC8C /* MemoryCacheServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A1303258BD69B00EE5E80 /* MemoryCacheServiceTests.swift */; };
-		25E34C48258BE3240029AC8C /* HttpRequestBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252A1304258BD69B00EE5E80 /* HttpRequestBuilderTest.swift */; };
-		25E34C4E258BE3560029AC8C /* __Snapshots__ in Resources */ = {isa = PBXBuildFile; fileRef = 25E34C4D258BE3560029AC8C /* __Snapshots__ */; };
 		85DA8590796C2CA9633BCC4D /* Pods_BeagleScaffold.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E27963FCC55B9BA8882957F /* Pods_BeagleScaffold.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,26 +28,11 @@
 /* Begin PBXFileReference section */
 		063D5D618BEA0BC6F7D5B1AD /* Pods-BeagleScaffold-BeagleScaffoldTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeagleScaffold-BeagleScaffoldTests.release.xcconfig"; path = "Target Support Files/Pods-BeagleScaffold-BeagleScaffoldTests/Pods-BeagleScaffold-BeagleScaffoldTests.release.xcconfig"; sourceTree = "<group>"; };
 		252A12ED258BD69B00EE5E80 /* BeagleConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeagleConfig.swift; sourceTree = "<group>"; };
-		252A12F0258BD69B00EE5E80 /* BeagleLoggerDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeagleLoggerDefault.swift; sourceTree = "<group>"; };
-		252A12F3258BD69B00EE5E80 /* CacheLRU.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheLRU.swift; sourceTree = "<group>"; };
-		252A12F4258BD69B00EE5E80 /* DoublyLinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoublyLinkedList.swift; sourceTree = "<group>"; };
-		252A12F6258BD69B00EE5E80 /* LRUCacheTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LRUCacheTests.swift; sourceTree = "<group>"; };
-		252A12F7258BD69B00EE5E80 /* CacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
-		252A12F9258BD69B00EE5E80 /* CacheManagerDefaultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheManagerDefaultTests.swift; sourceTree = "<group>"; };
-		252A12FB258BD69B00EE5E80 /* CacheDiskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheDiskManager.swift; sourceTree = "<group>"; };
-		252A12FD258BD69B00EE5E80 /* CoreCache.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreCache.xcdatamodel; sourceTree = "<group>"; };
-		252A12FF258BD69B00EE5E80 /* CacheDiskManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheDiskManagerTests.swift; sourceTree = "<group>"; };
-		252A1300258BD69B00EE5E80 /* CacheEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CacheEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		252A1303258BD69B00EE5E80 /* MemoryCacheServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryCacheServiceTests.swift; sourceTree = "<group>"; };
-		252A1304258BD69B00EE5E80 /* HttpRequestBuilderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestBuilderTest.swift; sourceTree = "<group>"; };
-		252A1308258BD69B00EE5E80 /* HttpRequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestBuilder.swift; sourceTree = "<group>"; };
-		252A1309258BD69B00EE5E80 /* NetworkClientDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientDefault.swift; sourceTree = "<group>"; };
 		252A1329258BDDDA00EE5E80 /* BeagleScaffoldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeagleScaffoldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		252A132B258BDDDA00EE5E80 /* BeagleScaffoldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeagleScaffoldTests.swift; sourceTree = "<group>"; };
 		252A132D258BDDDA00EE5E80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25BA5AA0258A9D2600588331 /* BeagleScaffold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeagleScaffold.h; sourceTree = "<group>"; };
 		25BA5AA1258A9D2600588331 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		25E34C4D258BE3560029AC8C /* __Snapshots__ */ = {isa = PBXFileReference; lastKnownFileType = folder; path = __Snapshots__; sourceTree = "<group>"; };
 		3E27963FCC55B9BA8882957F /* Pods_BeagleScaffold.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeagleScaffold.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C3EC73A31E5BBB514D2E458 /* Pods-BeagleScaffold-BeagleScaffoldTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeagleScaffold-BeagleScaffoldTests.debug.xcconfig"; path = "Target Support Files/Pods-BeagleScaffold-BeagleScaffoldTests/Pods-BeagleScaffold-BeagleScaffoldTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7025661A2654C7867A5F6B62 /* Pods-BeagleScaffold.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeagleScaffold.debug.xcconfig"; path = "Target Support Files/Pods-BeagleScaffold/Pods-BeagleScaffold.debug.xcconfig"; sourceTree = "<group>"; };
@@ -105,95 +75,8 @@
 			isa = PBXGroup;
 			children = (
 				252A12ED258BD69B00EE5E80 /* BeagleConfig.swift */,
-				252A12EF258BD69B00EE5E80 /* Logger */,
-				252A12F1258BD69B00EE5E80 /* Cache */,
-				252A1301258BD69B00EE5E80 /* Network */,
 			);
 			path = Defaults;
-			sourceTree = "<group>";
-		};
-		252A12EF258BD69B00EE5E80 /* Logger */ = {
-			isa = PBXGroup;
-			children = (
-				252A12F0258BD69B00EE5E80 /* BeagleLoggerDefault.swift */,
-			);
-			path = Logger;
-			sourceTree = "<group>";
-		};
-		252A12F1258BD69B00EE5E80 /* Cache */ = {
-			isa = PBXGroup;
-			children = (
-				252A12F2258BD69B00EE5E80 /* LRU */,
-				252A12F7258BD69B00EE5E80 /* CacheManager.swift */,
-				252A12F8258BD69B00EE5E80 /* Tests */,
-				252A12FA258BD69B00EE5E80 /* CoreData */,
-			);
-			path = Cache;
-			sourceTree = "<group>";
-		};
-		252A12F2258BD69B00EE5E80 /* LRU */ = {
-			isa = PBXGroup;
-			children = (
-				252A12F3258BD69B00EE5E80 /* CacheLRU.swift */,
-				252A12F4258BD69B00EE5E80 /* DoublyLinkedList.swift */,
-				252A12F5258BD69B00EE5E80 /* Tests */,
-			);
-			path = LRU;
-			sourceTree = "<group>";
-		};
-		252A12F5258BD69B00EE5E80 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				252A12F6258BD69B00EE5E80 /* LRUCacheTests.swift */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		252A12F8258BD69B00EE5E80 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				252A12F9258BD69B00EE5E80 /* CacheManagerDefaultTests.swift */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		252A12FA258BD69B00EE5E80 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				252A12FB258BD69B00EE5E80 /* CacheDiskManager.swift */,
-				252A12FC258BD69B00EE5E80 /* CoreCache.xcdatamodeld */,
-				252A12FE258BD69B00EE5E80 /* Tests */,
-				252A1300258BD69B00EE5E80 /* CacheEntity+CoreDataProperties.swift */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
-		252A12FE258BD69B00EE5E80 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				252A12FF258BD69B00EE5E80 /* CacheDiskManagerTests.swift */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		252A1301258BD69B00EE5E80 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				252A1302258BD69B00EE5E80 /* Tests */,
-				252A1308258BD69B00EE5E80 /* HttpRequestBuilder.swift */,
-				252A1309258BD69B00EE5E80 /* NetworkClientDefault.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		252A1302258BD69B00EE5E80 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				25E34C4D258BE3560029AC8C /* __Snapshots__ */,
-				252A1303258BD69B00EE5E80 /* MemoryCacheServiceTests.swift */,
-				252A1304258BD69B00EE5E80 /* HttpRequestBuilderTest.swift */,
-			);
-			path = Tests;
 			sourceTree = "<group>";
 		};
 		252A132A258BDDDA00EE5E80 /* BeagleScaffoldTests */ = {
@@ -349,7 +232,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25E34C4E258BE3560029AC8C /* __Snapshots__ in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,12 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25E34C34258BE2C80029AC8C /* LRUCacheTests.swift in Sources */,
-				25E34C48258BE3240029AC8C /* HttpRequestBuilderTest.swift in Sources */,
 				252A132C258BDDDA00EE5E80 /* BeagleScaffoldTests.swift in Sources */,
-				25E34C39258BE2FE0029AC8C /* CacheManagerDefaultTests.swift in Sources */,
-				25E34C41258BE3200029AC8C /* MemoryCacheServiceTests.swift in Sources */,
-				25E34C3C258BE3160029AC8C /* CacheDiskManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,16 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				252A1317258BD69B00EE5E80 /* CacheEntity+CoreDataProperties.swift in Sources */,
-				252A1310258BD69B00EE5E80 /* DoublyLinkedList.swift in Sources */,
-				252A131B258BD69B00EE5E80 /* HttpRequestBuilder.swift in Sources */,
-				252A130E258BD69B00EE5E80 /* BeagleLoggerDefault.swift in Sources */,
-				252A1312258BD69B00EE5E80 /* CacheManager.swift in Sources */,
-				252A131C258BD69B00EE5E80 /* NetworkClientDefault.swift in Sources */,
-				252A1314258BD69B00EE5E80 /* CacheDiskManager.swift in Sources */,
-				252A130F258BD69B00EE5E80 /* CacheLRU.swift in Sources */,
 				252A130C258BD69B00EE5E80 /* BeagleConfig.swift in Sources */,
-				252A1315258BD69B00EE5E80 /* CoreCache.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,19 +580,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		252A12FC258BD69B00EE5E80 /* CoreCache.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				252A12FD258BD69B00EE5E80 /* CoreCache.xcdatamodel */,
-			);
-			currentVersion = 252A12FD258BD69B00EE5E80 /* CoreCache.xcdatamodel */;
-			path = CoreCache.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = AF590BBF258A741200AE70E5 /* Project object */;
 }
