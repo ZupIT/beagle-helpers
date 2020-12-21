@@ -45,7 +45,7 @@ Pod::Spec.new do |spec|
 # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   tag = spec.version.to_s
-  source = { :git => "https://github.com/jacoabreuzup/beagle-libs.git", :tag => tag }
+  source = { :git => "https://github.com/ZupIT/beagle-helpers.git", :tag => tag }
   spec.source = source
 
 # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -53,7 +53,7 @@ Pod::Spec.new do |spec|
   # ――― Beagle Defaults ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   
   spec.subspec 'BeagleDefaults' do |beagleDefaults|
-    path_source = 'BeagleDefaults/BeagleDefaults'
+    path_source = 'BeagleDefaults/iOS/BeagleDefaults'
 
       beagleDefaults.source_files = [
       path_source + '/**/*.swift'

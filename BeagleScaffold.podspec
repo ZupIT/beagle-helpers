@@ -45,7 +45,7 @@ Pod::Spec.new do |spec|
 # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   tag = spec.version.to_s
-  source = { :git => "https://github.com/jacoabreuzup/beagle-libs.git", :tag => tag }
+  source = { :git => "https://github.com/ZupIT/beagle-helpers.git", :tag => tag }
   spec.source = source
 
 # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -53,7 +53,7 @@ Pod::Spec.new do |spec|
   # ――― Beagle Scaffold ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   
   spec.subspec 'BeagleScaffold' do |beagleScaffold|
-    path_source = 'BeagleScaffold/Sources'
+    path_source = 'BeagleScaffold/iOS/Sources'
 
     beagleScaffold.source_files = [
       path_source + '/**/*.swift'
