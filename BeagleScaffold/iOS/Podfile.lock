@@ -29,7 +29,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   BeagleDefaults:
-    :commit: ab0ff1f2a5e2b81caf3ffd6c73f3a8c7ff643a5e
+    :commit: 384b2f5b507ebca9b0e50a8ec1aa20fee6497fe6
     :git: https://github.com/jacoabreuzup/beagle-libs.git
 
 SPEC CHECKSUMS:
