@@ -14,7 +14,7 @@ PODS:
     - Yoga (~> 1.14)
 
 DEPENDENCIES:
-  - BeagleDefaults (from `https://github.com/jacoabreuzup/beagle-libs.git`)
+  - BeagleDefaults (from `https://github.com/ZupIT/beagle-helpers.git`)
 
 SPEC REPOS:
   trunk:
@@ -25,20 +25,20 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   BeagleDefaults:
-    :git: https://github.com/jacoabreuzup/beagle-libs.git
+    :git: https://github.com/ZupIT/beagle-helpers.git
 
 CHECKOUT OPTIONS:
   BeagleDefaults:
-    :commit: 384b2f5b507ebca9b0e50a8ec1aa20fee6497fe6
-    :git: https://github.com/jacoabreuzup/beagle-libs.git
+    :commit: 09aea8d522c95a1144961f791bbaa7e030bb24fd
+    :git: https://github.com/ZupIT/beagle-helpers.git
 
 SPEC CHECKSUMS:
   Beagle: 68b7583ec5ba63d8000f87afc32247d61019adbd
-  BeagleDefaults: 9da46e6746a5f640b3c3f034a5d3a47e64646392
+  BeagleDefaults: ce95fcbe27bd89e0e96987b392741fb3fcfc3ad6
   BeagleSchema: cc5463afa843ac07caaddb875d82c97a7d8a0153
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 0c8e035b304b90a9b70b173d64ba598869b5fa5b
+PODFILE CHECKSUM: b4ba6ab56d74092e7e61de62bc2c0b5747c24af2
 
 COCOAPODS: 1.10.0
