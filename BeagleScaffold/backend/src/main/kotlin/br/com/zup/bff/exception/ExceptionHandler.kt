@@ -12,5 +12,5 @@ class ExceptionHandler() : ResponseEntityExceptionHandler() {
 
 @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 @ExceptionHandler(Exception::class)
-    fun unexpectedException(exception:Exception)= ErrorResponse("Oops.. Something with wrong!")
+    fun unexpectedException(exception:Exception)= ErrorResponse()
 }
