@@ -28,12 +28,10 @@ class BeagleConfig: DependencyLogger {
         var dependenciesNew: BeagleDependencies
 
         if let dependenciesParam = dependencies {
-//            dependenciesParam.urlBuilder = dependencies?.urlBuilder.baseUrl != nil
+            
 //            if dependenciesParam.logger == nil {
-//                dependenciesParam = logger
+//                dependenciesParam.logger = logger
 //            }
-//            dependenciesParam.logger = dependencies?.logger ?? logger
-//            if dependenciesParam.logger
             
             if dependenciesParam.urlBuilder.baseUrl == nil {
                 dependenciesParam.urlBuilder = UrlBuilder(baseUrl: URL(string: baseURL))
