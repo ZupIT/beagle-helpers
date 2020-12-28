@@ -65,8 +65,8 @@ Pod::Spec.new do |spec|
       path_source + "/**/*Test*.swift"
     ]
     
-    beagleScaffold.frameworks = 'Foundation'
-    beagleScaffold.dependency 'Beagle'
+    beagleScaffold.dependency 'BeagleDefaults'
+    
   end
   
   
