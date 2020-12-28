@@ -67,6 +67,8 @@ Pod::Spec.new do |spec|
     
     beagleScaffold.frameworks = 'Foundation'
     beagleScaffold.dependency 'Beagle'
+    beagleScaffold.dependency 'BeagleDefaults'
+    
   end
   
   
