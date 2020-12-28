@@ -19,7 +19,7 @@ jobs:
         steps:
             -   uses: actions/checkout@v2
             
-            -   id: Setup JDK 11
+            -   id: setup-jdk-11
                 run: echo "JAVA_HOME=$JAVA_HOME_11_X64" >> $GITHUB_ENV
 
             -   name: Cache maven dependences
