@@ -18,9 +18,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v2
-            
-            -   id: setup-jdk-11
-                run: echo "JAVA_HOME=$JAVA_HOME_11_X64" >> $GITHUB_ENV
 
             -   name: Cache maven dependences
                 uses: actions/cache@v2
@@ -33,5 +30,7 @@ jobs:
                     restore-keys: ${{ runner.os }}-build-${{ env.maven-cache-key }}
 
             -   name: Run pr check
+                env: 
+                    JAVA_HOME: $JAVA_HOME_11_X64
                 working-directory: BeagleScaffold/backend
                 run: mvn -B verify
