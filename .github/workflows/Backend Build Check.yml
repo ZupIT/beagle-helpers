@@ -18,6 +18,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v2
+                
+            -   name: Setup JDK 11
+                run: echo "JAVA_HOME=$JAVA_HOME_11_X64" >> $GITHUB_ENV
 
             -   name: Cache maven dependences
                 uses: actions/cache@v2
