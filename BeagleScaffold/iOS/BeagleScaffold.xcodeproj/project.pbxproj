@@ -71,14 +71,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		252A12EC258BD69B00EE5E80 /* Defaults */ = {
-			isa = PBXGroup;
-			children = (
-				252A12ED258BD69B00EE5E80 /* BeagleConfig.swift */,
-			);
-			path = Defaults;
-			sourceTree = "<group>";
-		};
 		252A132A258BDDDA00EE5E80 /* BeagleScaffoldTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,7 +83,7 @@
 		25BA5A9F258A9D2600588331 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				252A12EC258BD69B00EE5E80 /* Defaults */,
+				252A12ED258BD69B00EE5E80 /* BeagleConfig.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
