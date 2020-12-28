@@ -1,0 +1,34 @@
+name: Build Check
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - 'BeagleScaffold/backend/**'
+    pull_request:
+        branches: 
+            - main
+        paths:
+            - 'BeagleScaffold/backend/**'
+            
+jobs:
+    pr-verification:
+        name: PR Check
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v2
+
+            -   name: Cache maven dependences
+                uses: actions/cache@v2
+                env:
+                    maven-cache-key: maven-cache
+                    maven-path: ~/.m2
+                with:
+                    path: ${{ env.maven-path }}
+                    key: ${{ runner.os }}-build-${{ env.maven-cache-key }}-${{ hashFiles('BeagleScaffold/backend/pom.xml') }}
+                    restore-keys: ${{ runner.os }}-build-${{ env.maven-cache-key }}
+
+            -   name: Run pr check
+                working-directory: BeagleScaffold/backend
+                run: mvn -B verify
