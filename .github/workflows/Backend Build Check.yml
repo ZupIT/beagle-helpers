@@ -33,7 +33,5 @@ jobs:
                     restore-keys: ${{ runner.os }}-build-${{ env.maven-cache-key }}
 
             -   name: Run pr check
-                env: 
-                    JAVA_HOME: $JAVA_HOME_11_X64
                 working-directory: BeagleScaffold/backend
                 run: mvn -B verify
