@@ -4,10 +4,9 @@ on:
     release:
         types: [created]
         tags: 
-          - v*-backend
+          - '**-backend'
 env:
     IMAGE: beagle-scaffold-bff
-    ECR_REGISTRY: 768324981862.dkr.ecr.sa-east-1.amazonaws.com
 
 jobs:
     ecr-publish:
@@ -34,22 +33,31 @@ jobs:
 
             -   name: Build Image
                 working-directory: BeagleScaffold/backend
-                env:
-                    VERSION: ${{ steps.version.outputs.release_tag }}
-                run: mvn clean -B spring-boot:build-image -DskipTests=true -Dspring-boot.build-image.imageName="$ECR_REGISTRY/$IMAGE:$VERSION"
+                run: mvn clean -B spring-boot:build-image -DskipTests=true -Dspring-boot.build-image.imageName="TEMP"
+
+            -   name: Login to Amazon ECR
+                id: login-ecr
+                uses: aws-actions/amazon-ecr-login@v1
             
+            -   name: Publish
+                env:
+                    ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+                    VERSION: ${{ steps.version.outputs.release_tag }}
+                run: docker tag "TEMP" "$ECR_REGISTRY/$IMAGE:$VERSION" && docker push "$ECR_REGISTRY/$IMAGE:$VERSION" 
+                
             -   name: Configure AWS credentials
                 uses: aws-actions/configure-aws-credentials@v1
                 with:
                     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                     aws-region: sa-east-1
-
-            -   name: Login to Amazon ECR
-                uses: aws-actions/amazon-ecr-login@v1
             
-            -   name: Publish
-                env:
+            -   name: Update kubeconfig
+                run: aws eks update-kubeconfig --name beagle-cluster
+                
+            -   name: deploy
+                env: 
+                    ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
                     VERSION: ${{ steps.version.outputs.release_tag }}
-                run: docker push "$ECR_REGISTRY/$IMAGE:$VERSION"
+                run: sed 's/IMAGE/$ECR_REGISTRY\/$IMAGE:$VERSION/' BeagleScaffold/backend/k8s.yml | kubectl -n adoption apply -f -
                 
