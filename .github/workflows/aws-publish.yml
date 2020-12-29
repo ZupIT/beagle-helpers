@@ -33,7 +33,7 @@ jobs:
 
             -   name: Build Image
                 working-directory: BeagleScaffold/backend
-                run: mvn clean -B spring-boot:build-image -DskipTests=true -Dspring-boot.build-image.imageName="TEMP"
+                run: mvn clean -B spring-boot:build-image -DskipTests=true -Dspring-boot.build-image.imageName="temp"
 
             -   name: Login to Amazon ECR
                 id: login-ecr
@@ -43,7 +43,7 @@ jobs:
                 env:
                     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
                     VERSION: ${{ steps.version.outputs.release_tag }}
-                run: docker tag "TEMP" "$ECR_REGISTRY/$IMAGE:$VERSION" && docker push "$ECR_REGISTRY/$IMAGE:$VERSION" 
+                run: docker tag "temp" "$ECR_REGISTRY/$IMAGE:$VERSION" && docker push "$ECR_REGISTRY/$IMAGE:$VERSION" 
                 
             -   name: Configure AWS credentials
                 uses: aws-actions/configure-aws-credentials@v1
