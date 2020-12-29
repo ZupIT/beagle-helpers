@@ -1,4 +1,4 @@
-name: ECR Publish
+name: AWS ECR
 
 on:
     release:
