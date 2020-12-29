@@ -1,0 +1,56 @@
+name: ECR Publish
+
+on:
+    release:
+        types: [created]
+        tags: 
+          - v*-backend
+env:
+    IMAGE: beagle-scaffold-bff
+    ECR_REGISTRY: 768324981862.dkr.ecr.sa-east-1.amazonaws.com
+
+jobs:
+    ecr-publish:
+        name: ECR Publish
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Checkout
+                uses: actions/checkout@v2
+
+            -   name: Cache maven dependences
+                uses: actions/cache@v2
+                env:
+                    maven-cache-key: maven-cache
+                    maven-path: ~/.m2
+                with:
+                    path: ${{ env.maven-path }}
+                    key: ${{ runner.os }}-build-${{ env.maven-cache-key }}-${{ hashFiles('BeagleScaffold/backend/pom.xml') }}
+                    restore-keys: ${{ runner.os }}-build-${{ env.maven-cache-key }}
+
+            -   id: version
+                run: echo "::set-output name=release_tag::$(echo $GITHUB_REF | sed 's/refs\/tags\///g' )"
+                shell: bash
+
+            -   name: Build Image
+                working-directory: BeagleScaffold/backend
+                env:
+                    VERSION: ${{ steps.version.outputs.release_tag }}
+                run: mvn clean -B spring-boot:build-image -DskipTests=true -Dspring-boot.build-image.imageName="$ECR_REGISTRY/$IMAGE:$VERSION"
+            
+            -   name: Configure AWS credentials
+                uses: aws-actions/configure-aws-credentials@v1
+                with:
+                    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                    aws-region: sa-east-1
+
+            -   name: Login to Amazon ECR
+                id: login-ecr
+                uses: aws-actions/amazon-ecr-login@v1
+            
+            -   name: Publish
+                env:
+                    VERSION: ${{ steps.version.outputs.release_tag }}
+                run: docker push "$ECR_REGISTRY/$IMAGE:$VERSION"
+                
