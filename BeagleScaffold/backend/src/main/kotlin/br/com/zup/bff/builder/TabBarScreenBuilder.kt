@@ -30,7 +30,7 @@ import br.com.zup.beagle.widget.ui.ImagePath.Local
 import br.com.zup.beagle.widget.ui.TabBar
 import br.com.zup.beagle.widget.ui.TabBarItem
 import br.com.zup.beagle.widget.ui.Text
-import br.com.zup.bff.dto.response.TabBarSimpleObject
+import br.com.zup.bff.dto.TabBarSimpleObject
 
 object TabBarScreenBuilder : ScreenBuilder {
     private val tab1 = TabBarItem(

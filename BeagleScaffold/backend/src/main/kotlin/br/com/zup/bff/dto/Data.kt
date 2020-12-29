@@ -1,4 +1,4 @@
-package br.com.zup.bff.dto.response
+package br.com.zup.bff.dto
 
 data class Data(
     val zip: String,
