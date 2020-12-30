@@ -9,7 +9,7 @@
 
 - **Using Only Maven:**
   - Just navigate to the backend directory starting from the project root (./BeagleScaffold/backend) and run the command `mvn clean spring-boot:run`
-  - Ready! Your application will be up in a few seconds, available at http://localhost:8080/
+  - Ready! Your application will be up in a few seconds and available at http://localhost:8080/
   
 - **Using Intellij:**
   - Just open the backend directory inside ./BeagleScaffold/ using intellij as a maven project and it will automatically download the dependencies.
