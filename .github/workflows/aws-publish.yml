@@ -58,5 +58,5 @@ jobs:
                 env: 
                     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
                     VERSION: ${{ steps.version.outputs.release_tag }}
-                run: sed 's/IMAGE/$ECR_REGISTRY\/$IMAGE:$VERSION/' BeagleScaffold/backend/k8s.yml | kubectl -n adoption apply -f -
+                run: sed "s/IMAGE/$ECR_REGISTRY\/$IMAGE:$VERSION/" BeagleScaffold/backend/k8s.yml | kubectl -n adoption apply -f -
                 
