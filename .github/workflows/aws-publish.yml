@@ -1,10 +1,9 @@
 name: Deploy to AWS
 
 on:
-    release:
-        types: [created]
+    push:
         tags: 
-          - '*-backend'
+            - v*.*.*-backend
 env:
     IMAGE: beagle-scaffold-bff
 
