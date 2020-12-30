@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: beagle-scaffold-bff
+  labels:
+    app: beagle-scaffold-bff
+    version: 0.0.1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: beagle-scaffold-bff
+      version: 0.0.1
+  template:
+    metadata:
+      labels:
+        app: beagle-scaffold-bff
+        version: 0.0.1
+    spec:
+      containers:
+        - name: beagle-scaffold-bff
+          image: IMAGE
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 1
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 1
+          imagePullPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: beagle-scaffold-bff
+    service: beagle-scaffold-bff
+  name: beagle-scaffold-bff
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: beagle-scaffold-bff
