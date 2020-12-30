@@ -12,7 +12,7 @@
   - Ready! Your application will be up in a few seconds and available at http://localhost:8080/
   
 - **Using Intellij:**
-  - Just open the backend directory inside ./BeagleScaffold/ using intellij as a maven project and it will automatically download the dependencies.
+  - Open the backend directory inside ./BeagleScaffold/ using intellij as a maven project and it will automatically download the dependencies.
   - Then, just go to the main function, located at src / main / kotlin / br / com / zup / bff / BffApplication.kt and click on the green play button in the left corner of the line where the main function is located
   - Ready! The application will start and be up and running in a few seconds and can be accessed at http://localhost:8080/
    
