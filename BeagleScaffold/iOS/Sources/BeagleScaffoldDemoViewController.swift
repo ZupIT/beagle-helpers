@@ -17,7 +17,7 @@
 import Foundation
 import Beagle
 
-public var BeagleScaffoldDemoViewController2: UIViewController {
+public var BeagleScaffoldDemoViewController: UIViewController {
     get {
         return BeagleScreenViewController(.remote(.init(url: "http://localhost:8080/components")))
     }
