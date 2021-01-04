@@ -22,7 +22,7 @@ public class BeagleConfig: DependencyLogger {
     
     public var logger: BeagleLoggerType = BeagleLoggerDefault()
     
-    private var baseURL = "localhost:8080/sample"
+    private var baseURL = "http://localhost:8080/components"
     
     public init(dependencies: BeagleDependencies? = nil) {
         Beagle.dependencies = scaffoldConfig(userDependencies: dependencies)
