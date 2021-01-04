@@ -1,6 +1,6 @@
 package br.com.zup.bff.exception
 
-import br.com.zup.bff.dto.response.ErrorResponse
+import br.com.zup.bff.dto.ErrorResponse
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus

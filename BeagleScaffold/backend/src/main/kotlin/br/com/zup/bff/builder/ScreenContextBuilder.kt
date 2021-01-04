@@ -41,8 +41,8 @@ import br.com.zup.beagle.widget.layout.ScrollView
 import br.com.zup.beagle.widget.ui.Button
 import br.com.zup.beagle.widget.ui.Text
 import br.com.zup.beagle.widget.ui.TextInput
-import br.com.zup.bff.dto.response.Address
-import br.com.zup.bff.dto.response.Data
+import br.com.zup.bff.dto.Address
+import br.com.zup.bff.dto.Data
 
 object ScreenContextBuilder : ScreenBuilder {
     private var styleMargin = Style(

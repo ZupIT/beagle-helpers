@@ -25,8 +25,11 @@ class BeagleConfig: DependencyLogger {
     private var baseURL = "localhost:8080/sample"
     
     public init(dependencies: BeagleDependencies? = nil) {
-        var dependenciesNew: BeagleDependencies
+        Beagle.dependencies = scaffoldConfig(userDependencies: dependencies)
+    }
 
+    private func scaffoldConfig(userDependencies dependencies: BeagleDependencies?) -> BeagleDependencies {
+        var dependenciesNew: BeagleDependencies
         if let dependenciesParam = dependencies {
             
 //            if dependenciesParam.logger == nil {
@@ -51,10 +54,6 @@ class BeagleConfig: DependencyLogger {
             dependenciesNew.urlBuilder = UrlBuilder(baseUrl: URL(string: self.baseURL))
         }
         
-        Beagle.dependencies = dependenciesNew
-    }
-
-    private func scaffoldConfig() {
-
+        return dependenciesNew
     }
 }
