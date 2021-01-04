@@ -18,9 +18,9 @@ import Foundation
 import Beagle
 import BeagleDefaults
 
-class BeagleConfig: DependencyLogger {
+public class BeagleConfig: DependencyLogger {
     
-    var logger: BeagleLoggerType = BeagleLoggerDefault()
+    public var logger: BeagleLoggerType = BeagleLoggerDefault()
     
     private var baseURL = "localhost:8080/sample"
     

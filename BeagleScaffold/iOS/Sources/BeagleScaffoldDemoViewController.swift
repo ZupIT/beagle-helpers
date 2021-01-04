@@ -17,20 +17,8 @@
 import Foundation
 import Beagle
 
-public class BeagleScaffoldDemoViewController: UIViewController {
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let beagleView = BeagleView(.remote(.init(url: "localhost:8080/sample")))
-        beagleView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let anchors = [
-            beagleView.topAnchor.constraint(equalTo: view.topAnchor),
-            beagleView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            beagleView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            beagleView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ]
-        
-        NSLayoutConstraint.activate(anchors)
+public var BeagleScaffoldDemoViewController2: UIViewController {
+    get {
+        return BeagleScreenViewController(.remote(.init(url: "http://localhost:8080/components")))
     }
 }
