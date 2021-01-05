@@ -1,0 +1,33 @@
+name: Beagle Release
+
+on:
+    push:
+        tags:
+            - '*'
+jobs:
+    generate-release:
+        name: Generate release
+        runs-on: macos-latest
+        steps:
+            - uses: actions/checkout@v2.1.0
+              with:
+                  fetch-depth: '0'
+                  ref: 'master'
+            - name: Install Fastlane
+              run: bundle install
+            - name: Deploy new version
+              env:
+                REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+                NAME_REPO_TOKEN: ${{ secrets.NAME_REPO_TOKEN }}
+                SONATYPE_NEXUS_USERNAME: ${{ secrets.SONATYPE_NEXUS_USERNAME }}
+                SONATYPE_NEXUS_PASSWORD: ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
+                GPG_KEY_CONTENTS: ${{ secrets.GPG_KEY_CONTENTS }}
+                ORG_GRADLE_PROJECT_SIGNINGKEYID: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGKEYID }}
+                ORG_GRADLE_PROJECT_SIGNINGPASSWORD: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGPASSWORD }}
+                GITHUB_USER: ${{ secrets.NAME_REPO_TOKEN }}
+                GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+                COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
+                TAG_NAME: ${{ github.REF }}
+                REPO: ${{ github.repository }}
+                COMMITISH: ${{ github.after }}
+              run: bundle exec fastlane deploy
