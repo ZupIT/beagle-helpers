@@ -1,0 +1,7 @@
+<component name="CopyrightManager">
+  <settings default="zup">
+    <module2copyright>
+      <element module="All" copyright="zup" />
+    </module2copyright>
+  </settings>
+</component>
