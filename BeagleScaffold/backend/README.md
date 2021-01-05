@@ -20,4 +20,4 @@
  
 - You need to create a release on github following a specific tag pattern, eg: `v*.*.*-backend`, where what is in * can be replaced by the version number to be released.
 
-- This will trigger an action that will make the entire deployment process for that release on the selected branch automatically
+- This will trigger an action that will make the entire deployment process for that release on the selected branch automatically run
