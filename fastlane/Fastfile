@@ -1,55 +1,11 @@
 ###
-###  Workflow
-###
-platform :workflow do
-  desc "Open PR from patch"
-  lane :openPRFromPatch do
-    tagName = ENV["TAG_NAME"]
-    if !tagName.index("-")
-      puts "This release is not a hotfix."
-      puts "Exiting..."
-      next
-    end
-    branchName = tagName.split("/").last
-    sh("git checkout -b hotfix/" + branchName)
-    push_to_git_remote(
-      tags: false,
-      set_upstream: true
-    )
-    create_pull_request(
-      api_token:ENV["REPO_TOKEN"],
-      repo:ENV["REPO"],
-      title:"fix: Merge #{branchName} patch with master",
-      body: "Auto generated PR to merge fixes from #{branchName} into master."
-      )
-  end
-end
-
-###
-###  Flutter
-###
-
-platform :flutter do
-
-  desc "Pull Request verification"
-  lane :pull_request_verification do
-    sh "cd #{ENV['PWD']} && fastlane/flutter/tests.sh"
-    run_codecov(platform: 'flutter')
-    sh "cd #{ENV['PWD']}/flutter && flutter analyze > flutter_analyze_report.txt || true"
-  end
-
-end
-
-###
 ###  Android
 ###
 
 platform :android do
   desc "Pull Request verification"
   lane :pull_request_verification do
-    gradle(project_dir: "android", task: "clean detekt lintDebug test jacocoTestReport")
-    gradle(project_dir: "android", task: "sample:assembleDebug sample:assembleDebugAndroidTest")
-    gradle(project_dir: "android", task: "automatedTest:assembleDebug automatedTest:assembleDebugAndroidTest")
+    gradle(project_dir: "android", task: "clean lintDebug test")
     run_codecov(platform: 'android')
   end
 
@@ -67,71 +23,7 @@ platform :android do
 end
 
 ###
-###  iOS - Begin
-###
-
-platform :ios do
-  desc "Pull Request verification"
-  lane :pull_request_verification do
-    xcversion(version: "~> 11.5.0")
-    # TODO: see if it's ok to remove this SwiftLint, since we already have it inside xcode and danger
-    swiftlint(
-      mode: :lint, # :lint (default) or :autocorrect
-      ignore_exit_status: true # Allow fastlane to continue even if SwiftLint returns a non-zero exit status
-    )
-    scan(
-      workspace: "iOS/Beagle.xcworkspace/",
-      scheme: "All",
-      device: "iPhone 11",
-    )
-    run_codecov(platform: 'ios')
-    check_if_beagle_works_via_cocoapods_integration
-  end
-
-  desc "Check wether Beagle is working via CocoaPods in an Example Project"
-  private_lane :check_if_beagle_works_via_cocoapods_integration do
-    xcversion(version: "~> 11.5.0")
-    cocoapods(
-      clean_install: true,
-      podfile: "iOS/Example/CocoaPodsTest/Podfile"
-    )
-    scan(
-      workspace: "iOS/Example/CocoaPodsTest/CocoaPodsTest.xcworkspace",
-      scheme: "CocoaPodsTest",
-      device: "iPhone 11"
-    )
-  end
-
-  desc "Release Pods"
-  lane :release_pods do |options|
-    version = options[:version] # 1.0.0
-     tag = options[:tag] # 1.0.0[-iOS]
-     update_podspec(path: "Beagle.podspec", version: version, tag: tag)
-     pod_push(path: "Beagle.podspec", allow_warnings: true)
-  end
-end
-
-def update_podspec(path:, version:, tag:)
-  rootPath = "../" + path
-  file = File.read(rootPath)
-
-  version_regex = /\.version = (.*)\n/
-  tag_regex = /tag = (.*)\n/
-
-  has_version_and_tag = version_regex.match(file) && tag_regex.match(file)
-  if not has_version_and_tag
-    UI.user_error!("podspec at #{path} should have version and tag")
-  end
-
-  new_content = file
-    .gsub(version_regex, ".version = '#{version}'\n")
-    .gsub(tag_regex, "tag = '#{tag}'\n")
-
-  File.write(rootPath, new_content)
-end
-
-###
-### iOS - END
+### DEPLOY ###
 ###
 
 desc "Publish new release based on last two tags"
@@ -158,8 +50,8 @@ lane :deploy do
   else
     puts "Normal Release"
     sh "fastlane android deploy_to_production"
-    sh "fastlane backend deploy_to_production"
-    sh "fastlane ios release_pods version:#{versionNumber} tag:#{tagName}"
+###    sh "fastlane backend deploy_to_production"
+###    sh "fastlane ios release_pods version:#{versionNumber} tag:#{tagName}"
   end
 
   releaseNotes = release_notes(versionDeploy: tagName)
@@ -186,66 +78,7 @@ lane :run_danger do |options|
   )
 end
 
-###
-###  Backend
-###
-
-platform :backend do
-  desc "Pull Request verification"
-  lane :pull_request_verification do
-    gradle(project_dir: "backend", task: "detekt")
-    gradle(project_dir: "backend", tasks:["clean", "assemble", "jacocoTestReport"])
-    run_codecov(platform: 'backend')
-  end
-
-  desc "Sync Spring BFF sample to Micronaut BFF sample"
-  lane :sync_to_micronaut do
-    sh "./sync-to-micronaut.sh"
-    sh "./git_commit.sh 'Synced Spring BFF sample to Micronaut BFF sample.' '../backend/sample/micronaut'"
-    push_to_git_remote
-  end
-
-  desc "Sync Micronaut BFF sample to Spring BFF sample"
-  lane :sync_to_spring do
-    sh "./sync-to-spring.sh"
-    sh "./git_commit.sh 'Synced Micronaut BFF sample to Spring BFF sample.' '../backend/sample/spring'"
-    push_to_git_remote
-  end
-
-  desc "Deploy current code to stage"
-  lane :deploy_to_stage do
-    gradle(project_dir: "backend", task: "assemble")
-    gradle(project_dir: "backend", task: "uploadArchives --no-daemon --no-parallel")
-  end
-
-  desc "Deploy current code to production"
-  lane :deploy_to_production do
-    sh "bash ./release/maven_signing.sh"
-    deploy_to_stage
-  end
-end
-
-###
-###  Automated tests
-###
-
-platform :automated_tests do
-  desc "Run iOS automated tests"
-  lane :run_ios_automation do
-    xcversion(version: "~> 11.5.0")
-    #TODO pass bff url to test
-    scan(
-      workspace: "iOS/Beagle.xcworkspace/",
-      scheme: "AutomatedTestsUITests",
-      device: "iPhone 11",
-    )
-  end
-
-  desc "Cleanup"
-  lane :cleanup do
-    sh("curl -XPOST localhost:8080/actuator/shutdown")
-  end
-end
+### FUNCTIONS ###
 
 desc "Generate release notes"
 private_lane :release_notes do |params|

@@ -1,4 +1,4 @@
-name: Beagle Release
+name: Beagle Lib Release
 
 on:
     push:
@@ -12,7 +12,7 @@ jobs:
             - uses: actions/checkout@v2.1.0
               with:
                   fetch-depth: '0'
-                  ref: 'master'
+                  ref: 'main'
             - name: Install Fastlane
               run: bundle install
             - name: Deploy new version
@@ -26,7 +26,6 @@ jobs:
                 ORG_GRADLE_PROJECT_SIGNINGPASSWORD: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGPASSWORD }}
                 GITHUB_USER: ${{ secrets.NAME_REPO_TOKEN }}
                 GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-                COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
                 TAG_NAME: ${{ github.REF }}
                 REPO: ${{ github.repository }}
                 COMMITISH: ${{ github.after }}
