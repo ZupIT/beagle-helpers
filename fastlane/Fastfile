@@ -102,7 +102,7 @@ private_lane :release_notes do |params|
   }
   order = ["feat", "fix", "refactor", "perf", "chore", "test", "docs", "ci", "no_type"]
   changelog = conventional_changelog(sections: sections, order: order, display_title: false, display_links: false)
-  changelog = changelog.gsub("**::**  ", "")
+  ## changelog = changelog.gsub("**::**  ", "")
   "\nRelease notes #{params[:versionDeploy]}
    \nChanges:
    \n#{changelog}"
