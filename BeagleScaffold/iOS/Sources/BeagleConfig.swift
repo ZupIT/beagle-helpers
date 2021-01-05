@@ -18,11 +18,11 @@ import Foundation
 import Beagle
 import BeagleDefaults
 
-class BeagleConfig: DependencyLogger {
+public class BeagleConfig: DependencyLogger {
     
-    var logger: BeagleLoggerType = BeagleLoggerDefault()
+    public var logger: BeagleLoggerType = BeagleLoggerDefault()
     
-    private var baseURL = "localhost"
+    private var baseURL = "http://localhost:8080/components"
     
     public init(dependencies: BeagleDependencies? = nil) {
         Beagle.dependencies = scaffoldConfig(userDependencies: dependencies)
