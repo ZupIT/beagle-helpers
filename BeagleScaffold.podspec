@@ -53,7 +53,7 @@ Pod::Spec.new do |spec|
   # ――― Beagle Scaffold ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   
   spec.subspec 'BeagleScaffold' do |beagleScaffold|
-    path_source = 'BeagleScaffold/iOS/Sources'
+    path_source = 'iOS/beagle-scaffold/Sources'
 
     beagleScaffold.source_files = [
       path_source + '/**/*.swift'

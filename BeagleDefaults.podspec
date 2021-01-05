@@ -53,7 +53,7 @@ Pod::Spec.new do |spec|
   # ――― Beagle Defaults ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   
   spec.subspec 'BeagleDefaults' do |beagleDefaults|
-    path_source = 'BeagleDefaults/iOS/BeagleDefaults'
+    path_source = 'iOS/beagle-defaults/BeagleDefaults'
 
       beagleDefaults.source_files = [
       path_source + '/**/*.swift'
