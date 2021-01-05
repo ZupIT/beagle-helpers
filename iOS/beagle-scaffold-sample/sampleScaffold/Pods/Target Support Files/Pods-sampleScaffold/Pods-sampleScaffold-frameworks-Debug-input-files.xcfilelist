@@ -1,0 +1,7 @@
+${PODS_ROOT}/Target Support Files/Pods-sampleScaffold/Pods-sampleScaffold-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Beagle/Beagle.framework
+${BUILT_PRODUCTS_DIR}/BeagleDefaults/BeagleDefaults.framework
+${BUILT_PRODUCTS_DIR}/BeagleScaffold/BeagleScaffold.framework
+${BUILT_PRODUCTS_DIR}/BeagleSchema/BeagleSchema.framework
+${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework
+${BUILT_PRODUCTS_DIR}/YogaKit/YogaKit.framework

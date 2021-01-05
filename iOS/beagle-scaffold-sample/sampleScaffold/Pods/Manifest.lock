@@ -1,0 +1,57 @@
+PODS:
+  - Beagle (1.5.0):
+    - Beagle/Beagle (= 1.5.0)
+  - Beagle/Beagle (1.5.0):
+    - BeagleSchema (= 1.5.0)
+    - YogaKit
+  - BeagleDefaults (1.0.0):
+    - BeagleDefaults/BeagleDefaults (= 1.0.0)
+  - BeagleDefaults/BeagleDefaults (1.0.0):
+    - Beagle
+  - BeagleScaffold (1.0.0):
+    - BeagleScaffold/BeagleScaffold (= 1.0.0)
+  - BeagleScaffold/BeagleScaffold (1.0.0):
+    - BeagleDefaults
+  - BeagleSchema (1.5.0)
+  - Yoga (1.14.0)
+  - YogaKit (1.18.1):
+    - Yoga (~> 1.14)
+
+DEPENDENCIES:
+  - BeagleDefaults (from `https://github.com/ZupIT/beagle-helpers.git`, branch `refactor/repo-structure`)
+  - BeagleScaffold (from `https://github.com/ZupIT/beagle-helpers.git`, branch `refactor/repo-structure`)
+
+SPEC REPOS:
+  trunk:
+    - Beagle
+    - BeagleSchema
+    - Yoga
+    - YogaKit
+
+EXTERNAL SOURCES:
+  BeagleDefaults:
+    :branch: refactor/repo-structure
+    :git: https://github.com/ZupIT/beagle-helpers.git
+  BeagleScaffold:
+    :branch: refactor/repo-structure
+    :git: https://github.com/ZupIT/beagle-helpers.git
+
+CHECKOUT OPTIONS:
+  BeagleDefaults:
+    :commit: 48f7c3746c7264d7551a365a443a391453ddb9a7
+    :git: https://github.com/ZupIT/beagle-helpers.git
+  BeagleScaffold:
+    :commit: 48f7c3746c7264d7551a365a443a391453ddb9a7
+    :git: https://github.com/ZupIT/beagle-helpers.git
+
+SPEC CHECKSUMS:
+  Beagle: 68b7583ec5ba63d8000f87afc32247d61019adbd
+  BeagleDefaults: b8f255cc3cc47862fa76e486dbb0fd93acdbe2ce
+  BeagleScaffold: 5e19c4d4479389bb4dc4f7440de2a6e2702b7f16
+  BeagleSchema: cc5463afa843ac07caaddb875d82c97a7d8a0153
+  Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
+  YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
+
+PODFILE CHECKSUM: 75ea83891c557dd835da94ba827fda45c0bc72e9
+
+COCOAPODS: 1.10.0

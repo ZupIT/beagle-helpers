@@ -1,0 +1,13 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'sampleScaffold' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for sampleScaffold
+
+  pod 'BeagleScaffold', :git => 'https://github.com/ZupIT/beagle-helpers.git', :branch => 'refactor/repo-structure'
+ pod 'BeagleDefaults', :git => 'https://github.com/ZupIT/beagle-helpers.git', :branch => 'refactor/repo-structure'
+
+end
