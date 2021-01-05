@@ -1,0 +1,167 @@
+###
+###  Android
+###
+
+platform :android do
+  desc "Pull Request verification"
+  lane :pull_request_verification do
+    gradle(project_dir: "android", task: "clean lintDebug test")
+    run_codecov(platform: 'android')
+  end
+
+  desc "Deploy current code to stage"
+  lane :deploy_to_stage do
+    gradle(project_dir: "android", task: "assemble")
+    gradle(project_dir: "android", task: "uploadArchives --no-daemon --no-parallel")
+  end
+
+  desc "Deploy current code to production"
+  lane :deploy_to_production do
+    sh "bash ./release/maven_signing.sh"
+    deploy_to_stage
+  end
+end
+
+###
+### DEPLOY ###
+###
+
+desc "Publish new release based on last two tags"
+lane :deploy do
+  sh "git fetch"
+
+  tagName = ENV["TAG_NAME"].split("/").last
+
+  (versionNumber, platformHotfix) = tagName.split("-")
+
+  ENV["VERSION_DEPLOY"] = versionNumber
+
+  sh "git checkout tags/#{tagName} -b newReleaseFromTag#{tagName}"
+
+  if platformHotfix == "iOS"
+    puts "iOS Hotfix release"
+    sh "fastlane ios release_pods version:#{versionNumber} tag:#{tagName}"
+  elsif platformHotfix == "android"
+    puts "Android Hotfix release"
+    sh "fastlane android deploy_to_production"
+  elsif platformHotfix == "backend"
+    puts "Backend Hotfix release"
+    sh "fastlane backend deploy_to_production"
+  else
+    puts "Normal Release"
+    sh "fastlane android deploy_to_production"
+###    sh "fastlane backend deploy_to_production"
+###    sh "fastlane ios release_pods version:#{versionNumber} tag:#{tagName}"
+  end
+
+  releaseNotes = release_notes(versionDeploy: tagName)
+  sh "bash ./delete_release.sh " + tagName
+  set_github_release(
+    repository_name: ENV["REPO"],
+    api_token: ENV["REPO_TOKEN"],
+    name: tagName,
+    tag_name: tagName,
+    description: releaseNotes,
+    commitish: ENV["COMMITISH"]
+  )
+end
+
+lane :run_danger do |options|
+  danger_id = options[:danger_id] || lane_context[SharedValues::PLATFORM_NAME].to_s
+  danger_file_path = options[:danger_file_path] || lane_context[SharedValues::PLATFORM_NAME].to_s
+  danger(
+    danger_id: danger_id,
+    dangerfile: "danger/#{danger_file_path}/Dangerfile",
+    github_api_token: ENV[
+      "GITHUB_TOKEN"],
+    verbose: true,
+  )
+end
+
+### FUNCTIONS ###
+
+desc "Generate release notes"
+private_lane :release_notes do |params|
+  get_previous_tag = lastExpectedVersion(newVersion:params[:versionDeploy])
+  tagHashes = sh "git show-ref -s #{get_previous_tag}"
+
+  lane_context[SharedValues::RELEASE_ANALYZED] = true
+  lane_context[SharedValues::RELEASE_LAST_TAG_HASH] = tagHashes.split("\n").last
+  lane_context[SharedValues::RELEASE_NEXT_VERSION] = params[:versionDeploy]
+  lane_context[SharedValues::CONVENTIONAL_CHANGELOG_ACTION_FORMAT_PATTERN] = "(feat|fix|refactor|perf|chore|test|docs|no_type|ci)(:)()(.*)"
+  sections = {
+    feat: "Features",
+    fix: "Bug fixes",
+    refactor: "Code refactoring",
+    perf: "Performance improvements",
+    chore: "Building system",
+    test: "Testing",
+    docs: "Documentation",
+    ci: "CI/CD",
+    no_type: "Other work"
+  }
+  order = ["feat", "fix", "refactor", "perf", "chore", "test", "docs", "ci", "no_type"]
+  changelog = conventional_changelog(sections: sections, order: order, display_title: false, display_links: false)
+  changelog = changelog.gsub("**::**  ", "")
+  "\nRelease notes #{params[:versionDeploy]}
+   \nChanges:
+   \n#{changelog}"
+end
+
+private_lane :run_codecov do |options|
+  codecov = ENV["CODECOV_TOKEN"]
+  if !(codecov.nil? || codecov.empty?)
+    commit_hash = last_git_commit[:commit_hash]
+    codecov_reporter(token: codecov, flags: "-F #{options[:platform]} -C #{commit_hash}")
+  end
+end
+
+private_lane :danger_token_available? do
+  danger = ENV["GITHUB_TOKEN"]
+  !(danger.nil? || danger.empty?)
+end
+
+after_all do |lane, options|
+  if lane == :pull_request_verification
+    if danger_token_available?
+      run_danger
+    end
+  end
+end
+
+error do |lane, exception, options|
+  if lane == :pull_request_verification
+    if danger_token_available?
+      run_danger
+    end
+  end
+end
+
+# input: 1.2.0; output: 1.1.0
+# input: 1.2.2; output: 1.2.1
+# input: 1.2.3-iOS; output: 1.2.2-iOS
+# input: 3.0.0; output: 2.0.0
+lane :lastExpectedVersion do |params|
+  platform = params[:newVersion].split("-")
+  releaseNumberArray = platform.first.split(".")
+  lastVersion = ""
+  calculated = false
+  for number in releaseNumberArray.reverse()
+    intNumber = number.to_i
+    if intNumber != 0 && !calculated
+      intNumber -= 1
+      calculated = true
+    end
+    lastVersion = ".#{intNumber}" + lastVersion
+  end
+  lastVersion[0] = ""
+
+  version = ""
+  if platform.length > 1 &&
+    lastVersion.split(".").last != "0"
+      version = "#{lastVersion}-#{platform[1]}"
+  else
+    version = lastVersion
+  end
+  "#{version}"
+end
