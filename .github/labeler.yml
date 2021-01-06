@@ -1,0 +1,14 @@
+android:
+    - android/**
+
+backend:
+    - BeagleScaffold/backend/**
+
+iOS:
+    - ios/**
+
+CI/CD:
+    - danger/**
+    - fastlane/**
+    - .github/**
+    - gradle/**
