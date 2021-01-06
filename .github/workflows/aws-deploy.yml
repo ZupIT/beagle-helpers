@@ -23,7 +23,7 @@ jobs:
                     maven-path: ~/.m2
                 with:
                     path: ${{ env.maven-path }}
-                    key: ${{ runner.os }}-build-${{ env.maven-cache-key }}-${{ hashFiles('BeagleScaffold/backend/pom.xml') }}
+                    key: ${{ runner.os }}-build-${{ env.maven-cache-key }}-${{ hashFiles('backend/pom.xml') }}
                     restore-keys: ${{ runner.os }}-build-${{ env.maven-cache-key }}
 
             -   id: version
@@ -31,7 +31,7 @@ jobs:
                 shell: bash
 
             -   name: Build Image
-                working-directory: BeagleScaffold/backend
+                working-directory: backend
                 run: mvn clean -B spring-boot:build-image -DskipTests=true -Dspring-boot.build-image.imageName="temp"
 
             -   name: Configure AWS credentials
@@ -58,5 +58,5 @@ jobs:
                 env: 
                     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
                     VERSION: ${{ steps.version.outputs.release_tag }}
-                run: sed "s/IMAGE/$ECR_REGISTRY\/$IMAGE:$VERSION/" BeagleScaffold/backend/k8s.yml | kubectl -n adoption apply -f -
+                run: sed "s/IMAGE/$ECR_REGISTRY\/$IMAGE:$VERSION/" backend/k8s.yml | kubectl -n adoption apply -f -
                 
