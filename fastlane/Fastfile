@@ -5,8 +5,7 @@
 platform :android do
   desc "Pull Request verification"
   lane :pull_request_verification do
-    gradle(project_dir: "android", task: "clean lintDebug test")
-    run_codecov(platform: 'android')
+    gradle(project_dir: "android", task: "clean detekt lintDebug test jacocoTestReport")
   end
 
   desc "Deploy current code to stage"
@@ -44,9 +43,6 @@ lane :deploy do
   elsif platformHotfix == "android"
     puts "Android Hotfix release"
     sh "fastlane android deploy_to_production"
-  elsif platformHotfix == "backend"
-    puts "Backend Hotfix release"
-    sh "fastlane backend deploy_to_production"
   else
     puts "Normal Release"
     sh "fastlane android deploy_to_production"
