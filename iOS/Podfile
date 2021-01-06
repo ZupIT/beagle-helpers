@@ -1,0 +1,26 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '10.0'
+use_frameworks!
+
+workspace 'BeagleHelpers'
+
+target 'BeagleScaffold' do
+  project 'beagle-scaffold/BeagleScaffold.xcodeproj'
+
+  pod 'BeagleDefaults', :git => 'https://github.com/ZupIT/beagle-helpers.git', :branch => 'feature/scaffold-sample'
+  pod 'Beagle'
+end
+
+ target 'BeagleDefaults' do
+   project 'beagle-defaults/BeagleDefaults.xcodeproj'
+
+   pod 'Beagle'
+ end
+
+ target 'sampleScaffold' do
+   project 'beagle-scaffold-sample/sampleScaffold.xcodeproj'
+
+   pod 'BeagleScaffold', :git => 'https://github.com/ZupIT/beagle-helpers.git', :branch => 'feature/scaffold-sample'
+   pod 'Beagle'
+   pod 'YogaKit', :git => 'https://github.com/ZupIT/YogaKit'
+ end

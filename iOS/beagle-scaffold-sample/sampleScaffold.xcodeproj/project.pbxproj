@@ -7,21 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97126A22EE6438939C74F147 /* Pods_sampleScaffold.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E73BB554B263CC7FB04C35 /* Pods_sampleScaffold.framework */; };
 		AF991BC0259A5B1600AD1238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991BBF259A5B1600AD1238 /* AppDelegate.swift */; };
 		AF991BC9259A5B1A00AD1238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF991BC8259A5B1A00AD1238 /* Assets.xcassets */; };
 		AF991BCC259A5B1A00AD1238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF991BCA259A5B1A00AD1238 /* LaunchScreen.storyboard */; };
-		B6BF4B9DB63E6B320FB843A1 /* Pods_sampleScaffold.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0B921E5DA76DFFADF6A940 /* Pods_sampleScaffold.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AC0B921E5DA76DFFADF6A940 /* Pods_sampleScaffold.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sampleScaffold.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF991BBC259A5B1600AD1238 /* sampleScaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sampleScaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF991BBF259A5B1600AD1238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF991BC8259A5B1A00AD1238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF991BCB259A5B1A00AD1238 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF991BCD259A5B1A00AD1238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BE66623C541B33DBBA1B7ED8 /* Pods-sampleScaffold.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sampleScaffold.debug.xcconfig"; path = "Target Support Files/Pods-sampleScaffold/Pods-sampleScaffold.debug.xcconfig"; sourceTree = "<group>"; };
-		C12E47F6F884D6DF399BE5BE /* Pods-sampleScaffold.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sampleScaffold.release.xcconfig"; path = "Target Support Files/Pods-sampleScaffold/Pods-sampleScaffold.release.xcconfig"; sourceTree = "<group>"; };
+		B4E73BB554B263CC7FB04C35 /* Pods_sampleScaffold.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sampleScaffold.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE66623C541B33DBBA1B7ED8 /* Pods-sampleScaffold.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sampleScaffold.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-sampleScaffold/Pods-sampleScaffold.debug.xcconfig"; sourceTree = "<group>"; };
+		C12E47F6F884D6DF399BE5BE /* Pods-sampleScaffold.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sampleScaffold.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-sampleScaffold/Pods-sampleScaffold.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,7 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6BF4B9DB63E6B320FB843A1 /* Pods_sampleScaffold.framework in Frameworks */,
+				97126A22EE6438939C74F147 /* Pods_sampleScaffold.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +77,7 @@
 		C744CF15CD63A5A0252BFE28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AC0B921E5DA76DFFADF6A940 /* Pods_sampleScaffold.framework */,
+				B4E73BB554B263CC7FB04C35 /* Pods_sampleScaffold.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -93,7 +93,7 @@
 				AF991BB8259A5B1600AD1238 /* Sources */,
 				AF991BB9259A5B1600AD1238 /* Frameworks */,
 				AF991BBA259A5B1600AD1238 /* Resources */,
-				1C66E62438DC7E50E792BE82 /* [CP] Embed Pods Frameworks */,
+				35A4E0217BFF3B5C0C3FFC7C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,7 +149,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1C66E62438DC7E50E792BE82 /* [CP] Embed Pods Frameworks */ = {
+		35A4E0217BFF3B5C0C3FFC7C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -337,6 +337,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = sampleScaffold/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -356,6 +357,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = sampleScaffold/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
