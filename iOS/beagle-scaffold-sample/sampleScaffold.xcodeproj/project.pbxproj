@@ -3,12 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		AF991BC0259A5B1600AD1238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991BBF259A5B1600AD1238 /* AppDelegate.swift */; };
-		AF991BC4259A5B1600AD1238 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991BC3259A5B1600AD1238 /* ViewController.swift */; };
 		AF991BC9259A5B1A00AD1238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF991BC8259A5B1A00AD1238 /* Assets.xcassets */; };
 		AF991BCC259A5B1A00AD1238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF991BCA259A5B1A00AD1238 /* LaunchScreen.storyboard */; };
 		B6BF4B9DB63E6B320FB843A1 /* Pods_sampleScaffold.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0B921E5DA76DFFADF6A940 /* Pods_sampleScaffold.framework */; };
@@ -18,7 +17,6 @@
 		AC0B921E5DA76DFFADF6A940 /* Pods_sampleScaffold.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sampleScaffold.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF991BBC259A5B1600AD1238 /* sampleScaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sampleScaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF991BBF259A5B1600AD1238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AF991BC3259A5B1600AD1238 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AF991BC8259A5B1A00AD1238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF991BCB259A5B1A00AD1238 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF991BCD259A5B1A00AD1238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -44,7 +42,6 @@
 				BE66623C541B33DBBA1B7ED8 /* Pods-sampleScaffold.debug.xcconfig */,
 				C12E47F6F884D6DF399BE5BE /* Pods-sampleScaffold.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -70,7 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				AF991BBF259A5B1600AD1238 /* AppDelegate.swift */,
-				AF991BC3259A5B1600AD1238 /* ViewController.swift */,
 				AF991BC8259A5B1A00AD1238 /* Assets.xcassets */,
 				AF991BCA259A5B1A00AD1238 /* LaunchScreen.storyboard */,
 				AF991BCD259A5B1A00AD1238 /* Info.plist */,
@@ -199,7 +195,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF991BC4259A5B1600AD1238 /* ViewController.swift in Sources */,
 				AF991BC0259A5B1600AD1238 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

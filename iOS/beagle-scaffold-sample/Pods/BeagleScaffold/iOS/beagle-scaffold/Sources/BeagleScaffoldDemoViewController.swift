@@ -19,6 +19,6 @@ import Beagle
 
 public var BeagleScaffoldDemoViewController: UIViewController {
     get {
-        return BeagleScreenViewController(.remote(.init(url: "http://localhost:8080/components")))
+        return BeagleScreenViewController(.remote(.init(url: "/components")))
     }
 }

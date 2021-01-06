@@ -22,13 +22,16 @@ public class BeagleConfig: DependencyLogger {
     
     public var logger: BeagleLoggerType = BeagleLoggerDefault()
     
-    private var baseURL = "http://localhost:8080/components"
+    static private var baseURL = "https://adopt-beagle.continuousplatform.com/scaffold"
     
-    public init(dependencies: BeagleDependencies? = nil) {
-        Beagle.dependencies = scaffoldConfig(userDependencies: dependencies)
+    @discardableResult
+    static public func start(dependencies: BeagleDependencies? = nil) -> BeagleConfig {
+        let dependencyLogger = BeagleConfig()
+        Beagle.dependencies = scaffoldConfig(userDependencies: dependencies, with: dependencyLogger)
+        return dependencyLogger
     }
 
-    private func scaffoldConfig(userDependencies dependencies: BeagleDependencies?) -> BeagleDependencies {
+    static private func scaffoldConfig(userDependencies dependencies: BeagleDependencies?, with dependencyLogger: BeagleConfig) -> BeagleDependencies {
         var dependenciesNew: BeagleDependencies
         if let dependenciesParam = dependencies {
             
@@ -41,16 +44,16 @@ public class BeagleConfig: DependencyLogger {
             }
             
             if dependenciesParam.networkClient == nil {
-                dependenciesParam.networkClient = NetworkClientDefault(dependencies: self)
+                dependenciesParam.networkClient = NetworkClientDefault(dependencies: dependencyLogger)
             }
             
             if dependenciesParam.cacheManager == nil {
-                dependenciesParam.cacheManager = CacheManagerDefault(dependencies: self)
+                dependenciesParam.cacheManager = CacheManagerDefault(dependencies: dependencyLogger)
             }
 
             dependenciesNew = dependenciesParam
         } else {
-            dependenciesNew = BeagleDependencies(networkClient: NetworkClientDefault(dependencies: self), cacheManager: CacheManagerDefault(dependencies: self), logger: logger)
+            dependenciesNew = BeagleDependencies(networkClient: NetworkClientDefault(dependencies: dependencyLogger), cacheManager: CacheManagerDefault(dependencies: dependencyLogger), logger: dependencyLogger.logger)
             dependenciesNew.urlBuilder = UrlBuilder(baseUrl: URL(string: self.baseURL))
         }
         

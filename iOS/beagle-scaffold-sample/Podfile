@@ -8,6 +8,7 @@ target 'sampleScaffold' do
   # Pods for sampleScaffold
 
   pod 'BeagleScaffold', :git => 'https://github.com/ZupIT/beagle-helpers.git', :branch => 'refactor/repo-structure'
- pod 'BeagleDefaults', :git => 'https://github.com/ZupIT/beagle-helpers.git', :branch => 'refactor/repo-structure'
+  pod 'BeagleDefaults', :git => 'https://github.com/ZupIT/beagle-helpers.git', :branch => 'refactor/repo-structure'
+  pod 'YogaKit', :git => 'https://github.com/ZupIT/YogaKit'
 
 end

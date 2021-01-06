@@ -8,6 +8,7 @@ target 'BeagleScaffold' do
   # Pods for BeagleScaffold
 
   pod 'BeagleDefaults', :git => 'https://github.com/ZupIT/beagle-helpers.git'
+  pod 'YogaKit', :git => 'https://github.com/ZupIT/YogaKit'
 
   target 'BeagleScaffoldTests' do
     # Pods for testing
