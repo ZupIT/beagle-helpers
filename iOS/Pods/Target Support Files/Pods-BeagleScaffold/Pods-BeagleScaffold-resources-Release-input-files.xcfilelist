@@ -1,5 +1,0 @@
-${PODS_ROOT}/Target Support Files/Pods-BeagleScaffold/Pods-BeagleScaffold-resources.sh
-${PODS_ROOT}/Beagle/iOS/Example/BeagleDemo/BeagleDemo/BeagleConfig/Cache/CoreData/CoreCache.xcdatamodeld
-${PODS_ROOT}/Beagle/iOS/Sources/Beagle/CodeGeneration/Templates/AutoDecodable.swifttemplate
-${PODS_ROOT}/Beagle/iOS/Sources/Beagle/CodeGeneration/Templates/Equality.stencil
-${PODS_ROOT}/Beagle/iOS/Sources/Beagle/CodeGeneration/Templates/Initiable.swifttemplate
