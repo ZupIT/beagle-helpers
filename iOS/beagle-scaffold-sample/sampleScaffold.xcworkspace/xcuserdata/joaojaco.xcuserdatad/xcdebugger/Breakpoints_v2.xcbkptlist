@@ -3,35 +3,4 @@
    uuid = "A6FE0518-41D6-4118-9296-5DBF4428BD57"
    type = "0"
    version = "2.0">
-   <Breakpoints>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
-         <BreakpointContent
-            uuid = "37525C03-5A40-473B-B232-E2D3A175689E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            breakpointStackSelectionBehavior = "1"
-            scope = "1"
-            stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "08D5FAAB-6D3F-4483-BC4D-C429651906B6"
-            shouldBeEnabled = "Yes"
-            condition = "(topLeft.x + YGNodeLayoutGetWidth(node)) != 428 "
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Pods/YogaKit/YogaKit/Source/YGLayout.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "459"
-            endingLineNumber = "459"
-            landmarkName = "YGApplyLayoutToViewHierarchy(view, preserveOrigin)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-   </Breakpoints>
 </Bucket>
