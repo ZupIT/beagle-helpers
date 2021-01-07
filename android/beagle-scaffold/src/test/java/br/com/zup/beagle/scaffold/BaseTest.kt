@@ -22,7 +22,7 @@ import org.junit.jupiter.api.BeforeEach
 
 abstract class BaseTest {
     @BeforeEach
-    fun setUpTest(){
+    open fun setUpTest() {
         MockKAnnotations.init(this)
     }
 }
