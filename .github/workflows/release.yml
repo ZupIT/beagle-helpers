@@ -1,4 +1,4 @@
-name: Beagle Lib Release
+name: Beagle Helpers Release
 
 on:
     push:
@@ -26,6 +26,7 @@ jobs:
                 ORG_GRADLE_PROJECT_SIGNINGPASSWORD: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGPASSWORD }}
                 GITHUB_USER: ${{ secrets.NAME_REPO_TOKEN }}
                 GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+                COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
                 TAG_NAME: ${{ github.REF }}
                 REPO: ${{ github.repository }}
                 COMMITISH: ${{ github.after }}

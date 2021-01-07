@@ -52,26 +52,23 @@ Pod::Spec.new do |spec|
 
   # ――― Beagle Defaults ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   
-  spec.subspec 'BeagleDefaults' do |beagleDefaults|
-    path_source = 'BeagleDefaults/iOS/BeagleDefaults'
+  path_source = 'iOS/beagle-defaults/BeagleDefaults'
 
-      beagleDefaults.source_files = [
-      path_source + '/**/*.swift'
-    ]
+  spec.source_files = [
+    path_source + '/**/*.swift'
+  ]
 
-      beagleDefaults.resources = [
-      "**/*.xcdatamodeld"
-    ]
+  spec.resources = [
+    path_source + "/**/*.xcdatamodeld"
+  ]
 
-      beagleDefaults.exclude_files = [
-      path_source + "/**/Test/**/*.swift",
-      path_source + "/**/Tests/**/*.swift",
-      path_source + "/**/*Test*.swift"
-    ]
-    
-      beagleDefaults.frameworks = 'Foundation', 'CoreData'
-      beagleDefaults.dependency 'Beagle'
-  end
+  spec.exclude_files = [
+    path_source + "/**/Test/**/*.swift",
+    path_source + "/**/Tests/**/*.swift",
+    path_source + "/**/*Test*.swift"
+  ]
   
+  spec.frameworks = 'Foundation', 'CoreData'
+  spec.dependency 'Beagle'
   
 end

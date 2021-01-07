@@ -5,12 +5,12 @@ on:
         branches:
             - main
         paths:
-            - 'BeagleScaffold/backend/**'
+            - 'backend/**'
     pull_request:
         branches: 
             - main
         paths:
-            - 'BeagleScaffold/backend/**'
+            - 'backend/**'
             
 jobs:
     pr-verification:
@@ -29,9 +29,9 @@ jobs:
                     maven-path: ~/.m2
                 with:
                     path: ${{ env.maven-path }}
-                    key: ${{ runner.os }}-build-${{ env.maven-cache-key }}-${{ hashFiles('BeagleScaffold/backend/pom.xml') }}
+                    key: ${{ runner.os }}-build-${{ env.maven-cache-key }}-${{ hashFiles('backend/pom.xml') }}
                     restore-keys: ${{ runner.os }}-build-${{ env.maven-cache-key }}
 
             -   name: Run pr check
-                working-directory: BeagleScaffold/backend
+                working-directory: backend
                 run: mvn -B verify
