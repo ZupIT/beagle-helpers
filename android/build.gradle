@@ -21,19 +21,30 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.20"
         classpath "com.vanniktech:gradle-maven-publish-plugin:0.13.0"
+        classpath "com.hiya:jacoco-android:0.2"
+        classpath "de.mannodermaus.gradle.plugins:android-junit5:1.6.2.0"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.14.1"
+    id "com.github.ben-manes.versions" version "0.33.0"
+}
+
 allprojects {
+    apply from: "$rootDir/../detekt.gradle"
     repositories {
         google()
         jcenter()
