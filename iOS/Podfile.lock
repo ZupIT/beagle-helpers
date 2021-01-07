@@ -5,12 +5,8 @@ PODS:
     - BeagleSchema (= 1.5.0)
     - YogaKit
   - BeagleDefaults (1.0.0):
-    - BeagleDefaults/BeagleDefaults (= 1.0.0)
-  - BeagleDefaults/BeagleDefaults (1.0.0):
     - Beagle
   - BeagleScaffold (1.0.0):
-    - BeagleScaffold/BeagleScaffold (= 1.0.0)
-  - BeagleScaffold/BeagleScaffold (1.0.0):
     - BeagleDefaults
   - BeagleSchema (1.5.0)
   - Yoga (1.14.0)
@@ -19,8 +15,8 @@ PODS:
 
 DEPENDENCIES:
   - Beagle
-  - BeagleDefaults (from `https://github.com/ZupIT/beagle-helpers`, branch `feature/scaffold-sample`)
-  - BeagleScaffold (from `https://github.com/ZupIT/beagle-helpers`, branch `feature/scaffold-sample`)
+  - BeagleDefaults (from `../BeagleDefaults.podspec`)
+  - BeagleScaffold (from `../BeagleScaffold.podspec`)
   - YogaKit (from `https://github.com/ZupIT/YogaKit`)
 
 SPEC REPOS:
@@ -31,33 +27,25 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   BeagleDefaults:
-    :branch: feature/scaffold-sample
-    :git: https://github.com/ZupIT/beagle-helpers
+    :path: "../BeagleDefaults.podspec"
   BeagleScaffold:
-    :branch: feature/scaffold-sample
-    :git: https://github.com/ZupIT/beagle-helpers
+    :path: "../BeagleScaffold.podspec"
   YogaKit:
     :git: https://github.com/ZupIT/YogaKit
 
 CHECKOUT OPTIONS:
-  BeagleDefaults:
-    :commit: 188e669fbfc3606afa4fa9323fe268de36aac595
-    :git: https://github.com/ZupIT/beagle-helpers
-  BeagleScaffold:
-    :commit: 188e669fbfc3606afa4fa9323fe268de36aac595
-    :git: https://github.com/ZupIT/beagle-helpers
   YogaKit:
     :commit: 939ed55b23a687b91a378acfd80ca9e47bf1c000
     :git: https://github.com/ZupIT/YogaKit
 
 SPEC CHECKSUMS:
   Beagle: 68b7583ec5ba63d8000f87afc32247d61019adbd
-  BeagleDefaults: b8f255cc3cc47862fa76e486dbb0fd93acdbe2ce
-  BeagleScaffold: 5e19c4d4479389bb4dc4f7440de2a6e2702b7f16
+  BeagleDefaults: 209b6cdccc721584ffbb4c6018a57dfaa907e4ef
+  BeagleScaffold: c920138318613f4f02b5704265e75dd36d177608
   BeagleSchema: cc5463afa843ac07caaddb875d82c97a7d8a0153
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: 3a733275fd1639b96a304f6f5c11421478371e6b
 
-PODFILE CHECKSUM: d2427568be934e01b152d6e8d429946fb67282c9
+PODFILE CHECKSUM: acf4427d5d9e3b0ab7eb2a1ebf0a9f5cdd41808e
 
 COCOAPODS: 1.10.0
