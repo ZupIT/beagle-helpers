@@ -19,8 +19,8 @@ PODS:
 
 DEPENDENCIES:
   - Beagle
-  - BeagleDefaults (from `https://github.com/ZupIT/beagle-helpers.git`, branch `feature/scaffold-sample`)
-  - BeagleScaffold (from `https://github.com/ZupIT/beagle-helpers.git`, branch `feature/scaffold-sample`)
+  - BeagleDefaults (from `https://github.com/ZupIT/beagle-helpers`, branch `feature/scaffold-sample`)
+  - BeagleScaffold (from `https://github.com/ZupIT/beagle-helpers`, branch `feature/scaffold-sample`)
   - YogaKit (from `https://github.com/ZupIT/YogaKit`)
 
 SPEC REPOS:
@@ -32,20 +32,20 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   BeagleDefaults:
     :branch: feature/scaffold-sample
-    :git: https://github.com/ZupIT/beagle-helpers.git
+    :git: https://github.com/ZupIT/beagle-helpers
   BeagleScaffold:
     :branch: feature/scaffold-sample
-    :git: https://github.com/ZupIT/beagle-helpers.git
+    :git: https://github.com/ZupIT/beagle-helpers
   YogaKit:
     :git: https://github.com/ZupIT/YogaKit
 
 CHECKOUT OPTIONS:
   BeagleDefaults:
-    :commit: a651593685abd2cbb0c50453d20e51b9058b476f
-    :git: https://github.com/ZupIT/beagle-helpers.git
+    :commit: 188e669fbfc3606afa4fa9323fe268de36aac595
+    :git: https://github.com/ZupIT/beagle-helpers
   BeagleScaffold:
-    :commit: a651593685abd2cbb0c50453d20e51b9058b476f
-    :git: https://github.com/ZupIT/beagle-helpers.git
+    :commit: 188e669fbfc3606afa4fa9323fe268de36aac595
+    :git: https://github.com/ZupIT/beagle-helpers
   YogaKit:
     :commit: 939ed55b23a687b91a378acfd80ca9e47bf1c000
     :git: https://github.com/ZupIT/YogaKit
@@ -58,6 +58,6 @@ SPEC CHECKSUMS:
   Yoga: cff67a400f6b74dc38eb0bad4f156673d9aa980c
   YogaKit: 3a733275fd1639b96a304f6f5c11421478371e6b
 
-PODFILE CHECKSUM: b6e180d210b4a3985c01a638bff9807118e03bc8
+PODFILE CHECKSUM: d2427568be934e01b152d6e8d429946fb67282c9
 
 COCOAPODS: 1.10.0
