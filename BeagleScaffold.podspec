@@ -52,23 +52,19 @@ Pod::Spec.new do |spec|
 
   # ――― Beagle Scaffold ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   
-  spec.subspec 'BeagleScaffold' do |beagleScaffold|
-    path_source = 'iOS/beagle-scaffold/Sources'
+  path_source = 'iOS/beagle-scaffold/Sources'
 
-    beagleScaffold.source_files = [
-      path_source + '/**/*.swift'
-    ]
+  spec.source_files = [
+    path_source + '/**/*.swift'
+  ]
 
-    beagleScaffold.exclude_files = [
-      path_source + "/**/Test/**/*.swift",
-      path_source + "/**/Tests/**/*.swift",
-      path_source + "/**/*Test*.swift"
-    ]
-    
-    beagleScaffold.frameworks = 'Foundation'
-    beagleScaffold.dependency 'BeagleDefaults'
-    
-  end
+  spec.exclude_files = [
+    path_source + "/**/Test/**/*.swift",
+    path_source + "/**/Tests/**/*.swift",
+    path_source + "/**/*Test*.swift"
+  ]
   
+  spec.frameworks = 'Foundation'
+  spec.dependency 'BeagleDefaults'
   
 end

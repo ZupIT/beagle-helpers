@@ -3,7 +3,7 @@ name: Beagle Helpers Release
 on:
     push:
         tags:
-            - '!v*.*.*-backend'
+            - '*'
 jobs:
     generate-release:
         name: Generate release
