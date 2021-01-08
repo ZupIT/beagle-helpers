@@ -18,22 +18,25 @@
 package br.com.zup.beagle.defaults.cache
 
 import android.app.Application
+import br.com.zup.beagle.android.store.LocalStore
 import br.com.zup.beagle.android.store.StoreHandler
 import br.com.zup.beagle.android.store.StoreType
 
-
-open class StoreHandlerDefault(
+open class StoreHandlerDefault private constructor(
     val application: Application,
-    private val memoryLocalStore: MemoryLocalStore = MemoryLocalStore
+    val databaseLocalStore: LocalStore = DatabaseLocalStore(application)
 ) : StoreHandler {
-    private var databaseLocalStore: DatabaseLocalStore = DatabaseLocalStore(application)
+
+    companion object{
+        fun newInstance(application: Application) = StoreHandlerDefault(application)
+    }
 
     override fun save(storeType: StoreType, data: Map<String, String>) {
         data.forEach {
             if (storeType == StoreType.DATABASE) {
                 databaseLocalStore.save(it.key, it.value)
             } else {
-                memoryLocalStore.save(it.key, it.value)
+                MemoryLocalStore.save(it.key, it.value)
             }
         }
     }
@@ -44,7 +47,7 @@ open class StoreHandlerDefault(
             val value = if (storeType == StoreType.DATABASE) {
                 databaseLocalStore.restore(it)
             } else {
-                memoryLocalStore.restore(it)
+                MemoryLocalStore.restore(it)
             }
             values[it] = value
         }
@@ -55,7 +58,7 @@ open class StoreHandlerDefault(
         if (storeType == StoreType.DATABASE) {
             databaseLocalStore.delete(key)
         } else {
-            memoryLocalStore.delete(key)
+            MemoryLocalStore.delete(key)
         }
     }
 
@@ -63,7 +66,7 @@ open class StoreHandlerDefault(
         return if (storeType == StoreType.DATABASE) {
             databaseLocalStore.getAll()
         } else {
-            memoryLocalStore.getAll()
+            MemoryLocalStore.getAll()
         }
     }
 }
