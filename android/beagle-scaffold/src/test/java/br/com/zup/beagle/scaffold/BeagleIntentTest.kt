@@ -21,41 +21,56 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.zup.beagle.android.utils.newServerDrivenIntent
+import br.com.zup.beagle.android.view.BeagleActivity
 import br.com.zup.beagle.android.view.ScreenRequest
 import br.com.zup.beagle.android.view.ServerDrivenActivity
+import br.com.zup.beagle.test.rules.BeagleComponentsRule
 import io.mockk.*
-import io.mockk.impl.annotations.MockK
+import org.junit.Rule
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 
 @DisplayName("Given a BeagleIntent")
 internal class BeagleIntentTest {
 
+    @get:Rule
+    val begleComponentsRule = BeagleComponentsRule()
     @DisplayName("When toSample is called")
     @Nested
     inner class ToSample {
 
-        @DisplayName("Then it should return an intent with the endpoint URL")
+        @DisplayName("Then it should return an intent")
         @Test
         fun testToSampleReturnsAnIntent() {
             //Given
+            val url = "http://10.0.2.2:8080/navigate-actions"
+            val screenRequest = ScreenRequest(url)
             mockkConstructor(Intent::class)
+            mockkStatic("br.com.zup.beagle.android.utils.ServerDrivenFactoryKt")
+            mockkObject(BeagleActivity)
+
             every { anyConstructed<Intent>().putExtras(any<Bundle>()) } returns mockk()
+            every { BeagleActivity.bundleOf(screenRequest) } returns mockk()
 
             val activity = mockk<AppCompatActivity>(relaxUnitFun = true)
-            val beagleIntent = BeagleIntent(activity)
-            every { activity.newServerDrivenIntent<ServerDrivenActivity>(
-                ScreenRequest("http://10.0.2.2:8080/navigate-actions")) } returns mockk()
+            val beagleIntent = BeagleIntent(activity, screenRequest)
+            every {
+                activity.newServerDrivenIntent<ServerDrivenActivity>(
+                    screenRequest
+                )
+            } returns mockk()
 
             //When
             beagleIntent.toSample()
 
             //Then
-            verify(exactly = 1) { activity.newServerDrivenIntent<ServerDrivenActivity>(
-                ScreenRequest("http://10.0.2.2:8080/navigate-actions")
-            )  }
+            verify(exactly = 1) {
+                activity.newServerDrivenIntent<ServerDrivenActivity>(
+                    screenRequest
+                )
+            }
         }
     }
 }

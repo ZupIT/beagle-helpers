@@ -41,10 +41,12 @@ import br.com.zup.beagle.android.widget.WidgetView
 import br.com.zup.beagle.defaults.cache.StoreHandlerDefault
 import br.com.zup.beagle.defaults.httpclient.HttpClientDefault
 import br.com.zup.beagle.defaults.logger.BeagleLoggerDefault
+import br.com.zup.beagle.test.rules.BeagleComponentsRule
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkConstructor
 import io.mockk.mockkObject
+import org.junit.Rule
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -52,6 +54,9 @@ import org.junit.jupiter.api.Test
 
 @DisplayName("Given a BeagleScaffold")
 internal class BeagleScaffoldTest {
+
+    @get:Rule
+    val begleComponentsRule = BeagleComponentsRule()
 
     val analytics = mockk<Analytics>()
     val config = mockk<BeagleConfig>()
@@ -154,14 +159,14 @@ internal class BeagleScaffoldTest {
     inner class Init{
         @DisplayName("Then the storeHandler should not be null")
         @Test
-        fun beagleScaffoldCallsInitWithAndStoreHandlerNotNull(){
+        fun beagleScaffoldCallsInitWithAnStoreHandlerNotNull(){
             //Given
             val beagleSdkFake = getSdkFake(httpClient, logger, null)
             val beagleScaffold = BeagleScaffold(beagleSdkFake)
             val application = mockk<Application>()
             val storeHandlerDefault = mockk<StoreHandlerDefault>()
-            mockkObject(StoreHandlerDefault)
-            every { StoreHandlerDefault.newInstance(application) } returns storeHandlerDefault
+//            mockkObject(StoreHandlerDefault)
+//            every { StoreHandlerDefault.newInstance(application) } returns storeHandlerDefault
             //When
             beagleScaffold.init(application)
             //Then
