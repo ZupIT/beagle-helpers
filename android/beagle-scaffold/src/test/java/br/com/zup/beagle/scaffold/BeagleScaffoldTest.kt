@@ -47,10 +47,7 @@ import io.mockk.mockk
 import io.mockk.mockkConstructor
 import io.mockk.mockkObject
 import org.junit.Rule
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Nested
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.*
 
 @DisplayName("Given a BeagleScaffold")
 internal class BeagleScaffoldTest {
@@ -165,9 +162,8 @@ internal class BeagleScaffoldTest {
             val beagleScaffold = BeagleScaffold(beagleSdkFake)
             val application = mockk<Application>()
             val storeHandlerDefault = mockk<StoreHandlerDefault>()
-//            mockkObject(StoreHandlerDefault)
-//            every { StoreHandlerDefault.newInstance(application) } returns storeHandlerDefault
-            //When
+            mockkObject(StoreHandlerDefault)
+            every { StoreHandlerDefault.newInstance(application) } returns storeHandlerDefault
             beagleScaffold.init(application)
             //Then
         }

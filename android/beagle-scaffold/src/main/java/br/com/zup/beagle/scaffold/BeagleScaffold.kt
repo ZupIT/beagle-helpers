@@ -64,7 +64,7 @@ class BeagleScaffold(private val beagleSdk: BeagleSdk) : BeagleSdk {
 
     override fun init(application: Application) {
         if (storeHandler == null) {
-            storeHandler = StoreHandlerDefault(application)
+            storeHandler = StoreHandlerDefault.newInstance(application)
         }
         super.init(application)
     }
