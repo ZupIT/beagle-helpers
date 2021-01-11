@@ -25,7 +25,7 @@
 		5C2BA0B7258CEEC7007E8442 /* CacheDiskManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2BA094258CEE9B007E8442 /* CacheDiskManagerTests.swift */; };
 		5C2BA0BC258CEED8007E8442 /* LRUCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2BA08B258CEE9B007E8442 /* LRUCacheTests.swift */; };
 		5C2BA0C6258CEEFF007E8442 /* HttpRequestBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2BA099258CEE9B007E8442 /* HttpRequestBuilderTest.swift */; };
-		5C2BA0EF258CF344007E8442 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 5C2BA0EE258CF344007E8442 /* SwiftPackageProductDependency */; };
+		5C2BA0EF258CF344007E8442 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 5C2BA0EE258CF344007E8442 /* SnapshotTesting */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		572DD552BBB535C1A2D82906 /* Pods-BeagleDefaults.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeagleDefaults.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-BeagleDefaults/Pods-BeagleDefaults.debug.xcconfig"; sourceTree = "<group>"; };
+		46F14E1F2C879E150EA5BDC9 /* Pods-BeagleDefaults.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeagleDefaults.release.xcconfig"; path = "Target Support Files/Pods-BeagleDefaults/Pods-BeagleDefaults.release.xcconfig"; sourceTree = "<group>"; };
 		5C2B9FD8258CDE64007E8442 /* BeagleDefaults.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BeagleDefaults.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C2B9FDB258CDE64007E8442 /* BeagleDefaults.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeagleDefaults.h; sourceTree = "<group>"; };
 		5C2B9FDC258CDE64007E8442 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,8 +60,8 @@
 		5C2BA09C258CEE9B007E8442 /* testBuilder.1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testBuilder.1.txt; sourceTree = "<group>"; };
 		5C2BA09D258CEE9C007E8442 /* HttpRequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequestBuilder.swift; sourceTree = "<group>"; };
 		5C2BA09E258CEE9C007E8442 /* NetworkClientDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientDefault.swift; sourceTree = "<group>"; };
-		B3F371BECDCC69D2F70DD297 /* Pods-BeagleDefaults.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeagleDefaults.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-BeagleDefaults/Pods-BeagleDefaults.release.xcconfig"; sourceTree = "<group>"; };
 		BA1295F6C12E0768D0893F43 /* Pods_BeagleDefaults.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeagleDefaults.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C128404854A8EC21EC5F1571 /* Pods-BeagleDefaults.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeagleDefaults.debug.xcconfig"; path = "Target Support Files/Pods-BeagleDefaults/Pods-BeagleDefaults.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C2BA0EF258CF344007E8442 /* BuildFile in Frameworks */,
+				5C2BA0EF258CF344007E8442 /* SnapshotTesting in Frameworks */,
 				5C2B9FE2258CDE64007E8442 /* BeagleDefaults.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,8 +99,8 @@
 				5C2B9FDA258CDE64007E8442 /* BeagleDefaults */,
 				5C2B9FE5258CDE64007E8442 /* BeagleDefaultsTests */,
 				5C2B9FD9258CDE64007E8442 /* Products */,
-				C2B8F7209E674295C891FB95 /* Pods */,
 				1E54E5AEF48AC5A1B53B60A6 /* Frameworks */,
+				EB398281B74213F1EF8F5B70 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -241,13 +241,14 @@
 			path = HttpRequestBuilderTest;
 			sourceTree = "<group>";
 		};
-		C2B8F7209E674295C891FB95 /* Pods */ = {
+		EB398281B74213F1EF8F5B70 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				572DD552BBB535C1A2D82906 /* Pods-BeagleDefaults.debug.xcconfig */,
-				B3F371BECDCC69D2F70DD297 /* Pods-BeagleDefaults.release.xcconfig */,
+				C128404854A8EC21EC5F1571 /* Pods-BeagleDefaults.debug.xcconfig */,
+				46F14E1F2C879E150EA5BDC9 /* Pods-BeagleDefaults.release.xcconfig */,
 			);
-			path = Pods;
+			name = Pods;
+			path = ../Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,7 +299,7 @@
 			);
 			name = BeagleDefaultsTests;
 			packageProductDependencies = (
-				5C2BA0EE258CF344007E8442 /* SwiftPackageProductDependency */,
+				5C2BA0EE258CF344007E8442 /* SnapshotTesting */,
 			);
 			productName = BeagleDefaultsTests;
 			productReference = 5C2B9FE1258CDE64007E8442 /* BeagleDefaultsTests.xctest */;
@@ -331,7 +332,7 @@
 			);
 			mainGroup = 5C2B9FCE258CDE64007E8442;
 			packageReferences = (
-				5C2BA04C258CEADB007E8442 /* RemoteSwiftPackageReference */,
+				5C2BA04C258CEADB007E8442 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = 5C2B9FD9258CDE64007E8442 /* Products */;
 			projectDirPath = "";
@@ -550,7 +551,7 @@
 		};
 		5C2B9FED258CDE64007E8442 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 572DD552BBB535C1A2D82906 /* Pods-BeagleDefaults.debug.xcconfig */;
+			baseConfigurationReference = C128404854A8EC21EC5F1571 /* Pods-BeagleDefaults.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -576,7 +577,7 @@
 		};
 		5C2B9FEE258CDE64007E8442 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B3F371BECDCC69D2F70DD297 /* Pods-BeagleDefaults.release.xcconfig */;
+			baseConfigurationReference = 46F14E1F2C879E150EA5BDC9 /* Pods-BeagleDefaults.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -669,7 +670,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5C2BA04C258CEADB007E8442 /* RemoteSwiftPackageReference */ = {
+		5C2BA04C258CEADB007E8442 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
 			requirement = {
@@ -680,9 +681,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5C2BA0EE258CF344007E8442 /* SwiftPackageProductDependency */ = {
+		5C2BA0EE258CF344007E8442 /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5C2BA04C258CEADB007E8442 /* RemoteSwiftPackageReference */;
+			package = 5C2BA04C258CEADB007E8442 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
 		};
 /* End XCSwiftPackageProductDependency section */
