@@ -48,6 +48,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/LICENSE-notice.md'
+    }
 }
 // Add in your app level dependency
 ext.beagle_version = "1.5.0"
@@ -63,7 +67,7 @@ dependencies {
     implementation "br.com.zup.beagle:android:$beagle_version"
     kapt "br.com.zup.beagle:android-processor:$beagle_version"
 
-    implementation "br.com.zup.beagle:beagle-scaffold:0.0.3"
+    implementation project (":beagle-scaffold")
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
 
