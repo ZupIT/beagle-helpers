@@ -85,17 +85,6 @@ dependencies {
     testImplementation "androidx.test:core:1.3.1-alpha03"
     testImplementation "androidx.test:runner:1.3.1-alpha03"
     androidTestImplementation "androidx.test.ext:junit:1.1.3-alpha02"
-
-//    testImplementation Dependencies.TestLibraries.junitApi
-//
-//    testImplementation Dependencies.TestLibraries.mockk
-//    testImplementation Dependencies.TestLibraries.junit4
-//    testImplementation Dependencies.TestLibraries.junitVintageEngine
-//    testImplementation Dependencies.TestLibraries.testRunner
-//    testImplementation Dependencies.TestLibraries.testExt
-//    testImplementation Dependencies.TestLibraries.espressoCore
-//    testImplementation Dependencies.TestLibraries.testCore
-//    testImplementation Dependencies.TestLibraries.testRules
 }
 
 apply from: rootProject.file('maven-publish.gradle')

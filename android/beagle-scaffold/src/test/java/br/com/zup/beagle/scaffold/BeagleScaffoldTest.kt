@@ -51,7 +51,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
