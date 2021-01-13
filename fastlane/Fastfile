@@ -1,0 +1,169 @@
+###
+###  iOS - Begin
+###
+
+platform :ios do
+  desc "Pull Request verification"
+  lane :pull_request_verification do
+    xcversion(version: "~> 11.5.0")
+    # TODO: see if it's ok to remove this SwiftLint, since we already have it inside xcode and danger
+    swiftlint(
+      mode: :lint, # :lint (default) or :autocorrect
+      ignore_exit_status: true # Allow fastlane to continue even if SwiftLint returns a non-zero exit status
+    )
+    scan(
+      workspace: "iOS/Beagle.xcworkspace/",
+      scheme: "All",
+      device: "iPhone 11",
+    )
+    run_codecov(platform: 'ios')
+    check_if_beagle_works_via_cocoapods_integration
+  end
+
+  desc "Check wether Beagle is working via CocoaPods in an Example Project"
+  private_lane :check_if_beagle_works_via_cocoapods_integration do
+    xcversion(version: "~> 11.5.0")
+    cocoapods(
+      clean_install: true,
+      podfile: "iOS/Podfile"
+    )
+    scan(
+      workspace: "iOS/BeagleHelpers.xcworkspace",
+      scheme: "sampleScaffold",
+      device: "iPhone 11"
+    )
+  end
+
+  desc "Release Pods"
+  lane :release_pods do |options|
+    version = options[:version] # 1.0.0
+    tag = options[:tag] # 1.0.0[-iOS]
+
+    [
+      { path: "BeagleDefaults.podspec" }
+      # { path: "BeagleScaffold.podspec", depends_on_other_beagle_pod: true }
+    ]
+    .each do |pod|
+      update_podspec(path: pod[:path], version: version, tag: tag)
+
+      pod_push(path: pod[:path], allow_warnings: true, synchronous: pod[:depends_on_other_beagle_pod])
+    end
+  end
+end
+
+def update_podspec(path:, version:, tag:)
+  rootPath = "../" + path
+  file = File.read(rootPath)
+
+  version_regex = /\.version = (.*)\n/
+  tag_regex = /tag = (.*)\n/
+
+  has_version_and_tag = version_regex.match(file) && tag_regex.match(file)
+  if not has_version_and_tag
+    UI.user_error!("podspec at #{path} should have version and tag")
+  end
+
+  new_content = file
+    .gsub(version_regex, ".version = '#{version}'\n")
+    .gsub(tag_regex, "tag = '#{tag}'\n")
+
+  File.write(rootPath, new_content)
+end
+
+###
+### iOS - END
+###
+
+
+###
+###  Android
+###
+
+platform :android do
+  desc "Pull Request verification"
+  lane :pull_request_verification do
+    gradle(project_dir: "android", task: "clean detekt lintDebug test jacocoTestReport")
+  end
+
+  desc "Deploy current code to stage"
+  lane :deploy_to_stage do
+    gradle(project_dir: "android", task: "assemble")
+    gradle(project_dir: "android", task: "uploadArchives --no-daemon --no-parallel")
+  end
+
+  desc "Deploy current code to production"
+  lane :deploy_to_production do
+    sh "bash ./release/maven_signing.sh"
+    deploy_to_stage
+  end
+end
+
+###
+### DEPLOY ###
+###
+
+desc "Publish new release based on last two tags"
+lane :deploy do
+
+  tagName = ENV["TAG_NAME"].split("/").last
+
+  (versionNumber, platformHotfix) = tagName.split("-")
+
+  if platformHotfix == "iOS"
+    puts "iOS release"
+    sh "fastlane ios release_pods version:#{versionNumber} tag:#{tagName}"
+  elsif platformHotfix == "android"
+    puts "Android release"
+    sh "fastlane android deploy_to_production"
+  elsif platformHotfix == "backend"
+    return
+  else
+    puts "Normal Release"
+    sh "fastlane android deploy_to_production"
+###    sh "fastlane backend deploy_to_production"
+###    sh "fastlane ios release_pods version:#{versionNumber} tag:#{tagName}"
+  end
+end
+
+lane :run_danger do |options|
+  danger_id = options[:danger_id] || lane_context[SharedValues::PLATFORM_NAME].to_s
+  danger_file_path = options[:danger_file_path] || lane_context[SharedValues::PLATFORM_NAME].to_s
+  danger(
+    danger_id: danger_id,
+    dangerfile: "danger/#{danger_file_path}/Dangerfile",
+    github_api_token: ENV[
+      "GITHUB_TOKEN"],
+    verbose: true,
+  )
+end
+
+### FUNCTIONS ###
+
+private_lane :run_codecov do |options|
+  codecov = ENV["CODECOV_TOKEN"]
+  if !(codecov.nil? || codecov.empty?)
+    commit_hash = last_git_commit[:commit_hash]
+    codecov_reporter(token: codecov, flags: "-F #{options[:platform]} -C #{commit_hash}")
+  end
+end
+
+private_lane :danger_token_available? do
+  danger = ENV["GITHUB_TOKEN"]
+  !(danger.nil? || danger.empty?)
+end
+
+after_all do |lane, options|
+  if lane == :pull_request_verification
+    if danger_token_available?
+      run_danger
+    end
+  end
+end
+
+error do |lane, exception, options|
+  if lane == :pull_request_verification
+    if danger_token_available?
+      run_danger
+    end
+  end
+end
