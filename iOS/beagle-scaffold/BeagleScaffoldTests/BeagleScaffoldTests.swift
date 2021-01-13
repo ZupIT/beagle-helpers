@@ -17,6 +17,7 @@
 
 import XCTest
 
+
 class BeagleScaffoldTests: XCTestCase {
 
     override func setUpWithError() throws {
