@@ -19,9 +19,9 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
 }
-
 apply from: '../jacoco-android.gradle'
 apply plugin: 'de.mannodermaus.android-junit5'
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -65,7 +65,7 @@ dependencies {
     implementation "org.junit.jupiter:junit-jupiter-engine:5.7.0"
     implementation "org.junit.vintage:junit-vintage-engine:5.7.0"
     testImplementation "io.mockk:mockk:1.10.2"
-    testImplementation "br.com.zup.beagle:android-test:1.5.1"
+    testImplementation project (":android-test")
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
