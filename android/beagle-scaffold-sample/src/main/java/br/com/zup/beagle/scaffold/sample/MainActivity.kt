@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         //Declarative screen
         //server_driven_content_layout.addView((BeagleDeclarativeSample.screen).toView(this))
 
+        //Server-driven Screen
         startActivity(BeagleIntent(this).toSample())
     }
 }

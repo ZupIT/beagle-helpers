@@ -25,7 +25,7 @@ import br.com.zup.beagle.android.view.ServerDrivenActivity
 
 class BeagleIntent(
     private val activity: AppCompatActivity,
-    private val screenRequest: ScreenRequest = ScreenRequest("http://10.0.2.2:8080/navigate-actions")
+    private val screenRequest: ScreenRequest = ScreenRequest("/components")
 ) {
     fun toSample(): Intent =
         activity.newServerDrivenIntent<ServerDrivenActivity>(screenRequest)

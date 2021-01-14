@@ -18,7 +18,8 @@
 package br.com.zup.beagle.scaffold
 
 import android.app.Application
-import android.database.sqlite.SQLiteOpenHelper
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.runner.AndroidJUnit4
 import br.com.zup.beagle.analytics.Analytics
 import br.com.zup.beagle.android.action.Action
 import br.com.zup.beagle.android.action.FormLocalActionHandler
@@ -44,17 +45,20 @@ import br.com.zup.beagle.defaults.logger.BeagleLoggerDefault
 import br.com.zup.beagle.test.rules.BeagleComponentsRule
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.mockkConstructor
 import io.mockk.mockkObject
+import io.mockk.verify
 import org.junit.Rule
-import org.junit.jupiter.api.*
+import org.junit.Test
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.DisplayName
+import org.junit.runner.RunWith
 
-@DisplayName("Given a BeagleScaffold")
+@RunWith(AndroidJUnit4::class)
 internal class BeagleScaffoldTest {
 
     @get:Rule
     val begleComponentsRule = BeagleComponentsRule()
-
+    val application = ApplicationProvider.getApplicationContext() as Application
     val analytics = mockk<Analytics>()
     val config = mockk<BeagleConfig>()
     val controllerReference = mockk<BeagleControllerReference>()
@@ -67,106 +71,98 @@ internal class BeagleScaffoldTest {
     val serverDrivenActivity: Class<BeagleActivity> =
         ServerDrivenActivity::class.java as Class<BeagleActivity>
     val storeHandler = mockk<StoreHandler>()
-    val typeAdapterResolver = mockk<TypeAdapterResolver>()
+    val typeAdapterResolver = mockk<TypeAdapterResolver>(relaxed = true)
     val urlBuilder = mockk<UrlBuilder>()
     val validatorHandler = mockk<ValidatorHandler>()
 
-    @DisplayName("When it is created")
-    @Nested
-    inner class IsCreated {
+    @DisplayName("Then all its attributes are set equaling the FakeSdk ones")
+    @Test
+    fun beagleScaffoldSdkIsCreatedWithAllAttributesNotNull() {
+        //Given
 
-        @DisplayName("Then all its attributes are set equaling the FakeSdk ones")
-        @Test
-        fun beagleScaffoldSdkIsCreatedWithAllAttributesNotNull() {
-            //Given
+        val beagleSdkFake = BeagleSdkFake(
+            analytics,
+            config,
+            controllerReference,
+            deepLinkHandler,
+            designSystem,
+            formLocalActionHandler,
+            httpClient,
+            imageDownloader,
+            logger,
+            serverDrivenActivity,
+            storeHandler,
+            typeAdapterResolver,
+            urlBuilder,
+            validatorHandler
+        )
+        //When
+        val beagleScaffold = BeagleScaffold(beagleSdkFake)
 
-            val beagleSdkFake = BeagleSdkFake(
-                analytics,
-                config,
-                controllerReference,
-                deepLinkHandler,
-                designSystem,
-                formLocalActionHandler,
-                httpClient,
-                imageDownloader,
-                logger,
-                serverDrivenActivity,
-                storeHandler,
-                typeAdapterResolver,
-                urlBuilder,
-                validatorHandler
-            )
-            //When
-            val beagleScaffold = BeagleScaffold(beagleSdkFake)
+        //Then
 
-            //Then
-
-            Assertions.assertEquals(beagleSdkFake.analytics, beagleScaffold.analytics)
-            Assertions.assertEquals(beagleSdkFake.config, beagleScaffold.config)
-            Assertions.assertEquals(
-                beagleSdkFake.controllerReference,
-                beagleScaffold.controllerReference
-            )
-            Assertions.assertEquals(beagleSdkFake.deepLinkHandler, beagleScaffold.deepLinkHandler)
-            Assertions.assertEquals(beagleSdkFake.designSystem, beagleScaffold.designSystem)
-            Assertions.assertEquals(
-                beagleSdkFake.formLocalActionHandler,
-                beagleScaffold.formLocalActionHandler
-            )
-            Assertions.assertEquals(beagleSdkFake.httpClient, beagleScaffold.httpClient)
-            Assertions.assertEquals(beagleSdkFake.imageDownloader, beagleScaffold.imageDownloader)
-            Assertions.assertEquals(beagleSdkFake.logger, beagleScaffold.logger)
-            Assertions.assertEquals(
-                beagleSdkFake.serverDrivenActivity,
-                beagleScaffold.serverDrivenActivity
-            )
-            Assertions.assertEquals(beagleSdkFake.storeHandler, beagleScaffold.storeHandler)
-            Assertions.assertEquals(
-                beagleSdkFake.typeAdapterResolver,
-                beagleScaffold.typeAdapterResolver
-            )
-            Assertions.assertEquals(beagleSdkFake.urlBuilder, beagleScaffold.urlBuilder)
-            Assertions.assertEquals(beagleSdkFake.validatorHandler, beagleScaffold.validatorHandler)
-        }
-
-        @DisplayName("Then the null attributes on FakeSdk will be implemented from the default classes")
-        @Test
-        fun beagleScaffoldSdkIsCreatedWithAddingDefaultClasses() {
-            //Given
-            val beagleSdkFake = getSdkFake(null, null, null)
-            //When
-            val beagleScaffold = BeagleScaffold(beagleSdkFake)
-
-            //Then
-
-            Assertions.assertEquals(
-                HttpClientDefault::class.java,
-                beagleScaffold.httpClient?.javaClass
-            )
-            Assertions.assertEquals(
-                BeagleLoggerDefault::class.java,
-                beagleScaffold.logger?.javaClass
-            )
-            Assertions.assertEquals(null, beagleScaffold.storeHandler)
-        }
+        Assertions.assertEquals(beagleSdkFake.analytics, beagleScaffold.analytics)
+        Assertions.assertEquals(beagleSdkFake.config, beagleScaffold.config)
+        Assertions.assertEquals(
+            beagleSdkFake.controllerReference,
+            beagleScaffold.controllerReference
+        )
+        Assertions.assertEquals(beagleSdkFake.deepLinkHandler, beagleScaffold.deepLinkHandler)
+        Assertions.assertEquals(beagleSdkFake.designSystem, beagleScaffold.designSystem)
+        Assertions.assertEquals(
+            beagleSdkFake.formLocalActionHandler,
+            beagleScaffold.formLocalActionHandler
+        )
+        Assertions.assertEquals(beagleSdkFake.httpClient, beagleScaffold.httpClient)
+        Assertions.assertEquals(beagleSdkFake.imageDownloader, beagleScaffold.imageDownloader)
+        Assertions.assertEquals(beagleSdkFake.logger, beagleScaffold.logger)
+        Assertions.assertEquals(
+            beagleSdkFake.serverDrivenActivity,
+            beagleScaffold.serverDrivenActivity
+        )
+        Assertions.assertEquals(beagleSdkFake.storeHandler, beagleScaffold.storeHandler)
+        Assertions.assertEquals(
+            beagleSdkFake.typeAdapterResolver,
+            beagleScaffold.typeAdapterResolver
+        )
+        Assertions.assertEquals(beagleSdkFake.urlBuilder, beagleScaffold.urlBuilder)
+        Assertions.assertEquals(beagleSdkFake.validatorHandler, beagleScaffold.validatorHandler)
     }
 
-    @DisplayName("When init is called")
-    @Nested
-    inner class Init{
-        @DisplayName("Then the storeHandler should not be null")
-        @Test
-        fun beagleScaffoldCallsInitWithAnStoreHandlerNotNull(){
-            //Given
-            val beagleSdkFake = getSdkFake(httpClient, logger, null)
-            val beagleScaffold = BeagleScaffold(beagleSdkFake)
-            val application = mockk<Application>()
-            val storeHandlerDefault = mockk<StoreHandlerDefault>()
-            mockkObject(StoreHandlerDefault)
-            every { StoreHandlerDefault.newInstance(application) } returns storeHandlerDefault
-            beagleScaffold.init(application)
-            //Then
-        }
+    @DisplayName("Then the null attributes on FakeSdk will be implemented from the default classes")
+    @Test
+    fun beagleScaffoldSdkIsCreatedWithAddingDefaultClasses() {
+        //Given
+        val beagleSdkFake = getSdkFake(null, null, null)
+        //When
+        val beagleScaffold = BeagleScaffold(beagleSdkFake)
+
+        //Then
+
+        Assertions.assertEquals(
+            HttpClientDefault::class.java,
+            beagleScaffold.httpClient?.javaClass
+        )
+        Assertions.assertEquals(
+            BeagleLoggerDefault::class.java,
+            beagleScaffold.logger?.javaClass
+        )
+        Assertions.assertEquals(null, beagleScaffold.storeHandler)
+    }
+
+    @DisplayName("Then the storeHandler should not be null")
+    @Test
+    fun beagleScaffoldCallsInitWithAnStoreHandlerNotNull() {
+        //Given
+        val beagleSdkFake = getSdkFake(httpClient, logger, null)
+        val beagleScaffold = BeagleScaffold(beagleSdkFake)
+        val storeHandlerDefault = mockk<StoreHandlerDefault>()
+        mockkObject(StoreHandlerDefault)
+        every { StoreHandlerDefault.newInstance(application) } returns storeHandlerDefault
+        beagleScaffold.init(application)
+        //Then
+        verify (exactly = 1){StoreHandlerDefault.newInstance(application)  }
+        Assertions.assertEquals(storeHandlerDefault, beagleScaffold.storeHandler)
     }
 
     private fun getSdkFake(
@@ -190,7 +186,6 @@ internal class BeagleScaffoldTest {
         validatorHandler
     )
 }
-
 
 class BeagleSdkFake(
     override val analytics: Analytics?,

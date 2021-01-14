@@ -24,11 +24,12 @@ import br.com.zup.beagle.android.store.StoreType
 
 open class StoreHandlerDefault private constructor(
     val application: Application,
-    val databaseLocalStore: LocalStore = DatabaseLocalStore(application)
+    var databaseLocalStore: LocalStore = DatabaseLocalStore(application)
 ) : StoreHandler {
 
-    companion object{
-        fun newInstance(application: Application) = StoreHandlerDefault(application)
+    companion object {
+        fun newInstance(application: Application) =
+            StoreHandlerDefault(application)
     }
 
     override fun save(storeType: StoreType, data: Map<String, String>) {

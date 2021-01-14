@@ -25,7 +25,7 @@ import br.com.zup.beagle.android.setup.Environment
 @BeagleComponent
 class AppBeagleConfig: BeagleConfig {
     override val environment: Environment = Environment.DEBUG
-    override val baseUrl: String = "http://10.0.2.2:8080"
+    override val baseUrl: String = "https://adopt-beagle.continuousplatform.com/scaffold"
     override val isLoggingEnabled: Boolean = true
     override val cache: Cache = Cache(
         enabled = false,

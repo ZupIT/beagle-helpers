@@ -20,7 +20,6 @@ package br.com.zup.beagle.defaults.logger
 import android.util.Log
 import io.mockk.*
 import org.junit.jupiter.api.*
-import org.junit.jupiter.api.Assertions.*
 
 @DisplayName("Given an BeagleLoggerClass")
 internal class BeagleLoggerDefaultTest{
@@ -35,7 +34,8 @@ internal class BeagleLoggerDefaultTest{
 
     @AfterEach
     fun tearDown(){
-        unmockkStatic(Log::class)
+        //unmockkStatic(Log::class)
+        unmockkAll()
     }
 
     @DisplayName("WhenWarningIsCalled")
