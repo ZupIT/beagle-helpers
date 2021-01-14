@@ -32,32 +32,33 @@ public class BeagleConfig: DependencyLogger {
     }
 
     static private func scaffoldConfig(userDependencies dependencies: BeagleDependencies?, with dependencyLogger: BeagleConfig) -> BeagleDependencies {
-        var dependenciesNew: BeagleDependencies
-        if let dependenciesParam = dependencies {
-            
-//            if dependenciesParam.logger == nil {
-//                dependenciesParam.logger = logger
-//            }
-            
-            if dependenciesParam.urlBuilder.baseUrl == nil {
-                dependenciesParam.urlBuilder = UrlBuilder(baseUrl: URL(string: baseURL))
-            }
-            
-            if dependenciesParam.networkClient == nil {
-                dependenciesParam.networkClient = NetworkClientDefault(dependencies: dependencyLogger)
-            }
-            
-            if dependenciesParam.cacheManager == nil {
-                dependenciesParam.cacheManager = CacheManagerDefault(dependencies: dependencyLogger)
-            }
-
-            dependenciesNew = dependenciesParam
-            
-        } else {
-            dependenciesNew = BeagleDependencies(networkClient: NetworkClientDefault(dependencies: dependencyLogger), cacheManager: CacheManagerDefault(dependencies: dependencyLogger), logger: dependencyLogger.logger)
-            dependenciesNew.urlBuilder = UrlBuilder(baseUrl: URL(string: self.baseURL))
+        
+        let urlBuilder = { UrlBuilder(baseUrl: URL(string: baseURL)) }
+        let networkClient = { NetworkClientDefault(dependencies: dependencyLogger) }
+        let cacheManager = { CacheManagerDefault(dependencies: dependencyLogger) }
+        
+        guard let dependencies = dependencies else {
+            let dependenciesNew = BeagleDependencies(networkClient: networkClient(), cacheManager: cacheManager(), logger: dependencyLogger.logger)
+            dependenciesNew.urlBuilder = urlBuilder()
+            return dependenciesNew
         }
         
-        return dependenciesNew
+//        if dependenciesParam.logger == nil {
+//            dependenciesParam.logger = logger
+//        }
+        
+        if dependencies.urlBuilder.baseUrl == nil {
+            dependencies.urlBuilder = urlBuilder()
+        }
+        
+        if dependencies.networkClient == nil {
+            dependencies.networkClient = networkClient()
+        }
+        
+        if dependencies.cacheManager == nil {
+            dependencies.cacheManager = cacheManager()
+        }
+
+        return dependencies
     }
 }
