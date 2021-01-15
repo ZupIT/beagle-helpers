@@ -1,8 +1,12 @@
 # Libs for Beagle Android
 <hr>
 
+![Maven Central](https://img.shields.io/maven-central/v/br.com.zup.beagle/beagle-scaffold?color=green&label=Beagle-Scaffold)
+![Maven Central](https://img.shields.io/maven-central/v/br.com.zup.beagle/beagle-defaults?color=green&label=Beagle-Defaults)
+![Maven Central](https://img.shields.io/maven-central/v/br.com.zup.beagle/android?label=Beagle)
+
 Here you will find a library to help when you want to start a project using beagle for Android.
-These libs are meant to facilitate the initial Beagle configuration in a project, avoiding some
+These libs will to facilitate the initial Beagle configuration in a project, avoiding some
 steps, and starting studies quicker.
 
 * If you wish to use Beagle for an application in production we advise you to configure a project
