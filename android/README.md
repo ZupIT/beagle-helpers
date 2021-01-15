@@ -11,16 +11,21 @@ steps, and starting studies quicker.
 
 * If you wish to use Beagle for an application in production we advise you to configure a project
  from scratch using our
- [documentation](http://docs-beta.usebeagle.io/home/get-started/creating-a-project-from-scratch/case-android/)
+ [documentation](https://docs.usebeagle.io/home/get-started/creating-a-project-from-scratch/case-android/)
+
+<hr>
 
 ### Getting started
-<hr>
 
 To start using Beagle right now, you can use the libs below:
 * [Beagle-Scaffold](https://github.com/ZupIT/beagle-helpers/tree/main/android/beagle-scaffold):
 This lib will hold almost all configurations needed to start using Beagle in your project.
-We advise using these libs for people that never used Beagle before.
+We advise to use these libs for people that never used Beagle before.
 
 * [Beagle-Defaults](https://github.com/ZupIT/beagle-helpers/tree/main/android/beagle-defaults):
-This lib is meant for more experienced Beagle users and will hold only a few class configurations necessary to use Beagle in an application. These configurations include default HttpClient, Logger and Cache classes. All these are also available in the Scaffold lib above.
+This lib is advised for more experienced Beagle users and 
+will hold only a few class configurations necessary to 
+use Beagle in an application. These configurations include 
+default HttpClient, Logger and Cache classes.<br>
+All these are also available in the Scaffold lib above.
 

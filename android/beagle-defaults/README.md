@@ -1,11 +1,12 @@
 # Beagle Scaffold Android
 <hr>
 
-![Maven Central](https://img.shields.io/maven-central/v/br.com.zup.beagle/beagle-scaffold?label=beagle-scaffod)
+![Maven Central](https://img.shields.io/maven-central/v/br.com.zup.beagle/beagle-defaults?color=green&label=Beagle-Defaults)
 ![Maven Central](https://img.shields.io/maven-central/v/br.com.zup.beagle/android?label=Beagle)
 
-Here you will find the **Beagle-Scaffold** library to help you start a project using Beagle in Android.
-This lib will hold almost all necessary configuration to add Beagle into an Android project.
+Here you will find the **Beagle-Defaults** library to help you start a project using Beagle in Android.
+This lib will hold just a few classes necessary 
+to configure and add Beagle into an Android project.
 
 ### Requirements
 Before you start to configure Beagle for your Android system, it’s important to check out if you have installed all the current versions of the following programs: ‌
@@ -53,36 +54,69 @@ dependencies {
 }
 ```
 
-Step 3: Create an AppBeagleConfigFile
-* This file will get all its configuration attributes from the beagle-scaffold lib.<br>
-if you need a more detailed information check our documentation
+Step 3: Create 4 configurations files for Beagle.
+* These files will set a few configurations and classes used by Beagle.<br>
+    * if you need a more detailed information check our documentation
 
+a) Create an AppBeagleConfig file:
 ```
 @BeagleComponent
-class AppBeagleConfig: BeagleConfigScaffold()
+class AppBeagleConfig: BeagleConfig {
+    override val environment: Environment = Environment.DEBUG
+    override val baseUrl: String = "https://adopt-beagle.continuousplatform.com/scaffold"
+    override val isLoggingEnabled: Boolean = true
+    override val cache: Cache = Cache(
+        enabled = false,
+        maxAge = 300,
+        size = 15
+    )
+}
 ```
+b) Create an HttpApp file as listed below. This class extends from an ´HttpClientDefault()´ class at the Beagle-Default lib:
+```
+@BeagleComponent
+class HttpApp: HttpClientDefault()
+```
+
+c) Create a CacheApp file as listed below. This class extends from an ´StoreHandlerDefault()´ class at the Beagle-Default lib:
+```
+@BeagleComponent
+class CacheApp : StoreHandlerDefault(AppApplication.APPLICATION!!)
+```
+
+d) Create a LoggerApp file as listed below. This class extends from an ´BeagleLoggerDefault()´ class at the Beagle-Default lib:
+```
+@BeagleComponent
+class LoggerApp: BeagleLoggerDefault()
+```
+
 Step 4: Build your project: When building this application the config above will setup Beagle in your project.<br>
 Step 5: Create an AppAplication file as the example below:
 ```
 class AppApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        BeagleScaffold(BeagleSetup()).init(this)
+        APPLICATION = this
+
+        BeagleSetup().init(this)
+    }
+
+    companion object {
+        var APPLICATION: Application? = null
     }
 }
 ```
 Step 6: Test your application
 To test it you just need to call a screen from our BFF sample.<br>
-To do that you need to start an activity using the BeagleIntent <br>
-from the Beagle-Scaffold lib exactly as shown below:
+To do that you need to start an activity using the configuration below:
 ```
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        //Server-driven Screen
-        startActivity(BeagleIntent(this).toSample())
+       
+        val intent = this.newServerDrivenIntent<ServerDrivenActivity>(ScreenRequest("/components"))
+        startActivity(intent)
     }
 }
 ```
@@ -91,4 +125,4 @@ A sample screen with all Beagle components will show on your emulator screen
 <hr>
 
 ##### For more on Beagle: Please check our [Beagle](https://github.com/ZupIT/beagle) repository
-##### For more on Beagle-Scaffold: Please check our [Beagle-Scaffold](https://docs.usebeagle.io/home/) documentation 
+##### For more on Beagle-Defaults: Please check our [Beagle-Scaffold](https://docs.usebeagle.io/home/) documentation 
