@@ -1,4 +1,4 @@
-# Beagle Scaffold Android
+# Beagle Defaults Android
 <hr>
 
 ![Maven Central](https://img.shields.io/maven-central/v/br.com.zup.beagle/beagle-defaults?color=green&label=Beagle-Defaults)
