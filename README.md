@@ -8,8 +8,7 @@ The initial setup of Beagle requires quite a few classes and configurations and,
 <hr>
 
 ### How to configure?
-Here you will find each Android, iOS and WEB repository for libs or scripts that assists in implementing 
-a Beagle Framework in your project:
+Here you will find Android, iOS and WEB repositories for libs or scripts that assists in implementing a Beagle Framework in your project:
 
 * [Android libs](https://github.com/ZupIT/beagle-helpers/tree/main/android)
 * [iOS libs](https://github.com/ZupIT/beagle-helpers/tree/main/iOS)
