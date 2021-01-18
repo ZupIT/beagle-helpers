@@ -84,7 +84,7 @@ c) Create a CacheApp file as listed below. This class extends from an ´StoreHan
 class CacheApp : StoreHandlerDefault(AppApplication.APPLICATION!!)
 ```
 
-d) Create a LoggerApp file as listed below. This class extends from an ´BeagleLoggerDefault()´ class at the Beagle-Default lib:
+d) Create a LoggerApp file as listed below. This class extends from a ´BeagleLoggerDefault()´ class at the Beagle-Default lib:
 ```
 @BeagleComponent
 class LoggerApp: BeagleLoggerDefault()
