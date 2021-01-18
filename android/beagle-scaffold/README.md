@@ -2,7 +2,7 @@
 <hr>
 
 ![Maven Central](https://img.shields.io/maven-central/v/br.com.zup.beagle/beagle-scaffold?label=beagle-scaffod)
-![Maven Central](https://img.shields.io/maven-central/v/br.com.zup.beagle/android?label=Beagle)
+![**Maven Central**](https://img.shields.io/maven-central/v/br.com.zup.beagle/android?label=Beagle)
 
 Here you will find the **Beagle-Scaffold** library to help you start a project using Beagle in Android.
 This lib will hold almost all necessary configuration to add Beagle into an Android project.
