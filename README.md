@@ -1,7 +1,7 @@
 # Beagle-helpers
 
 Beagle Helpers is a solution to facilitate the process of implementing a Beagle framework 
-into an Android, iOS or Web project
+into an Android, iOS or Web projects
 
 The initial setup of Beagle requires quite a few classes and configurations and, in order to make this process 
 faster and more dynamic, each platform has developed a few libs.
