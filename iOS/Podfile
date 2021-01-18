@@ -7,7 +7,7 @@ workspace 'BeagleHelpers'
 target 'BeagleScaffold' do
   project 'beagle-scaffold/BeagleScaffold.xcodeproj'
 
-  pod 'BeagleDefaults', :path => '../BeagleDefaults.podspec'
+  pod 'BeagleDefaults'
   
   target 'BeagleScaffoldTests' do
     
@@ -23,6 +23,6 @@ end
  target 'sampleScaffold' do
    project 'beagle-scaffold-sample/sampleScaffold.xcodeproj'
 
-   pod 'BeagleScaffold', :path => '../BeagleScaffold.podspec'
+   pod 'BeagleScaffold'
    pod 'YogaKit', :git => 'https://github.com/ZupIT/YogaKit'
  end
