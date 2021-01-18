@@ -11,7 +11,7 @@ steps, and starting studies quicker.
 
 * If you wish to use Beagle for an application in production we advise you to configure a project
  from scratch using our
- [documentation](https://docs.usebeagle.io/home/get-started/creating-a-project-from-scratch/case-android/)
+ [**documentation**](https://docs.usebeagle.io/home/get-started/creating-a-project-from-scratch/case-android/)
 
 <hr>
 
