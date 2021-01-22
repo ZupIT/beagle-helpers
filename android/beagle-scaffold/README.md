@@ -2,10 +2,10 @@
 <hr>
 
 ![Maven Central](https://img.shields.io/maven-central/v/br.com.zup.beagle/beagle-scaffold?label=beagle-scaffod)
-![Maven Central](https://img.shields.io/maven-central/v/br.com.zup.beagle/android?label=Beagle)
+![**Maven Central**](https://img.shields.io/maven-central/v/br.com.zup.beagle/android?label=Beagle)
 
 Here you will find the **Beagle-Scaffold** library to help you start a project using Beagle in Android.
-This libs will hold almost all necessary configuration to add Beagle into an Android project
+This lib will hold almost all necessary configuration to add Beagle into an Android project.
 
 ### Requirements
 Before you start to configure Beagle for your Android system, it’s important to check out if you have installed all the current versions of the following programs: ‌
@@ -61,8 +61,8 @@ if you need a more detailed information check our documentation
 @BeagleComponent
 class AppBeagleConfig: BeagleConfigScaffold()
 ```
-Step 4: Build your project: At this build the config above will setup Beagle in your project.<br>
-Step 5: Create a AppAplication file as the example below:
+Step 4: Build your project: When building this application the config above will setup Beagle in your project.<br>
+Step 5: Create an AppAplication file as the example below:
 ```
 class AppApplication : Application() {
     override fun onCreate() {
