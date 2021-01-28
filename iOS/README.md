@@ -13,9 +13,9 @@ steps, and starting studies quicker.
 <hr>
 
 To start using Beagle right now, you can use the libs below:
-* [Beagle-Scaffold](https://github.com/ZupIT/beagle-helpers/tree/main/iOS/beagle-scaffold):
+* [Beagle-Scaffold](https://docs.usebeagle.io/get-started/using-beagle-helpers/ios/beagle-scaffold/):
 This lib will hold almost all configurations needed to start using Beagle in your project.
 We advise using these libs for people that never used Beagle before.
 
-* [Beagle-Defaults](https://github.com/ZupIT/beagle-helpers/tree/main/iOS/beagle-defaults):
+* [Beagle-Defaults](https://docs.usebeagle.io/get-started/using-beagle-helpers/ios/beagle-defaults/):
 This lib is meant for more experienced Beagle users and will hold only a few class configurations necessary to use Beagle in an application. These configurations include default Network, Logger and Cache classes. All these are also available in the Scaffold lib above.
