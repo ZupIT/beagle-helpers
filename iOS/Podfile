@@ -8,7 +8,7 @@ target 'BeagleScaffold' do
   project 'beagle-scaffold/BeagleScaffold.xcodeproj'
 
   pod 'BeagleDefaults'
-  
+  pod 'Beagle', :git => 'https://github.com/ZupIT/beagle.git', :branch => 'master'
   target 'BeagleScaffoldTests' do
     
   end
@@ -17,12 +17,13 @@ end
  target 'BeagleDefaults' do
    project 'beagle-defaults/BeagleDefaults.xcodeproj'
 
-   pod 'Beagle'
+   pod 'Beagle', :git => 'https://github.com/ZupIT/beagle.git', :branch => 'master'
  end
 
  target 'sampleScaffold' do
    project 'beagle-scaffold-sample/sampleScaffold.xcodeproj'
 
    pod 'BeagleScaffold'
+   pod 'Beagle', :git => 'https://github.com/ZupIT/beagle.git', :branch => 'master'
    pod 'YogaKit', :git => 'https://github.com/ZupIT/YogaKit'
  end
