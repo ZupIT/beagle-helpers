@@ -110,7 +110,8 @@ class BeagleConfigTests: XCTestCase {
         BeagleConfig.start(dependencies: userDependencies)
         
         // Then
-        XCTAssert((Beagle.dependencies.logger as? BeagleLoggerProxy)?.logger is DummyLogger)
+        let logger = (Beagle.dependencies.logger as? BeagleLoggerProxy)?.logger
+        XCTAssert(logger is DummyLogger)
         assertBaseUrlWasSet()
         assertCacheManagerWasSet()
         assertNetworkClientWasSet()
@@ -127,20 +128,21 @@ class BeagleConfigTests: XCTestCase {
         assertLoggerWasSet()
     }
     
-    private func assertCacheManagerWasSet(line: UInt = #line) {
-        XCTAssert(Beagle.dependencies.cacheManager is CacheManagerDefault, line: line)
+    private func assertCacheManagerWasSet() {
+        XCTAssert(Beagle.dependencies.cacheManager is CacheManagerDefault)
     }
     
-    private func assertLoggerWasSet(line: UInt = #line) {
-        XCTAssert((Beagle.dependencies.logger as? BeagleLoggerProxy)?.logger is BeagleLoggerDefault, line: line)
+    private func assertLoggerWasSet() {
+        let logger = (Beagle.dependencies.logger as? BeagleLoggerProxy)?.logger
+        XCTAssert(logger is BeagleLoggerDefault)
     }
     
-    private func assertNetworkClientWasSet(line: UInt = #line) {
-        XCTAssert(Beagle.dependencies.networkClient is NetworkClientDefault, line: line)
+    private func assertNetworkClientWasSet() {
+        XCTAssert(Beagle.dependencies.networkClient is NetworkClientDefault)
     }
-    
-    private func assertBaseUrlWasSet(line: UInt = #line) {
-        XCTAssertEqual(Beagle.dependencies.urlBuilder.baseUrl, URL(string: baseUrl), line: line)
+        
+    private func assertBaseUrlWasSet() {
+        XCTAssertEqual(Beagle.dependencies.urlBuilder.baseUrl, URL(string: baseUrl))
     }
     
 }
