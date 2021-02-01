@@ -36,6 +36,7 @@ public class BeagleConfig: DependencyLogger {
         let urlBuilder = { UrlBuilder(baseUrl: URL(string: baseURL)) }
         let networkClient = { NetworkClientDefault(dependencies: dependencyLogger) }
         let cacheManager = { CacheManagerDefault(dependencies: dependencyLogger) }
+        let logger = { BeagleLoggerDefault() }
         
         guard let dependencies = dependencies else {
             let dependenciesNew = BeagleDependencies(networkClient: networkClient(), cacheManager: cacheManager(), logger: dependencyLogger.logger)
@@ -43,9 +44,9 @@ public class BeagleConfig: DependencyLogger {
             return dependenciesNew
         }
         
-//        if dependenciesParam.logger == nil {
-//            dependenciesParam.logger = logger
-//        }
+        if (dependencies.logger as? BeagleLoggerProxy)?.logger == nil {
+            dependencies.logger = logger()
+        }
         
         if dependencies.urlBuilder.baseUrl == nil {
             dependencies.urlBuilder = urlBuilder()

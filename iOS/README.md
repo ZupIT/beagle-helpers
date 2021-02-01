@@ -1,4 +1,9 @@
 # Libs for Beagle iOS
+
+![Cocoapods](https://img.shields.io/cocoapods/v/BeagleScaffold?label=Beagle-Scaffold)
+![Cocoapods](https://img.shields.io/cocoapods/v/BeagleDefaults?label=Beagle-Defaults)
+![Cocoapods](https://img.shields.io/cocoapods/v/Beagle?label=Beagle)
+
 <hr>
 
 Here you will find a library to help when you want to start a project using beagle for iOS.

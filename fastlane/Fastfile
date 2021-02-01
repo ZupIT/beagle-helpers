@@ -121,7 +121,7 @@ lane :deploy do
     puts "Normal Release"
     sh "fastlane android deploy_to_production"
 ###    sh "fastlane backend deploy_to_production"
-###    sh "fastlane ios release_pods version:#{versionNumber} tag:#{tagName}"
+    sh "fastlane ios release_pods version:#{versionNumber} tag:#{tagName}"
   end
 end
 

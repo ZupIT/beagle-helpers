@@ -1,6 +1,9 @@
 # Beagle Scaffold iOS
 <hr>
 
+![Cocoapods](https://img.shields.io/cocoapods/v/BeagleScaffold?label=Beagle-Scaffold)
+![Cocoapods](https://img.shields.io/cocoapods/v/Beagle?label=Beagle)
+
 Here you will find the **Beagle-Scaffold** library to help you start a project using Beagle in iOS.
 
 **It's recommended for beginners.**
