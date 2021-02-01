@@ -1,4 +1,8 @@
 # Beagle Defaults
+<hr>
+
+![Cocoapods](https://img.shields.io/cocoapods/v/BeagleDefaults?label=Beagle-Defaults)
+![Cocoapods](https://img.shields.io/cocoapods/v/Beagle?label=Beagle)
 
 This framework provides default implementations of a Network client, Cache control and Logger that can be easily embed and used in your [Beagle](https://github.com/ZupIT/beagle) project.
 
