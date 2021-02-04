@@ -48,6 +48,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    packagingOptions {
+        pickFirst 'META-INF/LICENSE.md'
+        pickFirst 'META-INF/LICENSE-notice.md'
+    }
 }
 // Add in your app level dependency
 ext.beagle_version = "1.5.1"
