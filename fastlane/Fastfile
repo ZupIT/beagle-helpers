@@ -116,7 +116,7 @@ lane :deploy do
     puts "Android release"
     sh "fastlane android deploy_to_production"
   elsif platformHotfix == "backend"
-    return
+    next
   else
     puts "Normal Release"
     sh "fastlane android deploy_to_production"
