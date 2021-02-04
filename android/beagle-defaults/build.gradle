@@ -45,9 +45,13 @@ android {
     testOptions {
         unitTests.returnDefaultValues = true
     }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/LICENSE-notice.md'
+    }
 }
 
-ext.beagle_version = "1.5.0"
+ext.beagle_version = "1.5.1"
 
 dependencies {
 

@@ -50,7 +50,7 @@ android {
     }
 }
 // Add in your app level dependency
-ext.beagle_version = "1.5.0"
+ext.beagle_version = "1.5.1"
 
 dependencies {
 
