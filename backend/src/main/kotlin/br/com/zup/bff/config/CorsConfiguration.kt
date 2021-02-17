@@ -27,7 +27,6 @@ class CorsConfiguration(@Value("\${web.url}") val webUrl: String) : WebMvcConfig
     override fun addCorsMappings(registry: CorsRegistry) {
         registry
                 .addMapping("/**")
-                .allowedOrigins(this.webUrl)
                 .allowedMethods("*")
     }
 }
