@@ -23,7 +23,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @Configuration
-class CorsConfiguration(@Value("\${web.url}") val webUrl: String) : WebMvcConfigurer {
+class CorsConfiguration(@Value() : WebMvcConfigurer {
     override fun addCorsMappings(registry: CorsRegistry) {
         registry
                 .addMapping("/**")
