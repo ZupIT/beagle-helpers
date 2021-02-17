@@ -28,5 +28,6 @@ class CorsConfiguration(@Value() : WebMvcConfigurer {
         registry
                 .addMapping("/**")
                 .allowedMethods("*")
+                .allowedOrigins("*")
     }
 }
