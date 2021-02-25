@@ -42,6 +42,7 @@ import br.com.zup.beagle.android.widget.WidgetView
 import br.com.zup.beagle.defaults.cache.StoreHandlerDefault
 import br.com.zup.beagle.defaults.httpclient.HttpClientDefault
 import br.com.zup.beagle.defaults.logger.BeagleLoggerDefault
+import br.com.zup.beagle.newanalytics.AnalyticsProvider
 import br.com.zup.beagle.test.rules.BeagleComponentsRule
 import io.mockk.every
 import io.mockk.mockk
@@ -74,6 +75,7 @@ internal class BeagleScaffoldTest {
     val typeAdapterResolver = mockk<TypeAdapterResolver>(relaxed = true)
     val urlBuilder = mockk<UrlBuilder>()
     val validatorHandler = mockk<ValidatorHandler>()
+    val analyticsProvider = mockk<AnalyticsProvider>()
 
     @DisplayName("Then all its attributes are set equaling the FakeSdk ones")
     @Test
@@ -94,7 +96,8 @@ internal class BeagleScaffoldTest {
             storeHandler,
             typeAdapterResolver,
             urlBuilder,
-            validatorHandler
+            validatorHandler,
+            analyticsProvider
         )
         //When
         val beagleScaffold = BeagleScaffold(beagleSdkFake)
@@ -127,6 +130,7 @@ internal class BeagleScaffoldTest {
         )
         Assertions.assertEquals(beagleSdkFake.urlBuilder, beagleScaffold.urlBuilder)
         Assertions.assertEquals(beagleSdkFake.validatorHandler, beagleScaffold.validatorHandler)
+        Assertions.assertEquals(beagleSdkFake.analyticsProvider, beagleScaffold.analyticsProvider)
     }
 
     @DisplayName("Then the null attributes on FakeSdk will be implemented from the default classes")
@@ -183,7 +187,8 @@ internal class BeagleScaffoldTest {
         storeHandler,
         typeAdapterResolver,
         urlBuilder,
-        validatorHandler
+        validatorHandler,
+        analyticsProvider
     )
 }
 
@@ -201,7 +206,8 @@ class BeagleSdkFake(
     override val storeHandler: StoreHandler?,
     override val typeAdapterResolver: TypeAdapterResolver?,
     override val urlBuilder: UrlBuilder?,
-    override val validatorHandler: ValidatorHandler?
+    override val validatorHandler: ValidatorHandler?,
+    override val analyticsProvider: AnalyticsProvider?
 ) : BeagleSdk {
     override fun registeredActions(): List<Class<Action>> = listOf()
 
