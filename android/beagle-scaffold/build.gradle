@@ -56,7 +56,7 @@ android {
     }
 }
 
-ext.beagle_version = "1.5.0"
+ext.beagle_version = "1.6.0"
 
 dependencies {
 

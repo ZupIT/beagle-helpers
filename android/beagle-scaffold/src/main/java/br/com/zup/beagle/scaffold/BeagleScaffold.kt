@@ -39,9 +39,11 @@ import br.com.zup.beagle.android.widget.WidgetView
 import br.com.zup.beagle.defaults.cache.StoreHandlerDefault
 import br.com.zup.beagle.defaults.httpclient.HttpClientDefault
 import br.com.zup.beagle.defaults.logger.BeagleLoggerDefault
+import br.com.zup.beagle.newanalytics.AnalyticsProvider
 
 class BeagleScaffold(private val beagleSdk: BeagleSdk) : BeagleSdk {
     override val analytics: Analytics? = beagleSdk.analytics
+    override val analyticsProvider: AnalyticsProvider? = beagleSdk.analyticsProvider
     override val config: BeagleConfig = beagleSdk.config
     override val controllerReference: BeagleControllerReference? = beagleSdk.controllerReference
     override val deepLinkHandler: DeepLinkHandler? = beagleSdk.deepLinkHandler
