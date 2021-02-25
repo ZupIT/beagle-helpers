@@ -22,7 +22,7 @@ import br.com.zup.beagle.android.store.LocalStore
 import br.com.zup.beagle.android.store.StoreHandler
 import br.com.zup.beagle.android.store.StoreType
 
-open class StoreHandlerDefault private constructor(
+open class StoreHandlerDefault constructor(
     val application: Application,
     var databaseLocalStore: LocalStore = DatabaseLocalStore(application)
 ) : StoreHandler {

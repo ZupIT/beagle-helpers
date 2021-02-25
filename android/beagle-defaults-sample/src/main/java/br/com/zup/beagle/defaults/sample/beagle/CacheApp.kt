@@ -22,4 +22,4 @@ import br.com.zup.beagle.defaults.cache.StoreHandlerDefault
 import br.com.zup.beagle.defaults.sample.AppApplication
 
 @BeagleComponent
-class CacheApp : StoreHandlerDefault(AppApplication.APPLICATION!!)
+class CacheApp : StoreHandlerDefault(AppApplication.instance)

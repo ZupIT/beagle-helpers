@@ -18,4 +18,5 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.zup.beagle.scaffold">
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

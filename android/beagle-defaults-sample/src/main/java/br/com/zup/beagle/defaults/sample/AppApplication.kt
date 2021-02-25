@@ -23,12 +23,12 @@ import br.com.zup.beagle.defaults.sample.beagle.BeagleSetup
 class AppApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        APPLICATION = this
+        instance = this
 
         BeagleSetup().init(this)
     }
 
     companion object {
-        var APPLICATION: Application? = null
+        lateinit var instance: Application
     }
 }

@@ -19,8 +19,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.zup.beagle.scaffold.sample">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".AppApplication"
         android:allowBackup="true"
