@@ -8,7 +8,7 @@ target 'BeagleScaffold' do
   project 'beagle-scaffold/BeagleScaffold.xcodeproj'
 
   pod 'BeagleDefaults'
-  pod 'Beagle', :git => 'https://github.com/ZupIT/beagle.git', :branch => 'master'
+  pod 'Beagle', :git => 'https://github.com/ZupIT/beagle.git', :commit => 'f851fe6b98e738902a07691adada2e383a20f001'
   target 'BeagleScaffoldTests' do
     
   end
@@ -17,13 +17,13 @@ end
  target 'BeagleDefaults' do
    project 'beagle-defaults/BeagleDefaults.xcodeproj'
 
-   pod 'Beagle', :git => 'https://github.com/ZupIT/beagle.git', :branch => 'master'
- end
+   pod 'Beagle', :git => 'https://github.com/ZupIT/beagle.git', :commit => 'f851fe6b98e738902a07691adada2e383a20f001'
+end
 
  target 'sampleScaffold' do
    project 'beagle-scaffold-sample/sampleScaffold.xcodeproj'
 
    pod 'BeagleScaffold'
-   pod 'Beagle', :git => 'https://github.com/ZupIT/beagle.git', :branch => 'master'
+   pod 'Beagle', :git => 'https://github.com/ZupIT/beagle.git', :commit => 'f851fe6b98e738902a07691adada2e383a20f001'
    pod 'YogaKit', :git => 'https://github.com/ZupIT/YogaKit'
  end
