@@ -50,8 +50,9 @@ jobs:
                   parse-json: true
 
             - name: Check if env variable is set after fetching secrets
-              run: if [ -z ${BORRACHA_KEY_ID+x} ]; then echo "BORRACHA_KEY_ID is unset"; else
-                echo "BORRACHA_KEY_ID is set to '$BORRACHA_KEY_ID'"; fi
+              run: if [ -z ${BEAGLE_PROD_FOO_BORRACHA_KEY_ID+x} ]; then echo "BEAGLE_PROD_FOO_BORRACHA_KEY_ID is
+                  unset"; else
+                echo "BEAGLE_PROD_FOO_BORRACHA_KEY_ID is set to '$BEAGLE_PROD_FOO_BORRACHA_KEY_ID'"; fi
 
             -   name: Run pr check
                 env:
