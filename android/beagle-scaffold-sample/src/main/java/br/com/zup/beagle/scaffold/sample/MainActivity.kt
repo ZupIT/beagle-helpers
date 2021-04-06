@@ -32,4 +32,5 @@ class MainActivity : AppCompatActivity() {
         //Server-driven Screen
         startActivity(BeagleIntent(this).toSample())
     }
+
 }
