@@ -39,6 +39,24 @@ jobs:
                     path: ${{ env.gradle-path }}
                     key: ${{ runner.os }}-build-${{ env.gradle-cache-key }}-${{ hashFiles('android/buildSrc/**') }}
                     restore-keys: ${{ runner.os }}-build-${{ env.gradle-cache-key }}
+            - name: Read secrets from AWS Secrets Manager into environment variables
+              uses: abhilash1in/aws-secrets-manager-action@v1.0.1
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: us-east-1
+                  secrets: |
+                      beagle/prod/*
+                  parse-json: true
+
+            - name: Check if env variable is set after fetching secrets
+              run: if [ -z ${BEAGLE_PROD_FOO+x} ]; then echo "BEAGLE_PROD_FOO is unset"; else echo
+                "BEAGLE_PROD_FOO is set to '$BEAGLE_PROD_FOO'"; fi
+
+            - name: Check if env variable is set after fetching secrets
+                  run: if [ -z ${BEAGLE_PROD_BOR+x} ]; then echo "BEAGLE_PROD_BOR is unset"; else
+                  echo
+                      "BEAGLE_PROD_BOR is set to '$BEAGLE_PROD_BOR'"; fi
             -   name: Run pr check
                 env:
                     GITHUB_USER: ${{ secrets.NAME_REPO_TOKEN }}
