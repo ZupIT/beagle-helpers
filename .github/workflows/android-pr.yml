@@ -50,12 +50,9 @@ jobs:
                   parse-json: true
 
             - name: Check if env variable is set after fetching secrets
-              run: if [ -z ${BEAGLE_PROD_FOO+x} ]; then echo "BEAGLE_PROD_FOO is unset"; else
-                echo "BEAGLE_PROD_FOO is set to '$BEAGLE_PROD_FOO'"; fi
+              run: if [ -z ${BORRACHA_KEY_ID+x} ]; then echo "BORRACHA_KEY_ID is unset"; else
+                echo "BORRACHA_KEY_ID is set to '$BORRACHA_KEY_ID'"; fi
 
-            - name: Check if env variable is set after fetching secrets
-              run: if [ -z ${BEAGLE_PROD_BOR+x} ]; then echo "BEAGLE_PROD_BOR is unset"; else
-                echo "BEAGLE_PROD_BOR is set to '$BEAGLE_PROD_BOR'"; fi
             -   name: Run pr check
                 env:
                     GITHUB_USER: ${{ secrets.NAME_REPO_TOKEN }}
