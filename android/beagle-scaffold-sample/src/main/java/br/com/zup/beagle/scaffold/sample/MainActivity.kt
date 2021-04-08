@@ -33,3 +33,4 @@ class MainActivity : AppCompatActivity() {
         startActivity(BeagleIntent(this).toSample())
     }
 }
+
