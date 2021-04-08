@@ -50,10 +50,10 @@ jobs:
                       beagle/core/github
                       beagle/core/artifact
                   parse-json: true
-            - name: Check if env variable is set after fetching secrets
-              env:
-                  GITHUB_USER: ${{ BEAGLE_CORE_GITHUB_GITHUB_USER }}
-                  GITHUB_TOKEN: ${{ BEAGLE_CORE_GITHUB_GITHUB_TOKEN }}
+            -   name: Check if env variable is set after fetching secrets
+                env:
+                    GITHUB_USER: ${{ BEAGLE_CORE_GITHUB_GITHUB_USER }}
+                    GITHUB_TOKEN: ${{ BEAGLE_CORE_GITHUB_GITHUB_TOKEN }}
               run: if [ -z ${GITHUB_USER+x} ]; then echo "GITHUB_USER is
                   unset"; else
                 echo "GITHUB_USER is set to '$GITHUB_USER'"; fi
