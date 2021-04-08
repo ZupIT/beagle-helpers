@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class BffApplication
 
 fun main(args: Array<String>) {
-	runApplication<BffApplication>(*args)
+	runApplication<BffApplication>(*args) 
 }
