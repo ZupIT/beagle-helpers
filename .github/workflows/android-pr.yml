@@ -46,13 +46,15 @@ jobs:
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                   aws-region: us-east-1
                   secrets: |
-                      BEAGLE/*
+                      beagle/helpers/*
+                      beagle/core/github
+                      beagle/core/artifact
                   parse-json: true
 
             - name: Check if env variable is set after fetching secrets
-              run: if [ -z ${BEAGLE_SECRET_SONATYPE_NEXUS_USERNAME+x} ]; then echo "BEAGLE_SECRET_SONATYPE_NEXUS_USERNAME is
+              run: if [ -z ${BEAGLE_CORE_ARTIFACT_SONATYPE_NEXUS_USERNAME+x} ]; then echo "BEAGLE_CORE_ARTIFACT_SONATYPE_NEXUS_USERNAME is
                   unset"; else
-                echo "BEAGLE_SECRET_SONATYPE_NEXUS_USERNAME is set to '$BEAGLE_SECRET_SONATYPE_NEXUS_USERNAME'"; fi
+                echo "BEAGLE_CORE_ARTIFACT_SONATYPE_NEXUS_USERNAME is set to '$BEAGLE_CORE_ARTIFACT_SONATYPE_NEXUS_USERNAME'"; fi
 
             -   name: Run pr check
                 env:
