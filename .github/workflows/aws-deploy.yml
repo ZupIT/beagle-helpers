@@ -50,13 +50,23 @@ jobs:
                     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
                     VERSION: ${{ steps.version.outputs.release_tag }}
                 run: docker tag "temp" "$ECR_REGISTRY/$IMAGE:$VERSION" && docker push "$ECR_REGISTRY/$IMAGE:$VERSION" 
-            
+            -   name: Read secrets from AWS Secrets Manager into environment variables
+                uses: abhilash1in/aws-secrets-manager-action@v1.0.1
+                with:
+                    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                    aws-region: us-east-1
+                    secrets: |
+                          beagle/helpers/*
+                          beagle/core/github
+                          beagle/core/artifact
+                    parse-json: true
             -   name: Update kubeconfig
-                run: aws eks update-kubeconfig --name ${{ secrets.AWS_CLUSTER_NAME }}
+                run: aws eks update-kubeconfig --name ${{ env.BEAGLE_HELPERS_AWS_AWS_CLUSTER_NAME }}
                 
             -   name: deploy to k8s
                 env: 
                     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
                     VERSION: ${{ steps.version.outputs.release_tag }}
-                run: sed "s/IMAGE/$ECR_REGISTRY\/$IMAGE:$VERSION/" backend/k8s.yml | kubectl -n ${{ secrets.AWS_CLUSTER_NAMESPACE }} apply -f -
+                run: sed "s/IMAGE/$ECR_REGISTRY\/$IMAGE:$VERSION/" backend/k8s.yml | kubectl -n ${{ env.BEAGLE_HELPERS_AWS_AWS_CLUSTER_NAMESPACE }} apply -f -
                 
