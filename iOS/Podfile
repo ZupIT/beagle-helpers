@@ -4,26 +4,57 @@ use_frameworks!
 
 workspace 'BeagleHelpers'
 
+def pod_beagle
+  pod 'Beagle', :git => 'https://github.com/ZupIT/beagle', :branch => 'fix/pod-version-1.6.2'
+  pod 'YogaKit', :git => 'https://github.com/ZupIT/YogaKit'
+end
+
+def pod_beagle_defaults
+  pod 'BeagleDefaults', :path => '../'
+end
+
+def pod_beagle_scaffold
+  pod 'BeagleScaffold', :path => '../'
+end
+
+def pod_beagle_grpc
+  pod 'BeagleGRPC', :path => '../'
+end
+
 target 'BeagleScaffold' do
   project 'beagle-scaffold/BeagleScaffold.xcodeproj'
 
-  pod 'BeagleDefaults'
-  pod 'Beagle', '~> 1.6.1'
+  pod_beagle
+  pod_beagle_defaults
+
   target 'BeagleScaffoldTests' do
   end
 end
 
 target 'BeagleDefaults' do
   project 'beagle-defaults/BeagleDefaults.xcodeproj'
-  pod 'Beagle', '~> 1.6.1'
+  
+  pod_beagle
+  
   target 'BeagleDefaultsTests' do
+    inherit! :search_paths
   end
 end
 
 target 'sampleScaffold' do
   project 'beagle-scaffold-sample/sampleScaffold.xcodeproj'
 
-  pod 'BeagleScaffold'
-  pod 'Beagle', '~> 1.6.1'
-  pod 'YogaKit', :git => 'https://github.com/ZupIT/YogaKit'
+  pod_beagle
+  pod_beagle_scaffold
+end
+
+target 'SampleGRPC' do
+  project 'beagle-grpc/SampleGRPC.xcodeproj'
+  
+  pod_beagle_grpc
+  pod_beagle_defaults
+  
+  target 'SampleGRPCTests' do
+    inherit! :search_paths
+  end
 end
