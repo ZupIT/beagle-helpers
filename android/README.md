@@ -28,3 +28,4 @@ will hold only a few class configurations necessary to
 use Beagle in an application. These configurations include 
 default HttpClient, Logger and Cache classes.<br>
 All these are also available in the Scaffold lib above.
+  
