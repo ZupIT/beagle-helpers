@@ -23,7 +23,8 @@ import com.squareup.moshi.Types
 import java.lang.reflect.Type
 
 class MessageAdapterFactory : JsonAdapter.Factory {
-    override fun create(type: Type, annotations: MutableSet<out Annotation>, moshi: Moshi): JsonAdapter<Messages.ViewNode>? {
+    override fun create(type: Type, annotations: MutableSet<out Annotation>, moshi: Moshi)
+            : JsonAdapter<Messages.ViewNode>? {
         return if (Types.getRawType(type) == Messages.ViewNode::class.java) {
             MessageAdapter()
         } else {

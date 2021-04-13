@@ -29,10 +29,21 @@ class HeaderClientInterceptor : ClientInterceptor {
 
     val headersMap = mutableMapOf<String, String>()
 
-    override fun <ReqT : Any?, RespT : Any?> interceptCall(method: MethodDescriptor<ReqT, RespT>?, callOptions: CallOptions?, next: Channel?): ClientCall<ReqT, RespT> {
-        return object : ForwardingClientCall.SimpleForwardingClientCall<ReqT, RespT>(next!!.newCall(method, callOptions)) {
+    override fun <ReqT : Any?, RespT : Any?> interceptCall(
+        method: MethodDescriptor<ReqT, RespT>?,
+        callOptions: CallOptions?, next: Channel?
+    ): ClientCall<ReqT, RespT> {
+        return object : ForwardingClientCall.SimpleForwardingClientCall<ReqT, RespT>(
+            next!!.newCall(
+                method,
+                callOptions
+            )
+        ) {
             override fun start(responseListener: Listener<RespT>?, headers: Metadata) {
-                super.start(object : ForwardingClientCallListener.SimpleForwardingClientCallListener<RespT>(responseListener) {
+                super.start(object :
+                    ForwardingClientCallListener.SimpleForwardingClientCallListener<RespT>(
+                        responseListener
+                    ) {
                     override fun onHeaders(headers: Metadata) {
 
                         extractHeaders(headers)
@@ -45,7 +56,8 @@ class HeaderClientInterceptor : ClientInterceptor {
 
     private fun extractHeaders(headers: Metadata?): Map<String, String> {
         headers?.keys()?.forEach { key ->
-            headersMap[key] = headers.get(Metadata.Key.of(key, Metadata.ASCII_STRING_MARSHALLER)) as String
+            headersMap[key] =
+                headers.get(Metadata.Key.of(key, Metadata.ASCII_STRING_MARSHALLER)) as String
         }
         return headersMap
     }
