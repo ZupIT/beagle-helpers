@@ -39,18 +39,13 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.asExecutor
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import java.net.URL
-import java.util.logging.Logger
-
 
 class GrpcClient(
     private val grpcAddress: String,
     private val customHttpClient: HttpClient?,
     dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : HttpClient, CoroutineScope {
-
-    val logger: Logger = Logger.getLogger(GrpcClient::class.java.name)
 
     companion object {
         const val HTTP_CLIENT_NULL = "an instance of HttpClient was not found."
@@ -62,7 +57,11 @@ class GrpcClient(
     override val coroutineContext = job + dispatcher
     private val stub by lazy { ScreenControllerGrpcKt.ScreenControllerCoroutineStub(channel()) }
 
-    override fun execute(request: RequestData, onSuccess: (responseData: ResponseData) -> Unit, onError: (responseData: ResponseData) -> Unit): RequestCall {
+    override fun execute(
+        request: RequestData,
+        onSuccess: (responseData: ResponseData) -> Unit,
+        onError: (responseData: ResponseData) -> Unit
+    ): RequestCall {
 
         return if (isGrpcRequest(request)) {
             launch {
@@ -85,18 +84,13 @@ class GrpcClient(
     }
 
     private fun isGrpcRequest(request: RequestData): Boolean {
-        //return request.url?.startsWith(grpcAddress) ?: false
         return request.uri.toString().startsWith(grpcAddress)
     }
 
-    private fun getScreenName(request: RequestData): String? {
-//        val screenName = request.url
-//            ?.removePrefix("$grpcAddress")
-//            ?.removePrefix("/")
-//            ?.substringBefore("?")
+    private fun getScreenName(request: RequestData): String {
         val screenName = request.uri.path.removePrefix("/")
 
-        if (screenName.isNullOrEmpty()) {
+        if (screenName.isEmpty()) {
             throw BeagleApiException(createErrorResponseData(SCREEN_NAME_NULL), request)
         }
 
@@ -119,7 +113,10 @@ class GrpcClient(
         } catch (e: StatusException) {
             e.printStackTrace()
 
-            throw BeagleApiException(createErrorResponseData(e.status.description ?: UNKNOWN_ERROR), request)
+            throw BeagleApiException(
+                createErrorResponseData(e.status.description ?: UNKNOWN_ERROR),
+                request
+            )
         }
     }
 
@@ -166,7 +163,11 @@ class GrpcClient(
     }
 
     private fun queryParamsToJson(queryParams: Map<String, String>): String {
-        val type = Types.newParameterizedType(MutableMap::class.java, String::class.java, String::class.java)
+        val type = Types.newParameterizedType(
+            MutableMap::class.java,
+            String::class.java,
+            String::class.java
+        )
         val adapter: JsonAdapter<Map<String, String>> = moshi.adapter(type)
 
         return adapter.toJson(queryParams)
@@ -183,7 +184,10 @@ class GrpcClient(
             .build()
     }
 
-    private fun parseResponse(response: Messages.ViewNode, headers: Map<String, String>): ResponseData {
+    private fun parseResponse(
+        response: Messages.ViewNode,
+        headers: Map<String, String>
+    ): ResponseData {
         val data = responseMessageToJson(response)
 
         return ResponseData(
@@ -194,7 +198,8 @@ class GrpcClient(
     }
 
     private fun responseMessageToJson(response: Messages.ViewNode): String {
-        val jsonAdapter: JsonAdapter<Messages.ViewNode> = moshi.adapter(Messages.ViewNode::class.java)
+        val jsonAdapter: JsonAdapter<Messages.ViewNode> =
+            moshi.adapter(Messages.ViewNode::class.java)
         return jsonAdapter.toJson(response)
     }
 
