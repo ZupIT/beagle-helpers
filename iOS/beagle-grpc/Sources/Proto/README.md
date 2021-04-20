@@ -3,7 +3,7 @@
 Requirements:
 
 - Protocol Buffer Compiler `protoc`, binary releases are available on [GitHub][protobuf-releases].
-- [gRPC-Swift][grpc-swift] plugins `protoc-gen-swift` and `protoc-gen-grpc-swift`, [see how to build them][rpc-plugins].
+- [gRPC-Swift][grpc-swift] plugins `protoc-gen-swift` and `protoc-gen-grpc-swift`, [see how to build them][grpc-plugins].
 
 How to generate the code:
 
