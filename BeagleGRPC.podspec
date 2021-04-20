@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'iOS/beagle-grpc/Sources/Proto/*.swift'
   end
 
-  s.dependency 'Beagle', '>= 1.6.2'
+  s.dependency 'Beagle', '> 1.6.2'
   s.dependency 'gRPC-Swift', '>= 1.0.0'
 
 end

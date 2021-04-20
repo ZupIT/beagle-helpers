@@ -30,28 +30,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        // gRPC connection configuration
-        let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
-        let channel = ClientConnection.insecure(group: group).connect(host: "0.0.0.0", port: 50051)
-        let defaultCallOptions = CallOptions(timeLimit: .timeout(.seconds(3)))
-
         let dependencies = BeagleDependencies()
         Beagle.dependencies = dependencies
 
         // Beagle configuration
-        let httpClient = NetworkClientDefault(dependencies: dependencies)
         let grpcClient = NetworkClientGRPC(
-            redirectGrpcFrom: "grpc://",
-            customHttpClient: httpClient,
-            channel: channel,
-            defaultCallOptions: defaultCallOptions,
+            grpcAddress: "grpc://0.0.0.0:50051",
+            customHttpClient: NetworkClientDefault(dependencies: dependencies),
+            defaultCallOptions: CallOptions(timeLimit: .timeout(.seconds(10))),
             interceptors: NetworkInterceptor()
         )
         dependencies.logger = BeagleLoggerDefault()
         dependencies.networkClient = grpcClient
+        dependencies.urlBuilder = UrlBuilder(baseUrl: URL(string: "grpc://0.0.0.0:50051"))
 
         // Presenting a screen
-        let screen = BeagleScreenViewController(.remote(.init(url: "grpc://home?name=John%20Doe")))
+        let screen = BeagleScreenViewController(.remote(.init(url: "/home?name=John%20Doe")))
         let navigation = BeagleNavigationController(rootViewController: screen)
 
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -61,6 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
+
+// MARK: -
 
 /// gRPC interceptor sample
 class NetworkInterceptor: ClientInterceptor<Beagle_ScreenRequest, Beagle_ViewNode> {

@@ -26,11 +26,10 @@ class NetworkClientGRPCTests: XCTestCase {
 
     func testCustomHttpClientShouldHandleNonFetchComponentRequests() throws {
         // Given
-        let networkClientFake = NetworkClientFake()
+        let fakeNetworkClient = FakeNetworkClient()
         let sut = NetworkClientGRPC(
-            redirectGrpcFrom: "",
-            customHttpClient: networkClientFake,
-            channel: FakeChannel()
+            grpcAddress: "",
+            customHttpClient: fakeNetworkClient
         )
         let fetchComponent = try beagleRequest(type: .fetchComponent)
         let fetchImage = try beagleRequest(type: .fetchImage)
@@ -40,37 +39,37 @@ class NetworkClientGRPCTests: XCTestCase {
         // When
         _ = sut.executeRequest(fetchComponent) { _ in }
         // Then
-        XCTAssertNil(networkClientFake.lastRequest)
+        XCTAssertNil(fakeNetworkClient.lastRequest)
 
         // When
         _ = sut.executeRequest(fetchImage) { _ in }
         // Then
-        XCTAssertEqual(networkClientFake.lastRequest?.type, fetchImage.type)
+        XCTAssertEqual(fakeNetworkClient.lastRequest?.type, fetchImage.type)
 
         // When
         _ = sut.executeRequest(rawRequest) { _ in }
         // Then
-        XCTAssertEqual(networkClientFake.lastRequest?.type, rawRequest.type)
+        XCTAssertEqual(fakeNetworkClient.lastRequest?.type, rawRequest.type)
 
         // When
         _ = sut.executeRequest(submitForm) { _ in }
         // Then
-        XCTAssertEqual(networkClientFake.lastRequest?.type, submitForm.type)
-        XCTAssertEqual(networkClientFake.requests.count, 3)
+        XCTAssertEqual(fakeNetworkClient.lastRequest?.type, submitForm.type)
+        XCTAssertEqual(fakeNetworkClient.requests.count, 3)
     }
 
     func testCustomHttpClientShouldHandleRequestsWithoutPrefix() throws {
         // Given
         let fetchComponent = try beagleRequest(url: "https://server")
-        let networkClientFake = NetworkClientFake()
+        let fakeNetworkClient = FakeNetworkClient()
         let sut = networkClientGRPC(
-            redirectGrpcFrom: "grpc://",
-            customHttpClient: networkClientFake
+            grpcAddress: "grpc://",
+            customHttpClient: fakeNetworkClient
         )
         // When
         _ = sut.executeRequest(fetchComponent) { _ in }
         // Then
-        XCTAssertNotNil(networkClientFake.lastRequest)
+        XCTAssertNotNil(fakeNetworkClient.lastRequest)
     }
 
     func testBeaglePlatformHeader() throws {
@@ -190,13 +189,13 @@ class NetworkClientGRPCTests: XCTestCase {
     // MARK: - Helpers
     
     private func networkClientGRPC(
-        redirectGrpcFrom: String = "grpc://",
-        customHttpClient: NetworkClient = NetworkClientFake(),
+        grpcAddress: String = "grpc://",
+        customHttpClient: NetworkClient = FakeNetworkClient(),
         defaultCallOptions: CallOptions = CallOptions(),
         screenClient: Beagle_ScreenControllerClientProtocol = Beagle_ScreenControllerTestClient()
     ) -> NetworkClientGRPC {
         return NetworkClientGRPC(
-            redirectGrpcFrom: redirectGrpcFrom,
+            grpcAddress: grpcAddress,
             customHttpClient: customHttpClient,
             defaultCallOptions: defaultCallOptions,
             screenClient: screenClient
@@ -227,7 +226,7 @@ class NetworkClientGRPCTests: XCTestCase {
     -> (headers: [String: String]?, screenRequest: Beagle_ScreenRequest?) {
         let grpcClient = Beagle_ScreenControllerTestClient()
         let networkClient = networkClientGRPC(
-            customHttpClient: NetworkClientFake(),
+            customHttpClient: FakeNetworkClient(),
             screenClient: grpcClient
         )
         var headers: [String: String]?
@@ -256,7 +255,7 @@ class NetworkClientGRPCTests: XCTestCase {
     ) throws -> Result<NetworkResponse, NetworkError> {
         let grpcClient = Beagle_ScreenControllerTestClient()
         let networkClient = networkClientGRPC(
-            customHttpClient: NetworkClientFake(),
+            customHttpClient: FakeNetworkClient(),
             screenClient: grpcClient
         )
         var result: Result<NetworkResponse, NetworkError>?
@@ -271,7 +270,7 @@ class NetworkClientGRPCTests: XCTestCase {
 
  // MARK: -
 
-class NetworkClientFake: NetworkClient {
+class FakeNetworkClient: NetworkClient {
 
     var result: NetworkResult?
 

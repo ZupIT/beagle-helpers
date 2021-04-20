@@ -16,42 +16,57 @@
 
 import Beagle
 import GRPC
+import NIO
 
 public class NetworkClientGRPC: NetworkClient {
 
     private var metadataPlatformName: String { "beagle-platform" }
     private var metadataPlatformValue: String { "IOS" }
 
-    private let redirectGrpcFrom: String
-    private let customHttpClient: NetworkClient
+    private let grpcAddress: String
+    private let customHttpClient: NetworkClient?
     private let defaultCallOptions: CallOptions
     private let screenClient: Beagle_ScreenControllerClientProtocol
 
     public convenience init(
-        redirectGrpcFrom: String = "grpc://",
-        customHttpClient: NetworkClient,
-        channel: GRPCChannel,
+        grpcAddress: String,
+        customHttpClient: NetworkClient?,
         defaultCallOptions: CallOptions = CallOptions(),
         interceptors: Beagle_ScreenControllerClientInterceptorFactoryProtocol? = nil
     ) {
         self.init(
-            redirectGrpcFrom: redirectGrpcFrom,
+            grpcAddress: grpcAddress,
             customHttpClient: customHttpClient,
             defaultCallOptions: defaultCallOptions,
             screenClient: Beagle_ScreenControllerClient(
-                channel: channel,
+                channel: Self.channel(grpcAddress: grpcAddress),
                 interceptors: interceptors
             )
         )
     }
+    
+    private static func channel(grpcAddress: String) -> GRPCChannel {
+        let url = URL(string: grpcAddress)
+        let secure = url?.scheme == "https"
+        let host = url?.host ?? ""
+        let port: Int
+        if let urlPort = url?.port {
+            port = urlPort
+        } else {
+            port = secure ? 443: 80
+        }
+        let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
+        let connection = secure ? ClientConnection.secure : ClientConnection.insecure
+        return connection(group).connect(host: host, port: port)
+    }
 
     internal init(
-        redirectGrpcFrom: String,
-        customHttpClient: NetworkClient,
+        grpcAddress: String,
+        customHttpClient: NetworkClient?,
         defaultCallOptions: CallOptions,
         screenClient: Beagle_ScreenControllerClientProtocol
     ) {
-        self.redirectGrpcFrom = redirectGrpcFrom
+        self.grpcAddress = grpcAddress
         self.customHttpClient = customHttpClient
         self.defaultCallOptions = defaultCallOptions
         self.screenClient = screenClient
@@ -62,7 +77,7 @@ public class NetworkClientGRPC: NetworkClient {
         completion: @escaping RequestCompletion
     ) -> RequestToken? {
         guard let screenRequest = grpcRequest(request) else {
-            return customHttpClient.executeRequest(request, completion: completion)
+            return executeWithFallbackClient(request, completion: completion)
         }
         let callOptions = grpcCallOptions(request)
         let call = screenClient.getScreen(screenRequest, callOptions: callOptions)
@@ -81,15 +96,27 @@ public class NetworkClientGRPC: NetworkClient {
         }
         return call
     }
+    
+    private func executeWithFallbackClient(
+        _ request: Request,
+        completion: @escaping RequestCompletion
+    ) -> RequestToken? {
+        guard let customHttpClient = customHttpClient else {
+            let error = NetworkError(error: Error.invalidNetworkClient, request: URLRequest(url: request.url))
+            completion(.failure(error))
+            return nil
+        }
+        return customHttpClient.executeRequest(request, completion: completion)
+    }
 
     private func grpcRequest(_ request: Request) -> Beagle_ScreenRequest? {
         let urlString = request.url.absoluteString
         guard case .fetchComponent = request.type,
-              urlString.hasPrefix(redirectGrpcFrom) else {
+              urlString.hasPrefix(grpcAddress) else {
             return nil
         }
         let httpData = (request.additionalData as? HttpAdditionalData)?.httpData
-        let urlStart = urlString.index(urlString.startIndex, offsetBy: redirectGrpcFrom.count)
+        let urlStart = urlString.index(urlString.startIndex, offsetBy: grpcAddress.count)
         var components = URLComponents(string: String(urlString[urlStart...]))
         var screenRequest = Beagle_ScreenRequest()
 
@@ -142,7 +169,17 @@ public class NetworkClientGRPC: NetworkClient {
 // MARK: Erros
 
 extension NetworkClientGRPC {
-    private enum Error: String, Swift.Error {
-        case invalidResponse = "Could not generate a response from the received data."
+    private enum Error: Swift.Error {
+        case invalidNetworkClient
+        case invalidResponse
+        
+        var localizedDescription: String {
+            switch self {
+            case .invalidNetworkClient:
+                return "Could not find a NetworkClient to handle the request."
+            case .invalidResponse:
+                return "Could not generate a response from the received data."
+            }
+        }
     }
 }
