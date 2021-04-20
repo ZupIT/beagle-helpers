@@ -5,7 +5,7 @@ use_frameworks!
 workspace 'BeagleHelpers'
 
 def pod_beagle
-  pod 'Beagle', :git => 'https://github.com/ZupIT/beagle', :branch => 'fix/pod-version-1.6.2'
+  pod 'Beagle'
   pod 'YogaKit', :git => 'https://github.com/ZupIT/YogaKit'
 end
 

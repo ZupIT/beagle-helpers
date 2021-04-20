@@ -57,6 +57,22 @@ class NetworkClientGRPCTests: XCTestCase {
         XCTAssertEqual(fakeNetworkClient.lastRequest?.type, submitForm.type)
         XCTAssertEqual(fakeNetworkClient.requests.count, 3)
     }
+    
+    func testCustomHttpClientNil() throws {
+        // Given
+        let sut = NetworkClientGRPC(grpcAddress: "scheme://host", customHttpClient: nil)
+        let fetchComponent = try beagleRequest(type: .fetchComponent)
+        // When
+        var result: NetworkClientGRPC.NetworkResult?
+        _ = sut.executeRequest(fetchComponent) {
+            result = $0
+        }
+        // Then
+        XCTAssertEqual(
+            result?.failure?.error.localizedDescription,
+            Request.Error.networkClientWasNotConfigured.localizedDescription
+        )
+    }
 
     func testCustomHttpClientShouldHandleRequestsWithoutPrefix() throws {
         // Given

@@ -102,7 +102,10 @@ public class NetworkClientGRPC: NetworkClient {
         completion: @escaping RequestCompletion
     ) -> RequestToken? {
         guard let customHttpClient = customHttpClient else {
-            let error = NetworkError(error: Error.invalidNetworkClient, request: URLRequest(url: request.url))
+            let error = NetworkError(
+                error: Request.Error.networkClientWasNotConfigured,
+                request: URLRequest(url: request.url)
+            )
             completion(.failure(error))
             return nil
         }
@@ -169,17 +172,7 @@ public class NetworkClientGRPC: NetworkClient {
 // MARK: Erros
 
 extension NetworkClientGRPC {
-    private enum Error: Swift.Error {
-        case invalidNetworkClient
-        case invalidResponse
-        
-        var localizedDescription: String {
-            switch self {
-            case .invalidNetworkClient:
-                return "Could not find a NetworkClient to handle the request."
-            case .invalidResponse:
-                return "Could not generate a response from the received data."
-            }
-        }
+    private enum Error: String, Swift.Error {
+        case invalidResponse = "Could not generate a response from the received data."
     }
 }
