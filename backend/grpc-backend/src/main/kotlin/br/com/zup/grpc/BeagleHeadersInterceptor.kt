@@ -1,3 +1,5 @@
+package br.com.zup.grpc
+
 import io.grpc.Context
 import io.grpc.Contexts
 import io.grpc.Metadata
@@ -8,7 +10,7 @@ import io.grpc.ServerInterceptor
 class BeagleHeadersInterceptor : ServerInterceptor {
     companion object {
         private const val HEADERS_KEY = "beagle-headers"
-//        private val logger = Logger.getLogger(BeagleHeadersInterceptor::class.java.name)
+//        private val logger = Logger.getLogger(grpc.BeagleHeadersInterceptor::class.java.name)
         val HEADERS_VALUE: Context.Key<Map<String, String>> = Context.key(HEADERS_KEY)
     }
 

@@ -1,3 +1,5 @@
+package br.com.zup.grpc
+
 import beagle.Messages
 import br.com.zup.beagle.serialization.jackson.BeagleSerializationUtil
 import com.fasterxml.jackson.annotation.JsonInclude

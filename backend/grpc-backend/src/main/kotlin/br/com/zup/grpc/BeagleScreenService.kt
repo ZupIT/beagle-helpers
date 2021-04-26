@@ -1,4 +1,4 @@
-
+package br.com.zup.grpc
 import beagle.Messages
 import beagle.ScreenServiceGrpc
 import br.com.zup.beagle.serialization.jackson.BeagleSerializationUtil
