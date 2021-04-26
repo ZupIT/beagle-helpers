@@ -1,4 +1,8 @@
-## Generating the source code
+# BeagleGRPC
+
+This framework provides a client to communicate with Beagle using gRPC.
+
+## Generating the `proto` code
 
 Requirements:
 
@@ -8,12 +12,11 @@ Requirements:
 How to generate the code:
 
 ```bash
-protoc ./*.proto \
-  --plugin=protoc-gen-swift \
-  --swift_out=. \
+protoc {messages,screen}.proto \
+  --proto_path=../../backend/grpc-backend/src/main/proto \
+  --swift_out=Sources/Proto \
   --swift_opt=Visibility=Public \
-  --plugin=protoc-gen-grpc-swift \
-  --grpc-swift_out=. \
+  --grpc-swift_out=Sources/Proto \
   --grpc-swift_opt=Visibility=Public,Client=true,TestClient=true,Server=false
 ```
 

@@ -177,9 +177,9 @@ class NetworkClientGRPCTests: XCTestCase {
         let httpResponse = try XCTUnwrap(networkResponse.response as? HTTPURLResponse)
         XCTAssertEqual(httpResponse.statusCode, 200)
         XCTAssertEqual(httpResponse.allHeaderFields.count, 3)
-        XCTAssertEqual(httpResponse.value(forHTTPHeaderField: "common"), "trailing")
-        XCTAssertEqual(httpResponse.value(forHTTPHeaderField: "initial"), "h1")
-        XCTAssertEqual(httpResponse.value(forHTTPHeaderField: "trailing"), "h2")
+        XCTAssertEqual(httpResponse.allHeaderFields["common"] as? String, "trailing")
+        XCTAssertEqual(httpResponse.allHeaderFields["initial"] as? String, "h1")
+        XCTAssertEqual(httpResponse.allHeaderFields["trailing"] as? String, "h2")
         XCTAssertNoThrow {
             try JSONSerialization.jsonObject(with: networkResponse.data, options: [])
         }
@@ -187,7 +187,7 @@ class NetworkClientGRPCTests: XCTestCase {
 
     func testCancelRequest() throws {
         // Given
-        let grpcClient = Beagle_ScreenControllerTestClient()
+        let grpcClient = Beagle_ScreenServiceTestClient()
         let networkClient = networkClientGRPC(screenClient: grpcClient)
 
         // When
@@ -208,7 +208,7 @@ class NetworkClientGRPCTests: XCTestCase {
         grpcAddress: String = "grpc://",
         customHttpClient: NetworkClient = FakeNetworkClient(),
         defaultCallOptions: CallOptions = CallOptions(),
-        screenClient: Beagle_ScreenControllerClientProtocol = Beagle_ScreenControllerTestClient()
+        screenClient: Beagle_ScreenServiceClientProtocol = Beagle_ScreenServiceTestClient()
     ) -> NetworkClientGRPC {
         return NetworkClientGRPC(
             grpcAddress: grpcAddress,
@@ -240,7 +240,7 @@ class NetworkClientGRPCTests: XCTestCase {
     /// - Returns: Headers and Request used in the gRPC Client
     private func grpcRequest(for request: Request)
     -> (headers: [String: String]?, screenRequest: Beagle_ScreenRequest?) {
-        let grpcClient = Beagle_ScreenControllerTestClient()
+        let grpcClient = Beagle_ScreenServiceTestClient()
         let networkClient = networkClientGRPC(
             customHttpClient: FakeNetworkClient(),
             screenClient: grpcClient
@@ -269,7 +269,7 @@ class NetworkClientGRPCTests: XCTestCase {
     private func makeRequest(
         requestHandler: (_ fake: FakeUnaryResponse<Beagle_ScreenRequest, Beagle_ViewNode>) throws -> Void
     ) throws -> Result<NetworkResponse, NetworkError> {
-        let grpcClient = Beagle_ScreenControllerTestClient()
+        let grpcClient = Beagle_ScreenServiceTestClient()
         let networkClient = networkClientGRPC(
             customHttpClient: FakeNetworkClient(),
             screenClient: grpcClient

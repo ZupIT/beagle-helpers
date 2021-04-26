@@ -3,43 +3,23 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		143B8058B6099A07FF10AF85 /* Pods_SampleGRPCTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F17D1275350DBDA5DBEBBEFE /* Pods_SampleGRPCTests.framework */; };
-		A0393546261F91EE00CAAB0B /* ViewNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0393545261F91EE00CAAB0B /* ViewNodeTests.swift */; };
 		A0F5A0FF260D0D18005BE7CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F5A0FE260D0D18005BE7CF /* AppDelegate.swift */; };
-		A0F5A116260D0D1D005BE7CF /* NetworkClientGRPCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F5A115260D0D1D005BE7CF /* NetworkClientGRPCTests.swift */; };
 		A0F5A14D260D1E8D005BE7CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0F5A14C260D1E8D005BE7CF /* LaunchScreen.storyboard */; };
-		AF46A2C930C6C131377F81FC /* Pods_SampleGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 068192F833A3B927E5CDA0B9 /* Pods_SampleGRPC.framework */; };
+		B2CE36F2E02BFB4726C94178 /* Pods_SampleGRPC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EA91BD49CAEA5190DDBC01B /* Pods_SampleGRPC.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		A0F5A112260D0D1D005BE7CF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A0F5A0F3260D0D18005BE7CF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A0F5A0FA260D0D18005BE7CF;
-			remoteInfo = SampleGRPC;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		068192F833A3B927E5CDA0B9 /* Pods_SampleGRPC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleGRPC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		33DEE8DCABA5DDFF7FD1B4CC /* Pods-SampleGRPCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleGRPCTests.debug.xcconfig"; path = "Target Support Files/Pods-SampleGRPCTests/Pods-SampleGRPCTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5235CD8B3031E9BE2C5643A2 /* Pods-SampleGRPC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleGRPC.release.xcconfig"; path = "Target Support Files/Pods-SampleGRPC/Pods-SampleGRPC.release.xcconfig"; sourceTree = "<group>"; };
-		757F89D556FEC5F89CC1B33A /* Pods-SampleGRPCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleGRPCTests.release.xcconfig"; path = "Target Support Files/Pods-SampleGRPCTests/Pods-SampleGRPCTests.release.xcconfig"; sourceTree = "<group>"; };
-		A0393545261F91EE00CAAB0B /* ViewNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewNodeTests.swift; sourceTree = "<group>"; };
+		1EA91BD49CAEA5190DDBC01B /* Pods_SampleGRPC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleGRPC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		651F97170C195EC7B872E6C6 /* Pods-SampleGRPC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleGRPC.debug.xcconfig"; path = "Target Support Files/Pods-SampleGRPC/Pods-SampleGRPC.debug.xcconfig"; sourceTree = "<group>"; };
+		6ED936FC9099247EB3E37435 /* Pods-SampleGRPC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleGRPC.release.xcconfig"; path = "Target Support Files/Pods-SampleGRPC/Pods-SampleGRPC.release.xcconfig"; sourceTree = "<group>"; };
 		A0F5A0FB260D0D18005BE7CF /* SampleGRPC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleGRPC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0F5A0FE260D0D18005BE7CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0F5A10C260D0D1D005BE7CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A0F5A111260D0D1D005BE7CF /* SampleGRPCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleGRPCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A0F5A115260D0D1D005BE7CF /* NetworkClientGRPCTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientGRPCTests.swift; sourceTree = "<group>"; };
-		A0F5A117260D0D1D005BE7CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0F5A14C260D1E8D005BE7CF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		BEBD10973668E489A700D57E /* Pods-SampleGRPC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleGRPC.debug.xcconfig"; path = "Target Support Files/Pods-SampleGRPC/Pods-SampleGRPC.debug.xcconfig"; sourceTree = "<group>"; };
-		F17D1275350DBDA5DBEBBEFE /* Pods_SampleGRPCTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleGRPCTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,52 +27,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF46A2C930C6C131377F81FC /* Pods_SampleGRPC.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A0F5A10E260D0D1D005BE7CF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				143B8058B6099A07FF10AF85 /* Pods_SampleGRPCTests.framework in Frameworks */,
+				B2CE36F2E02BFB4726C94178 /* Pods_SampleGRPC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		171B5552461606E03826BDB5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				BEBD10973668E489A700D57E /* Pods-SampleGRPC.debug.xcconfig */,
-				5235CD8B3031E9BE2C5643A2 /* Pods-SampleGRPC.release.xcconfig */,
-				33DEE8DCABA5DDFF7FD1B4CC /* Pods-SampleGRPCTests.debug.xcconfig */,
-				757F89D556FEC5F89CC1B33A /* Pods-SampleGRPCTests.release.xcconfig */,
-			);
-			name = Pods;
-			path = ../Pods;
-			sourceTree = "<group>";
-		};
-		7647953EAE049D747932EB44 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				068192F833A3B927E5CDA0B9 /* Pods_SampleGRPC.framework */,
-				F17D1275350DBDA5DBEBBEFE /* Pods_SampleGRPCTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		A0F5A0F2260D0D18005BE7CF = {
 			isa = PBXGroup;
 			children = (
 				A0F5A10C260D0D1D005BE7CF /* Info.plist */,
 				A0F5A0FE260D0D18005BE7CF /* AppDelegate.swift */,
 				A0F5A14C260D1E8D005BE7CF /* LaunchScreen.storyboard */,
-				A0F5A142260D110E005BE7CF /* Tests */,
 				A0F5A0FC260D0D18005BE7CF /* Products */,
-				171B5552461606E03826BDB5 /* Pods */,
-				7647953EAE049D747932EB44 /* Frameworks */,
+				FF082BAE4AFB3E906EBC6B3A /* Pods */,
+				DF5BF1F949E91DC645E37699 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,19 +50,26 @@
 			isa = PBXGroup;
 			children = (
 				A0F5A0FB260D0D18005BE7CF /* SampleGRPC.app */,
-				A0F5A111260D0D1D005BE7CF /* SampleGRPCTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A0F5A142260D110E005BE7CF /* Tests */ = {
+		DF5BF1F949E91DC645E37699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A0F5A117260D0D1D005BE7CF /* Info.plist */,
-				A0F5A115260D0D1D005BE7CF /* NetworkClientGRPCTests.swift */,
-				A0393545261F91EE00CAAB0B /* ViewNodeTests.swift */,
+				1EA91BD49CAEA5190DDBC01B /* Pods_SampleGRPC.framework */,
 			);
-			path = Tests;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF082BAE4AFB3E906EBC6B3A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				651F97170C195EC7B872E6C6 /* Pods-SampleGRPC.debug.xcconfig */,
+				6ED936FC9099247EB3E37435 /* Pods-SampleGRPC.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,11 +79,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A0F5A125260D0D1D005BE7CF /* Build configuration list for PBXNativeTarget "SampleGRPC" */;
 			buildPhases = (
-				E2F5C01E7E2154DBC889C67F /* [CP] Check Pods Manifest.lock */,
+				77BF5ED1CAE58A40DE2ADBF5 /* [CP] Check Pods Manifest.lock */,
 				A0F5A0F7260D0D18005BE7CF /* Sources */,
 				A0F5A0F8260D0D18005BE7CF /* Frameworks */,
 				A0F5A0F9260D0D18005BE7CF /* Resources */,
-				555E0C899F3F4B868AF14616 /* [CP] Embed Pods Frameworks */,
+				572C106265FADF17F4720A0F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -136,25 +93,6 @@
 			productName = SampleGRPC;
 			productReference = A0F5A0FB260D0D18005BE7CF /* SampleGRPC.app */;
 			productType = "com.apple.product-type.application";
-		};
-		A0F5A110260D0D1D005BE7CF /* SampleGRPCTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A0F5A128260D0D1D005BE7CF /* Build configuration list for PBXNativeTarget "SampleGRPCTests" */;
-			buildPhases = (
-				4B62AF9190A5C4D990295214 /* [CP] Check Pods Manifest.lock */,
-				A0F5A10D260D0D1D005BE7CF /* Sources */,
-				A0F5A10E260D0D1D005BE7CF /* Frameworks */,
-				A0F5A10F260D0D1D005BE7CF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A0F5A113260D0D1D005BE7CF /* PBXTargetDependency */,
-			);
-			name = SampleGRPCTests;
-			productName = SampleGRPCTests;
-			productReference = A0F5A111260D0D1D005BE7CF /* SampleGRPCTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -167,10 +105,6 @@
 				TargetAttributes = {
 					A0F5A0FA260D0D18005BE7CF = {
 						CreatedOnToolsVersion = 12.4;
-					};
-					A0F5A110260D0D1D005BE7CF = {
-						CreatedOnToolsVersion = 12.4;
-						TestTargetID = A0F5A0FA260D0D18005BE7CF;
 					};
 				};
 			};
@@ -188,7 +122,6 @@
 			projectRoot = "";
 			targets = (
 				A0F5A0FA260D0D18005BE7CF /* SampleGRPC */,
-				A0F5A110260D0D1D005BE7CF /* SampleGRPCTests */,
 			);
 		};
 /* End PBXProject section */
@@ -202,39 +135,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A0F5A10F260D0D1D005BE7CF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4B62AF9190A5C4D990295214 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SampleGRPCTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		555E0C899F3F4B868AF14616 /* [CP] Embed Pods Frameworks */ = {
+		572C106265FADF17F4720A0F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -251,7 +155,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SampleGRPC/Pods-SampleGRPC-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E2F5C01E7E2154DBC889C67F /* [CP] Check Pods Manifest.lock */ = {
+		77BF5ED1CAE58A40DE2ADBF5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -284,24 +188,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A0F5A10D260D0D1D005BE7CF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A0393546261F91EE00CAAB0B /* ViewNodeTests.swift in Sources */,
-				A0F5A116260D0D1D005BE7CF /* NetworkClientGRPCTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A0F5A113260D0D1D005BE7CF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A0F5A0FA260D0D18005BE7CF /* SampleGRPC */;
-			targetProxy = A0F5A112260D0D1D005BE7CF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A0F5A123260D0D1D005BE7CF /* Debug */ = {
@@ -422,7 +309,7 @@
 		};
 		A0F5A126260D0D1D005BE7CF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BEBD10973668E489A700D57E /* Pods-SampleGRPC.debug.xcconfig */;
+			baseConfigurationReference = 651F97170C195EC7B872E6C6 /* Pods-SampleGRPC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -440,7 +327,7 @@
 		};
 		A0F5A127260D0D1D005BE7CF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5235CD8B3031E9BE2C5643A2 /* Pods-SampleGRPC.release.xcconfig */;
+			baseConfigurationReference = 6ED936FC9099247EB3E37435 /* Pods-SampleGRPC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -453,50 +340,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		A0F5A129260D0D1D005BE7CF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 33DEE8DCABA5DDFF7FD1B4CC /* Pods-SampleGRPCTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.zup.beagle.SampleGRPCTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SampleGRPC.app/SampleGRPC";
-			};
-			name = Debug;
-		};
-		A0F5A12A260D0D1D005BE7CF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 757F89D556FEC5F89CC1B33A /* Pods-SampleGRPCTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.zup.beagle.SampleGRPCTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SampleGRPC.app/SampleGRPC";
 			};
 			name = Release;
 		};
@@ -517,15 +360,6 @@
 			buildConfigurations = (
 				A0F5A126260D0D1D005BE7CF /* Debug */,
 				A0F5A127260D0D1D005BE7CF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A0F5A128260D0D1D005BE7CF /* Build configuration list for PBXNativeTarget "SampleGRPCTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A0F5A129260D0D1D005BE7CF /* Debug */,
-				A0F5A12A260D0D1D005BE7CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 
   s.name = 'BeagleGRPC'
   s.module_name = 'BeagleGRPC'
-  s.version = '0.1.0'
+  s.version = '1.7.0'
   s.license = { :type => 'Apache 2.0', :file => 'LICENSE' }
   s.summary = 'Beagle NetworkClient implementation using gRPC'
   s.description = 'This framework provides a client to communicate with Beagle using gRPC.'
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
 
   s.swift_version = '5.2'
   s.ios.deployment_target = '10.0'
-  s.source = { :git => "https://github.com/ZupIT/beagle-helpers.git", :tag => s.version }
+  s.source = { :git => 'https://github.com/ZupIT/beagle-helpers.git', :tag => s.version }
 
   s.source_files = 'iOS/beagle-grpc/Sources/*.swift'
 
@@ -35,7 +35,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'iOS/beagle-grpc/Sources/Proto/*.swift'
   end
 
-  s.dependency 'Beagle', '> 1.6.2'
+  s.dependency 'Beagle', '>= 1.7.0'
   s.dependency 'gRPC-Swift', '>= 1.0.0'
 
 end

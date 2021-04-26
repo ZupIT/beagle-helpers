@@ -25,10 +25,10 @@ import NIO
 import SwiftProtobuf
 
 
-/// Usage: instantiate `Beagle_ScreenControllerClient`, then call methods of this protocol to make API calls.
-public protocol Beagle_ScreenControllerClientProtocol: GRPCClient {
+/// Usage: instantiate `Beagle_ScreenServiceClient`, then call methods of this protocol to make API calls.
+public protocol Beagle_ScreenServiceClientProtocol: GRPCClient {
   var serviceName: String { get }
-  var interceptors: Beagle_ScreenControllerClientInterceptorFactoryProtocol? { get }
+  var interceptors: Beagle_ScreenServiceClientInterceptorFactoryProtocol? { get }
 
   func getScreen(
     _ request: Beagle_ScreenRequest,
@@ -36,9 +36,9 @@ public protocol Beagle_ScreenControllerClientProtocol: GRPCClient {
   ) -> UnaryCall<Beagle_ScreenRequest, Beagle_ViewNode>
 }
 
-extension Beagle_ScreenControllerClientProtocol {
+extension Beagle_ScreenServiceClientProtocol {
   public var serviceName: String {
-    return "beagle.ScreenController"
+    return "beagle.ScreenService"
   }
 
   /// Unary call to getScreen
@@ -52,7 +52,7 @@ extension Beagle_ScreenControllerClientProtocol {
     callOptions: CallOptions? = nil
   ) -> UnaryCall<Beagle_ScreenRequest, Beagle_ViewNode> {
     return self.makeUnaryCall(
-      path: "/beagle.ScreenController/getScreen",
+      path: "/beagle.ScreenService/getScreen",
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makegetScreenInterceptors() ?? []
@@ -60,18 +60,18 @@ extension Beagle_ScreenControllerClientProtocol {
   }
 }
 
-public protocol Beagle_ScreenControllerClientInterceptorFactoryProtocol {
+public protocol Beagle_ScreenServiceClientInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when invoking 'getScreen'.
   func makegetScreenInterceptors() -> [ClientInterceptor<Beagle_ScreenRequest, Beagle_ViewNode>]
 }
 
-public final class Beagle_ScreenControllerClient: Beagle_ScreenControllerClientProtocol {
+public final class Beagle_ScreenServiceClient: Beagle_ScreenServiceClientProtocol {
   public let channel: GRPCChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Beagle_ScreenControllerClientInterceptorFactoryProtocol?
+  public var interceptors: Beagle_ScreenServiceClientInterceptorFactoryProtocol?
 
-  /// Creates a client for the beagle.ScreenController service.
+  /// Creates a client for the beagle.ScreenService service.
   ///
   /// - Parameters:
   ///   - channel: `GRPCChannel` to the service host.
@@ -80,7 +80,7 @@ public final class Beagle_ScreenControllerClient: Beagle_ScreenControllerClientP
   public init(
     channel: GRPCChannel,
     defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Beagle_ScreenControllerClientInterceptorFactoryProtocol? = nil
+    interceptors: Beagle_ScreenServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.channel = channel
     self.defaultCallOptions = defaultCallOptions
@@ -88,10 +88,10 @@ public final class Beagle_ScreenControllerClient: Beagle_ScreenControllerClientP
   }
 }
 
-public final class Beagle_ScreenControllerTestClient: Beagle_ScreenControllerClientProtocol {
+public final class Beagle_ScreenServiceTestClient: Beagle_ScreenServiceClientProtocol {
   private let fakeChannel: FakeChannel
   public var defaultCallOptions: CallOptions
-  public var interceptors: Beagle_ScreenControllerClientInterceptorFactoryProtocol?
+  public var interceptors: Beagle_ScreenServiceClientInterceptorFactoryProtocol?
 
   public var channel: GRPCChannel {
     return self.fakeChannel
@@ -100,7 +100,7 @@ public final class Beagle_ScreenControllerTestClient: Beagle_ScreenControllerCli
   public init(
     fakeChannel: FakeChannel = FakeChannel(),
     defaultCallOptions callOptions: CallOptions = CallOptions(),
-    interceptors: Beagle_ScreenControllerClientInterceptorFactoryProtocol? = nil
+    interceptors: Beagle_ScreenServiceClientInterceptorFactoryProtocol? = nil
   ) {
     self.fakeChannel = fakeChannel
     self.defaultCallOptions = callOptions
@@ -114,7 +114,7 @@ public final class Beagle_ScreenControllerTestClient: Beagle_ScreenControllerCli
   public func makegetScreenResponseStream(
     _ requestHandler: @escaping (FakeRequestPart<Beagle_ScreenRequest>) -> () = { _ in }
   ) -> FakeUnaryResponse<Beagle_ScreenRequest, Beagle_ViewNode> {
-    return self.fakeChannel.makeFakeUnaryResponse(path: "/beagle.ScreenController/getScreen", requestHandler: requestHandler)
+    return self.fakeChannel.makeFakeUnaryResponse(path: "/beagle.ScreenService/getScreen", requestHandler: requestHandler)
   }
 
   public func enqueuegetScreenResponse(
@@ -128,7 +128,7 @@ public final class Beagle_ScreenControllerTestClient: Beagle_ScreenControllerCli
 
   /// Returns true if there are response streams enqueued for 'getScreen'
   public var hasgetScreenResponsesRemaining: Bool {
-    return self.fakeChannel.hasFakeResponseEnqueued(forPath: "/beagle.ScreenController/getScreen")
+    return self.fakeChannel.hasFakeResponseEnqueued(forPath: "/beagle.ScreenService/getScreen")
   }
 }
 

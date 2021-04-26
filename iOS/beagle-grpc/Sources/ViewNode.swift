@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import Foundation
+
 extension Beagle_ViewNode {
 
     func jsonData(

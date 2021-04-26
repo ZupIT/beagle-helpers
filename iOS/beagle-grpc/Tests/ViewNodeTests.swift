@@ -19,6 +19,7 @@ import XCTest
 
 class ViewNodeTests: XCTestCase {
 
+    @available(iOS 11.0, *)
     func testJsonData() throws {
         // Given, When
         let data = try screenViewNode.jsonData([.sortedKeys, .prettyPrinted])

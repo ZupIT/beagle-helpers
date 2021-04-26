@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        
         let dependencies = BeagleDependencies()
         Beagle.dependencies = dependencies
 
@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 /// gRPC interceptor sample
 class NetworkInterceptor: ClientInterceptor<Beagle_ScreenRequest, Beagle_ViewNode> {
-    
+
     override func send(
         _ part: GRPCClientRequestPart<Beagle_ScreenRequest>,
         promise: EventLoopPromise<Void>?,
@@ -91,7 +91,7 @@ class NetworkInterceptor: ClientInterceptor<Beagle_ScreenRequest, Beagle_ViewNod
     }
 }
 
-extension NetworkInterceptor: Beagle_ScreenControllerClientInterceptorFactoryProtocol {
+extension NetworkInterceptor: Beagle_ScreenServiceClientInterceptorFactoryProtocol {
     func makegetScreenInterceptors() -> [ClientInterceptor<Beagle_ScreenRequest, Beagle_ViewNode>] {
         return [self]
     }

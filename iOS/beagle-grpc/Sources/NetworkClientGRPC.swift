@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import Foundation
 import Beagle
 import GRPC
 import NIO
@@ -26,19 +27,19 @@ public class NetworkClientGRPC: NetworkClient {
     private let grpcAddress: String
     private let customHttpClient: NetworkClient?
     private let defaultCallOptions: CallOptions
-    private let screenClient: Beagle_ScreenControllerClientProtocol
+    private let screenClient: Beagle_ScreenServiceClientProtocol
 
     public convenience init(
         grpcAddress: String,
         customHttpClient: NetworkClient?,
         defaultCallOptions: CallOptions = CallOptions(),
-        interceptors: Beagle_ScreenControllerClientInterceptorFactoryProtocol? = nil
+        interceptors: Beagle_ScreenServiceClientInterceptorFactoryProtocol? = nil
     ) {
         self.init(
             grpcAddress: grpcAddress,
             customHttpClient: customHttpClient,
             defaultCallOptions: defaultCallOptions,
-            screenClient: Beagle_ScreenControllerClient(
+            screenClient: Beagle_ScreenServiceClient(
                 channel: Self.channel(grpcAddress: grpcAddress),
                 interceptors: interceptors
             )
@@ -64,7 +65,7 @@ public class NetworkClientGRPC: NetworkClient {
         grpcAddress: String,
         customHttpClient: NetworkClient?,
         defaultCallOptions: CallOptions,
-        screenClient: Beagle_ScreenControllerClientProtocol
+        screenClient: Beagle_ScreenServiceClientProtocol
     ) {
         self.grpcAddress = grpcAddress
         self.customHttpClient = customHttpClient
