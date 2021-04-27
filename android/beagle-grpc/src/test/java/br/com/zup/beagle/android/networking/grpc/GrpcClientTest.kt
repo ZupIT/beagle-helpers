@@ -48,10 +48,10 @@ import java.net.URI
 
 // TODO: ver como testar envio e recebimento de headers
 
-private const val GRPC_ADDRESS = "http://grpc.test"
+private const val GRPC_ADDRESS = "http://grpc.test/grpc"
 private const val REQUEST_HTTP_URL = "http://test"
 private val REQUEST_HTTP_DATA = RequestData(URI(REQUEST_HTTP_URL))
-private const val REQUEST_GRPC_URL = "http://grpc.test/someEndpoint?param=paramValue&param2=paramValue2"
+private const val REQUEST_GRPC_URL = "http://grpc.test/grpc/someEndpoint?param=paramValue&param2=paramValue2"
 private val REQUEST_GRPC_DATA = RequestData(URI(REQUEST_GRPC_URL))
 
 @DisplayName("Given a GrpcClient")

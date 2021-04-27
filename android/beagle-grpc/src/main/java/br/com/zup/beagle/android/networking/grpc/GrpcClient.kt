@@ -17,7 +17,7 @@
 package br.com.zup.beagle.android.networking.grpc
 
 import beagle.Messages
-import beagle.ScreenControllerGrpcKt
+import beagle.ScreenServiceGrpcKt
 import br.com.zup.beagle.android.exception.BeagleApiException
 import br.com.zup.beagle.android.networking.HttpClient
 import br.com.zup.beagle.android.networking.HttpMethod
@@ -55,7 +55,7 @@ class GrpcClient(
 
     private val job = Job()
     override val coroutineContext = job + dispatcher
-    private val stub by lazy { ScreenControllerGrpcKt.ScreenControllerCoroutineStub(channel()) }
+    private val stub by lazy { ScreenServiceGrpcKt.ScreenServiceCoroutineStub(channel()) }
 
     override fun execute(
         request: RequestData,
@@ -88,7 +88,10 @@ class GrpcClient(
     }
 
     private fun getScreenName(request: RequestData): String {
-        val screenName = request.uri.path.removePrefix("/")
+        val screenName = request.uri.toString()
+            .removePrefix(grpcAddress)
+            .removePrefix("/")
+            .substringBefore("?")
 
         if (screenName.isEmpty()) {
             throw BeagleApiException(createErrorResponseData(SCREEN_NAME_NULL), request)

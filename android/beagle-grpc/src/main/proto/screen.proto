@@ -4,6 +4,6 @@ package beagle;
 
 import "messages.proto";
 
-service ScreenController {
+service ScreenService {
   rpc getScreen (beagle.ScreenRequest) returns (beagle.ViewNode) {}
 }
