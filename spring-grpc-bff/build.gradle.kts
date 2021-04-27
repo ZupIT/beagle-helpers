@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	kotlin("jvm") version "1.4.32"
 	kotlin("plugin.spring") version "1.4.32"
+	application
 }
 
 group = "br.com.zup"
@@ -23,6 +24,10 @@ dependencies {
 	implementation("br.com.zup:grpc-backend:0.0.1")
 	implementation("net.devh:grpc-server-spring-boot-starter:2.11.0.RELEASE")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+application {
+	mainClass.set("br.com.zup.grpcbff.GrpcBffApplicationKt")
 }
 
 tasks.withType<KotlinCompile> {
