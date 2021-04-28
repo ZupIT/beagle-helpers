@@ -17,7 +17,7 @@
 package br.com.zup.beagle.android.networking.grpc
 
 import beagle.Messages
-import beagle.ScreenControllerGrpcKt
+import beagle.ScreenServiceGrpcKt
 import br.com.zup.beagle.android.networking.HttpClient
 import br.com.zup.beagle.android.networking.HttpMethod
 import br.com.zup.beagle.android.networking.RequestData
@@ -46,8 +46,6 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import java.net.URI
 
-// TODO: ver como testar envio e recebimento de headers
-
 private const val GRPC_ADDRESS = "http://grpc.test/grpc"
 private const val REQUEST_HTTP_URL = "http://test"
 private val REQUEST_HTTP_DATA = RequestData(URI(REQUEST_HTTP_URL))
@@ -66,7 +64,7 @@ class GrpcClientTest {
         grpcClient = GrpcClient(GRPC_ADDRESS, httpClient, TestCoroutineDispatcher())
 
         mockkStatic(MetadataUtils::class)
-        mockkConstructor(ScreenControllerGrpcKt.ScreenControllerCoroutineStub::class)
+        mockkConstructor(ScreenServiceGrpcKt.ScreenServiceCoroutineStub::class)
     }
 
     @AfterEach
@@ -131,10 +129,9 @@ class GrpcClientTest {
             val expectedHeaderValue = "headerValue"
             val requestData = RequestData(URI(REQUEST_GRPC_URL), headers = mapOf(headerKey to expectedHeaderValue))
 
-            val stubSlot = slot<ScreenControllerGrpcKt.ScreenControllerCoroutineStub>()
+            val stubSlot = slot<ScreenServiceGrpcKt.ScreenServiceCoroutineStub>()
             val headersSlot = slot<Metadata>()
             every { MetadataUtils.attachHeaders(capture(stubSlot), capture(headersSlot)) } answers {
-                // TODO: verificar alternativa
                 stubSlot.captured.channel
                 stubSlot.captured
             }
@@ -150,7 +147,7 @@ class GrpcClientTest {
         fun testRequestHeadersInterceptor() = runBlockingTest {
             val requestData = RequestData(URI(REQUEST_GRPC_URL))
             val interceptorSlot = slot<HeaderClientInterceptor>()
-            every { anyConstructed<ScreenControllerGrpcKt.ScreenControllerCoroutineStub>().withInterceptors(capture(interceptorSlot)) } answers {
+            every { anyConstructed<ScreenServiceGrpcKt.ScreenServiceCoroutineStub>().withInterceptors(capture(interceptorSlot)) } answers {
                 this.callOriginal()
             }
 
@@ -164,7 +161,7 @@ class GrpcClientTest {
         fun testSendCorrectRequestMessage() = runBlockingTest {
             val responseMock: Messages.ViewNode = mockk(relaxed = true)
             val messageSlot = slot<Messages.ScreenRequest>()
-            coEvery { anyConstructed<ScreenControllerGrpcKt.ScreenControllerCoroutineStub>().getScreen(capture(messageSlot)) } returns responseMock
+            coEvery { anyConstructed<ScreenServiceGrpcKt.ScreenServiceCoroutineStub>().getScreen(capture(messageSlot)) } returns responseMock
 
             grpcClient.execute(REQUEST_GRPC_DATA, {}, {})
 
@@ -184,7 +181,7 @@ class GrpcClientTest {
             val request = RequestData(URI(REQUEST_GRPC_URL), method = HttpMethod.POST, body = requestBody)
             val responseMock: Messages.ViewNode = mockk(relaxed = true)
             val messageSlot = slot<Messages.ScreenRequest>()
-            coEvery { anyConstructed<ScreenControllerGrpcKt.ScreenControllerCoroutineStub>().getScreen(capture(messageSlot)) } returns responseMock
+            coEvery { anyConstructed<ScreenServiceGrpcKt.ScreenServiceCoroutineStub>().getScreen(capture(messageSlot)) } returns responseMock
 
             grpcClient.execute(request, {}, {})
 
@@ -204,7 +201,7 @@ class GrpcClientTest {
             val serverExceptionDescription = "Cannot find screen"
             val serverExceptionStatusMock = Status.ABORTED.withDescription(serverExceptionDescription)
             val serverExceptionMock = StatusException(serverExceptionStatusMock)
-            coEvery { anyConstructed<ScreenControllerGrpcKt.ScreenControllerCoroutineStub>().getScreen(any()) } throws serverExceptionMock
+            coEvery { anyConstructed<ScreenServiceGrpcKt.ScreenServiceCoroutineStub>().getScreen(any()) } throws serverExceptionMock
 
 
             grpcClient.execute(requestData, onSuccess, onError)
@@ -222,7 +219,7 @@ class GrpcClientTest {
             val onSuccess: (ResponseData) -> Unit = { responseData -> successResponseData = responseData }
             val onError: (ResponseData) -> Unit = { }
 
-            coEvery { anyConstructed<ScreenControllerGrpcKt.ScreenControllerCoroutineStub>().getScreen(any()) } returns viewNode
+            coEvery { anyConstructed<ScreenServiceGrpcKt.ScreenServiceCoroutineStub>().getScreen(any()) } returns viewNode
 
 
             grpcClient.execute(requestData, onSuccess, onError)
