@@ -56,8 +56,8 @@ fun asGrpcView(widget: Screen): Messages.ViewNode {
     val jsonMap = mapper.convertValue(widget, MutableMap::class.java) as MutableMap<String, Screen>
     try {
         return buildNode(jsonMap)
-    } catch (err: Throwable) {
+    } catch (err: Error) {
         err.printStackTrace()
-        throw err
+        throw Error("Fail on build a beagle gRPC screen")
     }
 }
