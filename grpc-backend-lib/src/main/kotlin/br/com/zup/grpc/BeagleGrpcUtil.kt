@@ -3,6 +3,7 @@ package br.com.zup.grpc
 import beagle.Messages
 import br.com.zup.beagle.serialization.jackson.BeagleSerializationUtil
 import br.com.zup.beagle.widget.layout.Screen
+import br.com.zup.grpc.exception.BeagleException
 import com.fasterxml.jackson.annotation.JsonInclude
 
 private fun asJsonString(value: Any): String {
@@ -56,8 +57,8 @@ fun asGrpcView(widget: Screen): Messages.ViewNode {
     val jsonMap = mapper.convertValue(widget, MutableMap::class.java) as MutableMap<String, Screen>
     try {
         return buildNode(jsonMap)
-    } catch (err: Error) {
+    } catch (err: Exception) {
         err.printStackTrace()
-        throw Error("Fail on build a beagle gRPC screen")
+        throw BeagleException("Fail on build a beagle gRPC screen")
     }
 }
