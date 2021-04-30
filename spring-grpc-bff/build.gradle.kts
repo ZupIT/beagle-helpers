@@ -20,7 +20,6 @@ repositories {
 dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("br.com.zup.beagle:framework:1.6.0")
 	implementation("br.com.zup:grpc-backend:0.0.1")
 	implementation("net.devh:grpc-server-spring-boot-starter:2.11.0.RELEASE")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

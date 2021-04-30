@@ -13,7 +13,7 @@ import br.com.zup.beagle.widget.layout.Screen
 import br.com.zup.beagle.widget.layout.ScreenBuilder
 import br.com.zup.beagle.widget.ui.Button
 
-object ButtonScreen : ScreenBuilder {
+object SplashScreen : ScreenBuilder {
     override fun build() = Screen(
         child = Container(
             children = listOf(
