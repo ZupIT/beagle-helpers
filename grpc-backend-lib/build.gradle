@@ -9,7 +9,6 @@ apply plugin: 'maven-publish'
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
@@ -51,14 +50,14 @@ protobuf {
 
 compileKotlin {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11
+        jvmTarget = JavaVersion.VERSION_1_8
         javaParameters = true
     }
 }
 
 compileTestKotlin {
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11
+        jvmTarget = JavaVersion.VERSION_1_8
         javaParameters = true
     }
 }
