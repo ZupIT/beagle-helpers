@@ -30,6 +30,7 @@ import br.com.zup.beagle.android.logger.BeagleLogger
 import br.com.zup.beagle.android.navigation.BeagleControllerReference
 import br.com.zup.beagle.android.navigation.DeepLinkHandler
 import br.com.zup.beagle.android.networking.HttpClient
+import br.com.zup.beagle.android.networking.HttpClientFactory
 import br.com.zup.beagle.android.networking.urlbuilder.UrlBuilder
 import br.com.zup.beagle.android.operation.Operation
 import br.com.zup.beagle.android.setup.BeagleConfig
@@ -76,6 +77,7 @@ internal class BeagleScaffoldTest {
     val urlBuilder = mockk<UrlBuilder>()
     val validatorHandler = mockk<ValidatorHandler>()
     val analyticsProvider = mockk<AnalyticsProvider>()
+    val httpClientFactory = mockk<HttpClientFactory>()
 
     @DisplayName("Then all its attributes are set equaling the FakeSdk ones")
     @Test
@@ -97,7 +99,8 @@ internal class BeagleScaffoldTest {
             typeAdapterResolver,
             urlBuilder,
             validatorHandler,
-            analyticsProvider
+            analyticsProvider,
+            httpClientFactory
         )
         //When
         val beagleScaffold = BeagleScaffold(beagleSdkFake)
@@ -131,6 +134,7 @@ internal class BeagleScaffoldTest {
         Assertions.assertEquals(beagleSdkFake.urlBuilder, beagleScaffold.urlBuilder)
         Assertions.assertEquals(beagleSdkFake.validatorHandler, beagleScaffold.validatorHandler)
         Assertions.assertEquals(beagleSdkFake.analyticsProvider, beagleScaffold.analyticsProvider)
+        Assertions.assertEquals(beagleSdkFake.httpClientFactory, beagleScaffold.httpClientFactory)
     }
 
     @DisplayName("Then the null attributes on FakeSdk will be implemented from the default classes")
@@ -165,7 +169,7 @@ internal class BeagleScaffoldTest {
         every { StoreHandlerDefault.newInstance(application) } returns storeHandlerDefault
         beagleScaffold.init(application)
         //Then
-        verify (exactly = 1){StoreHandlerDefault.newInstance(application)  }
+        verify(exactly = 1) { StoreHandlerDefault.newInstance(application) }
         Assertions.assertEquals(storeHandlerDefault, beagleScaffold.storeHandler)
     }
 
@@ -188,7 +192,8 @@ internal class BeagleScaffoldTest {
         typeAdapterResolver,
         urlBuilder,
         validatorHandler,
-        analyticsProvider
+        analyticsProvider,
+        httpClientFactory
     )
 }
 
@@ -207,7 +212,8 @@ class BeagleSdkFake(
     override val typeAdapterResolver: TypeAdapterResolver?,
     override val urlBuilder: UrlBuilder?,
     override val validatorHandler: ValidatorHandler?,
-    override val analyticsProvider: AnalyticsProvider?
+    override val analyticsProvider: AnalyticsProvider?,
+    override val httpClientFactory: HttpClientFactory?
 ) : BeagleSdk {
     override fun registeredActions(): List<Class<Action>> = listOf()
 
