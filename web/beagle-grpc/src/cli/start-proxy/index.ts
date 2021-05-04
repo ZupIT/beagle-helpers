@@ -15,7 +15,7 @@ export async function startProxy(options: StartProxyOptions): Promise<void> {
     if (!configs) {
       throw `Configuration for the mode "${options.mode}" does not exist`
     }
-    logger.info(`>> Configured for the mode "${options.mode}" exists!`)
+    logger.info(`>> Configuration for the mode "${options.mode}" exists!`)
 
     logger.info('>> Validating dependencies...')
     const dependenciesAreFine = await validateDependencies()
