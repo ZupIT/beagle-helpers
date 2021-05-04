@@ -1,11 +1,11 @@
 import { toBeagleUIElement } from './element'
-import { ScreenControllerClient } from './generated-proto/screen_pb_service'
+import { ScreenServiceClient } from './generated-proto/screen_pb_service'
 import { FetchRequest } from './models/fetch-request'
 import { createBlob } from './utils/blob'
 import { getView } from './utils/request'
 import { createResponse } from './utils/response'
 
-export async function fetchGrpcView(name: string, client: ScreenControllerClient, fetchReq: FetchRequest): Promise<Response> {
+export async function fetchGrpcView(name: string, client: ScreenServiceClient, fetchReq: FetchRequest): Promise<Response> {
   try {
     const view = await getView(name, client, fetchReq)
     const beagleTree = toBeagleUIElement(view)

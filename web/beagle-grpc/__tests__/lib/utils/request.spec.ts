@@ -1,12 +1,12 @@
 import 'isomorphic-fetch'
-import { jest, describe, test, expect, beforeAll, afterAll, afterEach } from '@jest/globals'
+import { jest, describe, test, expect, beforeAll, afterAll } from '@jest/globals'
 import JestMock from 'jest-mock'
 import { BrowserHeaders } from 'browser-headers'
 import { grpc } from '@improbable-eng/grpc-web'
 import { ScreenRequest, ViewNode } from '../../../src/lib/generated-proto/messages_pb'
 import * as request from '../../../src/lib/utils/request'
 import { FetchRequest } from '../../../src/lib/models/fetch-request'
-import { ScreenControllerClient, ServiceError } from '../../../src/lib/generated-proto/screen_pb_service'
+import { ScreenServiceClient, ServiceError } from '../../../src/lib/generated-proto/screen_pb_service'
 import * as parameters from '../../../src/lib/parameters'
 
 describe('src/lib/utils/request.ts', () => {
@@ -77,15 +77,15 @@ describe('src/lib/utils/request.ts', () => {
   describe('getView', () => {
     const screenRequestProto = ScreenRequest.prototype
     const screenRequestOriginalProto = Object.assign({}, ScreenRequest.prototype)
-    const screenControllerClientProto = ScreenControllerClient.prototype
-    const screenControllerClientOriginalProto = Object.assign({}, ScreenControllerClient.prototype)
+    const screenServiceClientProto = ScreenServiceClient.prototype
+    const screenServiceClientOriginalProto = Object.assign({}, ScreenServiceClient.prototype)
     const screenName = 'screen-name'
     const viewNode = new ViewNode()
 
     let screenRequestSetNameSpy: JestMock.Mock<void, [value: string]>
     let screenRequestSetParametersSpy: JestMock.Mock<void, [value: string]>
-    let screenControllerClientGetScreenSpy: JestMock.Mock<any, any[]>
-    let client: ScreenControllerClient
+    let screenServiceClientGetScreenSpy: JestMock.Mock<any, any[]>
+    let client: ScreenServiceClient
 
     const fetchRequest: FetchRequest = {
       url: _MOCK_GRPC_URL_,
@@ -103,7 +103,7 @@ describe('src/lib/utils/request.ts', () => {
 
       beforeAll(async () => {
         getParametersSpy = jest.spyOn(parameters, 'getParameters')
-        screenControllerClientGetScreenSpy = screenControllerClientProto.getScreen = jest.fn<any, any[]>()
+        screenServiceClientGetScreenSpy = screenServiceClientProto.getScreen = jest.fn<any, any[]>()
           .mockImplementation((requestMessage: ScreenRequest, metadata: BrowserHeaders, callback: (error: ServiceError | undefined, responseMessage: ViewNode) => void) => {
             callback(undefined, viewNode)
             return {
@@ -111,7 +111,7 @@ describe('src/lib/utils/request.ts', () => {
             }
           })
 
-        client = new ScreenControllerClient(_MOCK_PROXY_ADDRESS_)
+        client = new ScreenServiceClient(_MOCK_PROXY_ADDRESS_)
 
         await request.getView(screenName, client, fetchRequest)
       })
@@ -129,15 +129,15 @@ describe('src/lib/utils/request.ts', () => {
       })
 
       test('it should get the screen using the client', () => {
-        expect(screenControllerClientGetScreenSpy).toHaveBeenCalledTimes(1)
+        expect(screenServiceClientGetScreenSpy).toHaveBeenCalledTimes(1)
       })
 
       test('it should get the screen with a ScreenRequest', () => {
-        expect(screenControllerClientGetScreenSpy.mock.calls[0][0] instanceof ScreenRequest).toBeTruthy()
+        expect(screenServiceClientGetScreenSpy.mock.calls[0][0] instanceof ScreenRequest).toBeTruthy()
       })
 
       test('it should get the screen with a ScreenRequest', () => {
-        expect(screenControllerClientGetScreenSpy.mock.calls[0][1] instanceof grpc.Metadata).toBeTruthy()
+        expect(screenServiceClientGetScreenSpy.mock.calls[0][1] instanceof grpc.Metadata).toBeTruthy()
       })
 
       test('it should resolve the view node after succeeded', async () => {
@@ -160,7 +160,7 @@ describe('src/lib/utils/request.ts', () => {
 
       describe('error and response undefined', () => {
         beforeAll(() => {
-          screenControllerClientGetScreenSpy = screenControllerClientProto.getScreen = jest.fn<any, any[]>()
+          screenServiceClientGetScreenSpy = screenServiceClientProto.getScreen = jest.fn<any, any[]>()
             .mockImplementation((requestMessage: ScreenRequest, metadata: BrowserHeaders, callback: (error: ServiceError | undefined, responseMessage: ViewNode) => void) => {
               callback(undefined, (undefined as any))
               return {
@@ -168,7 +168,7 @@ describe('src/lib/utils/request.ts', () => {
               }
             })
 
-          client = new ScreenControllerClient(_MOCK_PROXY_ADDRESS_)
+          client = new ScreenServiceClient(_MOCK_PROXY_ADDRESS_)
         })
 
         test('it should reject when there is no error or response', async () => {
@@ -178,7 +178,7 @@ describe('src/lib/utils/request.ts', () => {
 
       describe('error and response defined', () => {
         beforeAll(() => {
-          screenControllerClientGetScreenSpy = screenControllerClientProto.getScreen = jest.fn<any, any[]>()
+          screenServiceClientGetScreenSpy = screenServiceClientProto.getScreen = jest.fn<any, any[]>()
             .mockImplementation((requestMessage: ScreenRequest, metadata: BrowserHeaders, callback: (error: ServiceError | undefined, responseMessage: ViewNode) => void) => {
               callback({ message: 'Custom test error message' } as any, viewNode)
               return {
@@ -186,7 +186,7 @@ describe('src/lib/utils/request.ts', () => {
               }
             })
 
-          client = new ScreenControllerClient(_MOCK_PROXY_ADDRESS_)
+          client = new ScreenServiceClient(_MOCK_PROXY_ADDRESS_)
         })
 
         test('it should reject when there is any error even with response', async () => {
@@ -198,7 +198,7 @@ describe('src/lib/utils/request.ts', () => {
     afterAll(() => {
       screenRequestProto.setName = screenRequestOriginalProto.setName
       screenRequestProto.setParameters = screenRequestOriginalProto.setParameters
-      screenControllerClientProto.getScreen = screenControllerClientOriginalProto.getScreen
+      screenServiceClientProto.getScreen = screenServiceClientOriginalProto.getScreen
     })
   })
 })

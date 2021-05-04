@@ -8,7 +8,7 @@ import * as blob from '../../src/lib/utils/blob'
 import * as response from '../../src/lib/utils/response'
 import * as view from '../../src/lib/view'
 import { ViewNode } from '../../src/lib/generated-proto/messages_pb'
-import { ScreenControllerClient } from '../../src/lib/generated-proto/screen_pb_service'
+import { ScreenServiceClient } from '../../src/lib/generated-proto/screen_pb_service'
 import { FetchRequest } from '../../src/lib/models/fetch-request'
 import { BeagleUIElement } from '@zup-it/beagle-web'
 
@@ -16,7 +16,7 @@ describe('src/lib/view.ts', () => {
   const _MOCK_PROXY_ADDRESS_ = 'http://localhost:6692/'
   const _MOCK_GRPC_URL_ = 'http://localhost:9266/grpc'
   const screenName = 'screen-name'
-  const client = new ScreenControllerClient(_MOCK_PROXY_ADDRESS_)
+  const client = new ScreenServiceClient(_MOCK_PROXY_ADDRESS_)
   const viewNode = new ViewNode()
   const mockBlob = new Blob(['{ "content": "test content" }'], { type: 'application/json' })
   const fetchReq = {
@@ -34,11 +34,11 @@ describe('src/lib/view.ts', () => {
     ]
   }
 
-  let getViewSpy: JestMock.SpyInstance<Promise<ViewNode>, [name: string, client: ScreenControllerClient, fetchReq: FetchRequest]>
+  let getViewSpy: JestMock.SpyInstance<Promise<ViewNode>, [name: string, client: ScreenServiceClient, fetchReq: FetchRequest]>
   let toBeagleUIElementSpy: JestMock.SpyInstance<BeagleUIElement<Record<string, Record<string, any>>>, any[]>
   let createBlobSpy: JestMock.SpyInstance<Blob, [content: string, type: string]>
   let createResponseSpy: JestMock.SpyInstance<Response, [blob: Blob, status: number, statusText: string]>
-  let fetchGrpcViewSpy: JestMock.SpyInstance<Promise<Response>, [name: string, client: ScreenControllerClient, fetchReq: FetchRequest]>
+  let fetchGrpcViewSpy: JestMock.SpyInstance<Promise<Response>, [name: string, client: ScreenServiceClient, fetchReq: FetchRequest]>
 
   beforeAll(async () => {
     globalThis.Blob = Blob

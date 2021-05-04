@@ -5,18 +5,18 @@ import * as screen_pb from "./screen_pb";
 import * as messages_pb from "./messages_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type ScreenControllergetScreen = {
+type ScreenServicegetScreen = {
   readonly methodName: string;
-  readonly service: typeof ScreenController;
+  readonly service: typeof ScreenService;
   readonly requestStream: false;
   readonly responseStream: false;
   readonly requestType: typeof messages_pb.ScreenRequest;
   readonly responseType: typeof messages_pb.ViewNode;
 };
 
-export class ScreenController {
+export class ScreenService {
   static readonly serviceName: string;
-  static readonly getScreen: ScreenControllergetScreen;
+  static readonly getScreen: ScreenServicegetScreen;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -47,7 +47,7 @@ interface BidirectionalStream<ReqT, ResT> {
   on(type: 'status', handler: (status: Status) => void): BidirectionalStream<ReqT, ResT>;
 }
 
-export class ScreenControllerClient {
+export class ScreenServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
@@ -61,3 +61,4 @@ export class ScreenControllerClient {
     callback: (error: ServiceError|null, responseMessage: messages_pb.ViewNode|null) => void
   ): UnaryResponse;
 }
+

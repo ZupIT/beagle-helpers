@@ -1,4 +1,4 @@
-import { jest, describe, test, expect, beforeAll, afterAll, afterEach } from '@jest/globals'
+import { jest, describe, test, expect, beforeAll, beforeEach, afterAll } from '@jest/globals'
 import { logger } from '../../../src/cli/utils/logger'
 import { grpcDepsCommandsExists } from '../../../src/cli/utils/dependencies'
 import * as shell from '../../../src/cli/utils/shell'
@@ -47,7 +47,7 @@ describe('src/cli/utils/dependencies.ts', () => {
       mockConfig.REQUIRED_DEPENDENCIES = []
     })
 
-    afterEach(() => {
+    beforeEach(() => {
       pathCommandExistsSpy.mockClear()
     })
 

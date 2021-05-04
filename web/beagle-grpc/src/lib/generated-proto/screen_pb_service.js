@@ -5,33 +5,33 @@ var screen_pb = require("./screen_pb");
 var messages_pb = require("./messages_pb");
 var grpc = require("@improbable-eng/grpc-web").grpc;
 
-var ScreenController = (function () {
-  function ScreenController() {}
-  ScreenController.serviceName = "beagle.ScreenController";
-  return ScreenController;
+var ScreenService = (function () {
+  function ScreenService() {}
+  ScreenService.serviceName = "beagle.ScreenService";
+  return ScreenService;
 }());
 
-ScreenController.getScreen = {
+ScreenService.getScreen = {
   methodName: "getScreen",
-  service: ScreenController,
+  service: ScreenService,
   requestStream: false,
   responseStream: false,
   requestType: messages_pb.ScreenRequest,
   responseType: messages_pb.ViewNode
 };
 
-exports.ScreenController = ScreenController;
+exports.ScreenService = ScreenService;
 
-function ScreenControllerClient(serviceHost, options) {
+function ScreenServiceClient(serviceHost, options) {
   this.serviceHost = serviceHost;
   this.options = options || {};
 }
 
-ScreenControllerClient.prototype.getScreen = function getScreen(requestMessage, metadata, callback) {
+ScreenServiceClient.prototype.getScreen = function getScreen(requestMessage, metadata, callback) {
   if (arguments.length === 2) {
     callback = arguments[1];
   }
-  var client = grpc.unary(ScreenController.getScreen, {
+  var client = grpc.unary(ScreenService.getScreen, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
@@ -58,5 +58,5 @@ ScreenControllerClient.prototype.getScreen = function getScreen(requestMessage, 
   };
 };
 
-exports.ScreenControllerClient = ScreenControllerClient;
+exports.ScreenServiceClient = ScreenServiceClient;
 

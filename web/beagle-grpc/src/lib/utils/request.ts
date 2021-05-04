@@ -1,6 +1,6 @@
 import { grpc } from '@improbable-eng/grpc-web'
 import { ScreenRequest, ViewNode } from '../generated-proto/messages_pb'
-import { ScreenControllerClient } from '../generated-proto/screen_pb_service'
+import { ScreenServiceClient } from '../generated-proto/screen_pb_service'
 import { FetchRequest } from '../models/fetch-request'
 import { getParameters } from '../parameters'
 
@@ -16,7 +16,7 @@ export function getRequest(requestInfo: RequestInfo): FetchRequest | null {
   return null
 }
 
-export async function getView(name: string, client: ScreenControllerClient, fetchReq: FetchRequest): Promise<ViewNode> {
+export async function getView(name: string, client: ScreenServiceClient, fetchReq: FetchRequest): Promise<ViewNode> {
   return new Promise<ViewNode>((resolve, reject) => {
     try {
       const request = new ScreenRequest()
