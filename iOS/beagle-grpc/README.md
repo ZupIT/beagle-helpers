@@ -13,7 +13,7 @@ How to generate the code:
 
 ```bash
 protoc {messages,screen}.proto \
-  --proto_path=../../backend/grpc-backend/src/main/proto \
+  --proto_path=../../grpc-backend-lib/src/main/proto \
   --swift_out=Sources/Proto \
   --swift_opt=Visibility=Public \
   --grpc-swift_out=Sources/Proto \

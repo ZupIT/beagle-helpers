@@ -120,8 +120,11 @@ public class NetworkClientGRPC: NetworkClient {
             return nil
         }
         let httpData = (request.additionalData as? HttpAdditionalData)?.httpData
-        let urlStart = urlString.index(urlString.startIndex, offsetBy: grpcAddress.count)
-        var components = URLComponents(string: String(urlString[urlStart...]))
+        var urlStart = urlString.index(urlString.startIndex, offsetBy: grpcAddress.count)
+        if urlString[urlStart] == "/" {
+            urlStart = urlString.index(after: urlStart)
+        }
+        let components = URLComponents(string: String(urlString[urlStart...]))
         var screenRequest = Beagle_ScreenRequest()
 
         switch httpData?.method {
@@ -133,10 +136,9 @@ public class NetworkClientGRPC: NetworkClient {
         case .none, .some(.GET), .some(.DELETE), .some(.HEAD):
             if let queryItems = components?.queryItems {
                 screenRequest.parameters = parameters(queryItems: queryItems)
-                components?.queryItems = nil
             }
         }
-        if let name = components?.string {
+        if let name = components?.path {
             screenRequest.name = name
         }
         return screenRequest

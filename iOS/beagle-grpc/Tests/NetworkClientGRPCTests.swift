@@ -111,7 +111,7 @@ class NetworkClientGRPCTests: XCTestCase {
 
     private func queryStringTest(method: HttpAdditionalData.Method) throws {
         // Given
-        let request = try beagleRequest(url: "grpc://app/screen?p1=v1&p2=v2", method: method)
+        let request = try beagleRequest(url: "grpc:///app/screen?p1=v1&p2=v2#fragment", method: method)
 
         // When
         let (_, screenRequest) = grpcRequest(for: request)
