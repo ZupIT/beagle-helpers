@@ -21,7 +21,7 @@ export function createProgramCLI(): commander.Command {
     .command('start-proxy')
     .alias('spx')
     .option('-m, --mode <mode>', 'set the mode to be used on the configuration file', 'development')
-    .description('I starts the gRPC proxy to handle the requests between your gRPC server and your Beagle Web Frontend (you must have the required dependencies and other ones will be installed automatically if not found)')
+    .description('It starts the gRPC proxy to handle the requests between your gRPC server and your Beagle Web Frontend (you must have the required dependencies and other ones will be installed automatically if not found)')
     .action(startProxy)
 
   return program  

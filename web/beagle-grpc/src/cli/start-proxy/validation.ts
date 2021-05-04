@@ -19,7 +19,7 @@ const validators: DependencyValidator[] = [
   },
   {
     fn: async () => await configFileExists(),
-    message: `Configuration file "${CONFIG_FILE_NAME}" does not exists! Please run "beagle-web-grpc init" at the root path of your project, to create one`
+    message: `Configuration file "${CONFIG_FILE_NAME}" does not exist! Please run "beagle-web-grpc init" at the root path of your project to create one`
   }
 ]
 
@@ -40,7 +40,7 @@ export async function validateDependencies(): Promise<boolean> {
 export async function verifyProxy(): Promise<void> {
   const grpcProxyExists = await pathCommandExists('grpcwebproxy')
   if (!grpcProxyExists) {
-    logger.info('>>> "grpcwebproxy" does not exists, installing...')
+    logger.info('>>> "grpcwebproxy" does not exist, installing...')
     await installGrpcWebProxy()
   }
 }
