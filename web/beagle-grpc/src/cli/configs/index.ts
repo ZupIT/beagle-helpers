@@ -30,7 +30,7 @@ export async function getConfigs(mode: string): Promise<BeagleGrpcConfig | undef
     const modeConfigs = beagleGrpc.configs.find(c => c.mode === mode)
 
     if (!modeConfigs) {
-      throw `Configuration for mode "${mode}" was not present on the configurations file`
+      throw new Error(`Configuration for mode "${mode}" was not present on the configurations file`)
     }
 
     return modeConfigs

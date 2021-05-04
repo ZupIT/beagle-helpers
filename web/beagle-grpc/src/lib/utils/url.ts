@@ -13,7 +13,7 @@ export function isValidURL(url: string): boolean {
 export function queryParamsToObject(url: string): Record<string, any> | undefined {
   try {
     if (!url || !isValidURL(url)) {
-      throw 'A non valid url was provided'
+      throw new Error('A non valid url was provided')
     }
 
     const urlObj = new URL(url)

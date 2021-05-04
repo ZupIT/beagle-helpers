@@ -13,14 +13,14 @@ export async function startProxy(options: StartProxyOptions): Promise<void> {
     logger.info(`>> Verifying if configuration file exists and configured for the mode "${options.mode}"`)
     const configs = await getConfigs(options.mode)
     if (!configs) {
-      throw `Configuration for the mode "${options.mode}" does not exists`
+      throw new Error(`Configuration for the mode "${options.mode}" does not exists`)
     }
     logger.info(`>> Configured for the mode "${options.mode}" exists!`)
 
     logger.info('>> Validating dependencies...')
     const dependenciesAreFine = await validateDependencies()
     if (!dependenciesAreFine) {
-      throw 'Not all dependencies are installed'
+      throw new Error('Not all dependencies are installed')
     }
     logger.info('>> Dependencies are fine!')
 

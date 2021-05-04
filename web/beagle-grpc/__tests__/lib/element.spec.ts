@@ -47,6 +47,10 @@ describe('src/lib/element.ts', () => {
     })
 
     test('it should return a BeagleUIElement with style', () => {
+      expect(beagleUIElement.style).toEqual(mockStyle)
+    })
+
+    test('it should return a BeagleUIElement with a child', () => {
       expect(beagleUIElement.child).toEqual({ 
         _beagleComponent_: 'beagle:child', 
         child: undefined,
@@ -54,10 +58,6 @@ describe('src/lib/element.ts', () => {
         context: undefined,
         style: undefined
       })
-    })
-
-    test('it should return a BeagleUIElement with child', () => {
-      expect(beagleUIElement.style).toEqual(mockStyle)
     })
 
     test('it should return a BeagleUIElement with children', () => {

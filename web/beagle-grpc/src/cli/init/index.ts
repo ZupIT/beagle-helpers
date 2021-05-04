@@ -10,14 +10,14 @@ export async function init(): Promise<void> {
 
     const configExists = await configFileExists()
     if (configExists) {
-      throw 'Configuration file already exists!'
+      throw new Error('Configuration file already exists!')
     }
 
     logger.info('> Configuration file does not exist, creating a new one...')
 
     const fileCreated = await createNewConfigurationFile()
     if (!fileCreated) {
-      throw 'Unable to create the configuration file!'
+      throw new Error('Unable to create the configuration file!')
     }
 
     await grpcDepsCommandsExists()

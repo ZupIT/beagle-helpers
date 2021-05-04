@@ -137,7 +137,7 @@ describe('src/cli/start-proxy/index.ts', () => {
       test('It should exit the process and warn the user that the configuration does not exists', () => {
         expect(getConfigsSpy).toHaveBeenCalled()
         expect(exitProcessSpy).toHaveBeenCalled()
-        expect(exitProcessSpy.mock.calls[0][0]).toBe(`Configuration for the mode "${configsMock.mode}" does not exists`)
+        expect(exitProcessSpy.mock.calls[0][0]).toEqual(new Error(`Configuration for the mode "${configsMock.mode}" does not exists`))
       })
 
       test('It should not proceed on any other method', () => {
@@ -187,7 +187,7 @@ describe('src/cli/start-proxy/index.ts', () => {
       test('It should exit the process and warn the user when dependencies are not fine', () => {
         expect(validateDependenciesSpy).toHaveBeenCalled()
         expect(exitProcessSpy).toHaveBeenCalled()
-        expect(exitProcessSpy.mock.calls[0][0]).toBe('Not all dependencies are installed')
+        expect(exitProcessSpy.mock.calls[0][0]).toEqual(new Error('Not all dependencies are installed'))
       })
 
       test('It should not proceed on any other method', () => {
@@ -223,7 +223,7 @@ describe('src/cli/start-proxy/index.ts', () => {
         validateDependenciesSpy = jest.spyOn(validation, 'validateDependencies').mockImplementation(() => Promise.resolve(true))
         verifyProxySpy = jest.spyOn(validation, 'verifyProxy').mockImplementation(() => Promise.resolve())
         getConfigsSpy = jest.spyOn(configs, 'getConfigs').mockImplementation((mode: string) => Promise.resolve(configsMock))
-        execShellCommandSpy = jest.spyOn(shell, 'execShellCommand').mockImplementation(() => { throw 'Unexpected error' })
+        execShellCommandSpy = jest.spyOn(shell, 'execShellCommand').mockImplementation(() => { throw new Error('Unexpected error') })
         exitProcessSpy = jest.spyOn(process, 'exitProcess').mockImplementation(() => {})
 
         await startProxy({ mode: configsMock.mode })
@@ -247,7 +247,7 @@ describe('src/cli/start-proxy/index.ts', () => {
 
       test('It should exit the process when something unexpected happen', () => {
         expect(exitProcessSpy).toHaveBeenCalledTimes(1)
-        expect(exitProcessSpy.mock.calls[0][0]).toBe('Unexpected error')
+        expect(exitProcessSpy.mock.calls[0][0]).toEqual(new Error('Unexpected error'))
       })
 
       afterAll(() => {

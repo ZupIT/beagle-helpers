@@ -19,7 +19,7 @@ describe('src/cli/init/index.ts', () => {
     describe('Configuration file does not exists', () => {
       let configFileExistsSpy: JestMock.SpyInstance<Promise<boolean>, []>
       let createNewConfigurationFileSpy: JestMock.SpyInstance<Promise<boolean>, []>
-      let grpcDepsCommandsExistsSpy: JestMock.SpyInstance<Promise<boolean>, [dependeciesCommands?: string[]]>
+      let grpcDepsCommandsExistsSpy: JestMock.SpyInstance<Promise<boolean>, [dependenciesCommands?: string[]]>
       let envVariableExistsSpy: JestMock.SpyInstance<boolean, [variable: string]>
       let warnSpy: JestMock.SpyInstance<void, any[]>
       let exitProcessSpy: JestMock.SpyInstance<void, any[]>
@@ -87,7 +87,7 @@ describe('src/cli/init/index.ts', () => {
 
       test('It should exit the process if the configuration file already exists', () => {
         expect(exitProcessSpy).toBeCalledTimes(1)
-        expect(exitProcessSpy).toHaveBeenCalledWith('Configuration file already exists!')
+        expect(exitProcessSpy).toHaveBeenCalledWith(new Error('Configuration file already exists!'))
       })      
 
       afterAll(() => {
@@ -119,7 +119,7 @@ describe('src/cli/init/index.ts', () => {
 
       test('It should exit the process if was not possible to create a new configuration file', () => {
         expect(exitProcessSpy).toBeCalledTimes(1)
-        expect(exitProcessSpy).toHaveBeenCalledWith('Unable to create the configuration file!')
+        expect(exitProcessSpy).toHaveBeenCalledWith(new Error('Unable to create the configuration file!'))
       })
 
       afterAll(() => {
@@ -132,7 +132,7 @@ describe('src/cli/init/index.ts', () => {
     describe('Warn user about "GOPATH"', () => {
       let configFileExistsSpy: JestMock.SpyInstance<Promise<boolean>, []>
       let createNewConfigurationFileSpy: JestMock.SpyInstance<Promise<boolean>, []>
-      let grpcDepsCommandsExistsSpy: JestMock.SpyInstance<Promise<boolean>, [dependeciesCommands?: string[]]>
+      let grpcDepsCommandsExistsSpy: JestMock.SpyInstance<Promise<boolean>, [dependenciesCommands?: string[]]>
       let envVariableExistsSpy: JestMock.SpyInstance<boolean, [variable: string]>
       let warnSpy: JestMock.SpyInstance<void, any[]>
 

@@ -1,8 +1,8 @@
 import { logger } from './logger'
 
-export function exitProcess(...args: any[]): void {
-  if (args && args.length > 0) {
-    args.forEach(a => {
+export function exitProcess(...errors: any[]): void {
+  if (errors && errors.length > 0) {
+    errors.forEach(a => {
       logger.error(a)
     })
 

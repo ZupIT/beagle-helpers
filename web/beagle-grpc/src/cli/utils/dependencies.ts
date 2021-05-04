@@ -2,9 +2,9 @@ import { REQUIRED_DEPENDENCIES } from '../configs/constants';
 import { logger } from './logger'
 import { pathCommandExists } from './shell'
 
-export async function grpcDepsCommandsExists(dependeciesCommands?: string[]): Promise<boolean> {
+export async function grpcDepsCommandsExists(dependenciesCommands?: string[]): Promise<boolean> {
   try {
-    const deps = [...(dependeciesCommands || []), ...REQUIRED_DEPENDENCIES]
+    const deps = [...(dependenciesCommands || []), ...REQUIRED_DEPENDENCIES]
 
     if (deps && deps.length > 0) {
       let missingCommands: string[] = []

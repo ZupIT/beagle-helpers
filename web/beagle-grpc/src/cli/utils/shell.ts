@@ -7,7 +7,7 @@ export function envVariableExists(variable: string): boolean {
     if (variable) {
       return !!process.env[variable]
     }
-    throw 'env var was not provided'
+    throw new Error('env var was not provided')
   } catch (error) {
     logger.error(error)
     return false
@@ -19,7 +19,7 @@ export function getEnvVariable(variable: string): string | undefined {
     if (variable) {
       return process.env[variable]
     }
-    throw 'env var was not provided'
+    throw new Error('env var was not provided')
   } catch (error) {
     logger.error(error)
     return undefined
