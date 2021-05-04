@@ -8,7 +8,7 @@ export interface StartProxyOptions {
 
 export async function startProxy(options: StartProxyOptions): Promise<void> {
   try {
-    logger.info('> Initalizing "beagle-web-grpc" proxy...')
+    logger.info('> Initializing "beagle-web-grpc" proxy...')
 
     logger.info(`>> Verifying if configuration file exists and configured for the mode "${options.mode}"`)
     const configs = await getConfigs(options.mode)
