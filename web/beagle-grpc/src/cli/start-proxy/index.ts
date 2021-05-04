@@ -13,7 +13,7 @@ export async function startProxy(options: StartProxyOptions): Promise<void> {
     logger.info(`>> Verifying if configuration file exists and configured for the mode "${options.mode}"`)
     const configs = await getConfigs(options.mode)
     if (!configs) {
-      throw `Configuration for the mode "${options.mode}" does not exists`
+      throw `Configuration for the mode "${options.mode}" does not exist`
     }
     logger.info(`>> Configured for the mode "${options.mode}" exists!`)
 
