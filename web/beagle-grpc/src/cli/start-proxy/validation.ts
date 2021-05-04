@@ -19,7 +19,7 @@ const validators: DependencyValidator[] = [
   },
   {
     fn: async () => await configFileExists(),
-    message: `Configuration file "${CONFIG_FILE_NAME}" does not exists! Please run "beagle-web-grpc init" at the root path of your project, to create one`
+    message: `Configuration file "${CONFIG_FILE_NAME}" does not exist! Please run "beagle-web-grpc init" at the root path of your project to create one`
   }
 ]
 
