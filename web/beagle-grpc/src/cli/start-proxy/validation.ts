@@ -40,7 +40,7 @@ export async function validateDependencies(): Promise<boolean> {
 export async function verifyProxy(): Promise<void> {
   const grpcProxyExists = await pathCommandExists('grpcwebproxy')
   if (!grpcProxyExists) {
-    logger.info('>>> "grpcwebproxy" does not exists, installing...')
+    logger.info('>>> "grpcwebproxy" does not exist, installing...')
     await installGrpcWebProxy()
   }
 }
