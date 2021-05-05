@@ -10,7 +10,7 @@
 
 - Now, just open your terminal at the root of the project and run ./gradlew run
 
-Ready! Application will be standing at door 50051, enjoy it!
+That's it! The application will be up at localhost:50051, enjoy it!
 
 ### Services available:
 
