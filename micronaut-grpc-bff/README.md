@@ -21,6 +21,6 @@ That's it! The application will be up at localhost:50051, enjoy it!
       "parameters": "String"  
     }```
     - Description: This method searches for one or more Screen Builders registered in the BeagleScreenService class provided by lib.   
-      - **"name"** parameter is mandatory and must contain a valid string referring to the name of a registered screen.  
+      - **`name`** is a mandatory parameter and must contain a valid string referring to the name of a registered screen. For this application, the available names are "Home" and "Text".
       - **"Parameters"** is optional and contains a string that is used in the message of the Text component of the Home Screen
     
