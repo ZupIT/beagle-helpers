@@ -62,7 +62,7 @@ compileTestKotlin {
 }
 
 def getArtificatId = { ->
-    return "grpc-backend" // Replace with library name ID
+    return "beagle-grpc-backend"
 }
 
 publishing {
