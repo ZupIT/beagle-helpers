@@ -46,10 +46,10 @@ private fun buildNode(jsonMap: MutableMap<String, Screen>): Messages.ViewNode {
     return messageBuilder.build()
 }
 
-fun asGrpcView(widget: Screen): Messages.ViewNode {
+fun asGrpcView(screen: Screen): Messages.ViewNode {
     val mapper = BeagleSerializationUtil.beagleObjectMapper()
     mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL)
-    val jsonMap = mapper.convertValue(widget, MutableMap::class.java) as MutableMap<String, Screen>
+    val jsonMap = mapper.convertValue(screen, MutableMap::class.java) as MutableMap<String, Screen>
     try {
         return buildNode(jsonMap)
     } catch (err: Exception) {
