@@ -18,14 +18,9 @@ private fun buildDataContext(context: Map<String, Screen>): Messages.DataContext
     return messageBuilder.build()
 }
 
-private fun serializeNodeAttributes(jsonMap: MutableMap<String, Screen>): Map<String, Screen> {
-    val skip = listOf("_beagleComponent_", "context", "id", "style", "children", "child")
-    val attributes = HashMap<String, Screen>()
-    jsonMap.forEach {
-        if (!skip.contains(it.key)) attributes[it.key] = it.value
-    }
-    return attributes
-}
+private val skip = setOf("_beagleComponent_", "context", "id", "style", "children", "child")
+
+private fun serializeNodeAttributes(jsonMap: MutableMap<String, Screen>): Map<String, Screen> = jsonMap.filterKeys { !skip.contains(it) }
 
 private fun buildNode(jsonMap: MutableMap<String, Screen>): Messages.ViewNode {
     val messageBuilder = Messages
