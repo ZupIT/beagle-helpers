@@ -18,11 +18,11 @@ dependencies {
     api "io.grpc:grpc-protobuf:${grpcVersion}"
     api "io.grpc:grpc-netty:${grpcVersion}"
     api "br.com.zup.beagle:framework:${beagleVersion}"
-    api "javax.annotation:javax.annotation-api:1.3.1"
-    api "com.fasterxml.jackson.core:jackson-core:2.12.1"
-    api "com.fasterxml.jackson.core:jackson-databind:2.12.1"
-    implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    api "javax.annotation:javax.annotation-api:${javaxVersion}"
+    api "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+    api "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
 
@@ -61,7 +61,7 @@ compileTestKotlin {
     }
 }
 
-def getArtificatId = { ->
+def getArtifactId = { ->
     return "beagle-grpc-backend"
 }
 
@@ -81,9 +81,9 @@ publishing {
     publications {
         bar(MavenPublication) {
             groupId 'br.com.zup'
-            artifactId getArtificatId()
+            artifactId getArtifactId()
             version '0.0.1'
-            artifact("$buildDir/libs/${getArtificatId()}.jar")
+            artifact("$buildDir/libs/${getArtifactId()}.jar")
 
             pom.withXml {
                 final dependenciesNode = asNode().appendNode('dependencies')
