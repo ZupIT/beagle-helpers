@@ -30,7 +30,7 @@ dependencies {
     implementation("javax.annotation:javax.annotation-api")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
-    implementation("br.com.zup:grpc-backend:${beagleGrpcVersion}")
+    implementation("br.com.zup:beagle-grpc-backend:${beagleGrpcVersion}")
     implementation("io.micronaut:micronaut-validation")
     implementation("io.micronaut.grpc:micronaut-grpc-server-runtime")
     runtimeOnly("ch.qos.logback:logback-classic")
