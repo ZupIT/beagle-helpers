@@ -1,6 +1,6 @@
 {
   "name": "beagle-web-grpc",
-  "version": "1.0.14",
+  "version": "1.0.19",
   "description": "Support GRPC for Beagle WEB",
   "main": "./dist/index.js",
   "bin": "./dist/cli/index.js",

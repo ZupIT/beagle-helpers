@@ -8,16 +8,20 @@ export function createClient(options: BeagleGrpcClientOptions): FetchType {
   const client = new ScreenServiceClient(proxyAddress)
 
   const grpcClient: FetchType = (...args: RequestArgs) => {
-    if (args && args[0]) {
-      const request = getRequest(args[0])
-      if (redirectGrpcFrom && request?.url.startsWith(redirectGrpcFrom)) {
-        return fetchGrpcView(request.url.replace(new RegExp(`^${redirectGrpcFrom}`), ''), client, request)
-      } else if (customHttpClient) {
-        return customHttpClient(...args)
+    try {
+      if (args && args[0]) {
+        const request = getRequest(args[0])
+        if (redirectGrpcFrom && request?.url.startsWith(redirectGrpcFrom)) {
+          return fetchGrpcView(request.url.replace(new RegExp(`^${redirectGrpcFrom}`), ''), client, request)
+        } else if (customHttpClient) {
+          return customHttpClient(...args)
+        }
       }
+      return fetch(...args)
+    } catch (error) {
+      console.error(error)
+      return fetch(...args)
     }
-    return fetch(...args)
-  }
-  
+  } 
   return grpcClient
 }
