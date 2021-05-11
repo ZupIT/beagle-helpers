@@ -1,4 +1,3 @@
-import { logger } from '../../../cli/utils'
 import { ViewNode } from '../../generated-proto/messages_pb'
 
 export function getParsed<T>(fn: () => string | ViewNode | T | undefined, defaultValue: T, parser?: (view: ViewNode) => T): T {
@@ -16,7 +15,7 @@ export function getParsed<T>(fn: () => string | ViewNode | T | undefined, defaul
 
     return value as T
   } catch (error) {
-    logger.error(error)
+    console.error(error)
     return defaultValue
   }
 }

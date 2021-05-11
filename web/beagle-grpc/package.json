@@ -1,14 +1,17 @@
 {
   "name": "beagle-web-grpc",
-  "version": "1.0.19",
+  "version": "1.1.2",
   "description": "Support GRPC for Beagle WEB",
   "main": "./dist/index.js",
   "bin": "./dist/cli/index.js",
-  "files": ["dist/**/*"],
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "start": "nodemon --watch 'src/**/*.ts' --exec npm run server",
     "server": "ts-node src/cli/index.ts",
-    "build": "tsc -p .",
+    "build": "tsc --p tsconfig-cli.json && tsc --p tsconfig-lib.json",
+    "build-old": "tsc -p .",
     "test": "jest"
   },
   "author": "Arthur Bleil <arthur.bleil@zup.com.br>",
@@ -41,6 +44,7 @@
     "google-protobuf": "^3.15.6"
   },
   "devDependencies": {
+    "@tsconfig/node10": "^1.0.7",
     "@tsconfig/recommended": "^1.0.1",
     "@types/chalk": "^2.2.0",
     "@types/clear": "^0.1.1",
