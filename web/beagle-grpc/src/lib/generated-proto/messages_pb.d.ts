@@ -1,7 +1,7 @@
 // package: beagle
 // file: messages.proto
 
-import * as jspb from "google-protobuf";
+import * as jspb from 'google-protobuf';
 
 export class ScreenRequest extends jspb.Message {
   getName(): string;
