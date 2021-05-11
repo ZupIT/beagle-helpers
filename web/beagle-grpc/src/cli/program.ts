@@ -6,7 +6,6 @@ export function createProgramCLI(): commander.Command {
   const program = new commander.Command()
   program
     .name('beagle-web-grpc')
-    .alias('bwgrpc')
     .description('A GRPC support lib for Beagle Web with CLI')
     .usage('[global options] command')
     .version('1.0.0')

@@ -36,10 +36,6 @@ describe('src/cli/program.ts', () => {
         expect(_commands_.name).toHaveBeenCalledWith('beagle-web-grpc')
       })
 
-      test('it should also provide the cli as an alias named "bwgrpc"', () => {
-        expect(_commands_.alias).toHaveBeenNthCalledWith(1, 'bwgrpc')
-      })
-
       test('it should describe the cli', () => {
         expect(_commands_.description).toHaveBeenNthCalledWith(1, 'A GRPC support lib for Beagle Web with CLI')
       })
@@ -60,7 +56,7 @@ describe('src/cli/program.ts', () => {
           })
 
           test('it should create an alias for this command to be easier to write', () => {
-            expect(_commands_.alias).toHaveBeenNthCalledWith(2, 'i')
+            expect(_commands_.alias).toHaveBeenNthCalledWith(1, 'i')
           })
 
           test('it should describe the command', () => {
@@ -78,7 +74,7 @@ describe('src/cli/program.ts', () => {
           })
 
           test('it should create an alias for this command to be easier to write', () => {
-            expect(_commands_.alias).toHaveBeenNthCalledWith(3, 'spx')
+            expect(_commands_.alias).toHaveBeenNthCalledWith(2, 'spx')
           })
 
           describe('option mode to execute on a specific configuration', () => {
@@ -100,7 +96,7 @@ describe('src/cli/program.ts', () => {
           })
 
           test('it should describe the command', () => {
-            expect(_commands_.description).toHaveBeenNthCalledWith(3, 'I starts the gRPC proxy to handle the requests between your gRPC server and your Beagle Web Frontend (you must have the required dependencies and other ones will be installed automatically if not found)')
+            expect(_commands_.description).toHaveBeenNthCalledWith(3, 'It starts the gRPC proxy to handle the requests between your gRPC server and your Beagle Web Frontend (you must have the required dependencies and other ones will be installed automatically if not found)')
           })
 
           test('it should set the method "startProxy()" from "src/cli/start-proxy/index.ts" as action for this command', () => {
@@ -114,7 +110,7 @@ describe('src/cli/program.ts', () => {
       })
 
       test('it should have defined an alias for the cli and the two commands', () => {
-        expect(_commands_.alias).toHaveBeenCalledTimes(3)
+        expect(_commands_.alias).toHaveBeenCalledTimes(2)
       })
 
       test('it should have defined the description for the cli and the two commands', () => {
