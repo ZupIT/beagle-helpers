@@ -7,10 +7,10 @@ import * as element from '../../src/lib/element'
 import * as blob from '../../src/lib/utils/blob'
 import * as response from '../../src/lib/utils/response'
 import * as view from '../../src/lib/view'
-import { ViewNode } from '../../src/lib/generated-proto/messages_pb'
-import { ScreenServiceClient } from '../../src/lib/generated-proto/screen_pb_service'
 import { FetchRequest } from '../../src/lib/models/fetch-request'
 import { BeagleUIElement } from '@zup-it/beagle-web'
+import { ViewNode } from '../../src/lib/generated-proto/messages_pb'
+import { ScreenServiceClient } from '../../src/lib/generated-proto/screen_pb_service'
 
 describe('src/lib/view.ts', () => {
   const _MOCK_PROXY_ADDRESS_ = 'http://localhost:6692/'

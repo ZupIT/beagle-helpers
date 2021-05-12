@@ -6,8 +6,8 @@ import { grpc } from '@improbable-eng/grpc-web'
 import { ScreenRequest, ViewNode } from '../../../src/lib/generated-proto/messages_pb'
 import * as request from '../../../src/lib/utils/request'
 import { FetchRequest } from '../../../src/lib/models/fetch-request'
-import { ScreenServiceClient, ServiceError } from '../../../src/lib/generated-proto/screen_pb_service'
 import * as parameters from '../../../src/lib/parameters'
+import { ScreenServiceClient } from '../../../src/lib/generated-proto/screen_pb_service'
 
 describe('src/lib/utils/request.ts', () => {
   const _MOCK_PROXY_ADDRESS_ = 'http://localhost:6692/'
@@ -104,7 +104,7 @@ describe('src/lib/utils/request.ts', () => {
       beforeAll(async () => {
         getParametersSpy = jest.spyOn(parameters, 'getParameters')
         screenServiceClientGetScreenSpy = screenServiceClientProto.getScreen = jest.fn<any, any[]>()
-          .mockImplementation((requestMessage: ScreenRequest, metadata: BrowserHeaders, callback: (error: ServiceError | undefined, responseMessage: ViewNode) => void) => {
+          .mockImplementation((requestMessage: ScreenRequest, metadata: BrowserHeaders, callback: (error: any, responseMessage: ViewNode) => void) => {
             callback(undefined, viewNode)
             return {
               cancel: jest.fn()
@@ -161,7 +161,7 @@ describe('src/lib/utils/request.ts', () => {
       describe('error and response undefined', () => {
         beforeAll(() => {
           screenServiceClientGetScreenSpy = screenServiceClientProto.getScreen = jest.fn<any, any[]>()
-            .mockImplementation((requestMessage: ScreenRequest, metadata: BrowserHeaders, callback: (error: ServiceError | undefined, responseMessage: ViewNode) => void) => {
+            .mockImplementation((requestMessage: ScreenRequest, metadata: BrowserHeaders, callback: (error: any, responseMessage: ViewNode) => void) => {
               callback(undefined, (undefined as any))
               return {
                 cancel: jest.fn()
@@ -179,7 +179,7 @@ describe('src/lib/utils/request.ts', () => {
       describe('error and response defined', () => {
         beforeAll(() => {
           screenServiceClientGetScreenSpy = screenServiceClientProto.getScreen = jest.fn<any, any[]>()
-            .mockImplementation((requestMessage: ScreenRequest, metadata: BrowserHeaders, callback: (error: ServiceError | undefined, responseMessage: ViewNode) => void) => {
+            .mockImplementation((requestMessage: ScreenRequest, metadata: BrowserHeaders, callback: (error: any, responseMessage: ViewNode) => void) => {
               callback({ message: 'Custom test error message' } as any, viewNode)
               return {
                 cancel: jest.fn()

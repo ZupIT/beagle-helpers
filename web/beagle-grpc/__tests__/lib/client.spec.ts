@@ -3,10 +3,10 @@ import { jest, describe, test, expect, beforeAll, afterAll, beforeEach } from '@
 import JestMock from 'jest-mock'
 import { BeagleGrpcClientOptions } from '../../src/lib/models/client-options'
 import { createClient } from '../../src/lib/client'
-import { ScreenServiceClient } from '../../src/lib/generated-proto/screen_pb_service'
 import { FetchRequest } from '../../src/lib/models/fetch-request'
 import * as view from '../../src/lib/view'
 import * as request from '../../src/lib/utils/request'
+import { ScreenServiceClient } from '../../src/lib/generated-proto/screen_pb_service'
 
 const _MOCK_URL_ = 'http://localhost:6364/my/path'
 const _MOCK_GRPC_URL_ = 'http://localhost:9266/grpc'
