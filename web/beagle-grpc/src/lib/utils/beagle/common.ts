@@ -1,8 +1,7 @@
 import { ViewNode } from '../../generated-proto/messages_pb'
 
-export function getParsed<T>(fn: () => string | ViewNode | T | undefined, defaultValue: T, parser?: (view: ViewNode) => T): T {
+export function getParsed<T>(value: string | ViewNode | T | undefined, defaultValue: T, parser?: (view: ViewNode) => T): T {
   try {
-    const value = fn()
     if (!value) {
       return defaultValue
     }
