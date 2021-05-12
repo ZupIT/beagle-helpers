@@ -40,8 +40,7 @@
     "clear": "^0.1.0",
     "command-exists": "^1.2.9",
     "commander": "^7.1.0",
-    "figlet": "^1.5.0",
-    "google-protobuf": "^3.15.6"
+    "figlet": "^1.5.0"
   },
   "devDependencies": {
     "@tsconfig/node10": "^1.0.7",
@@ -51,7 +50,6 @@
     "@types/command-exists": "^1.2.0",
     "@types/commander": "^2.12.2",
     "@types/figlet": "^1.2.1",
-    "@types/google-protobuf": "^3.7.4",
     "@types/jest": "^26.0.22",
     "@types/mock-fs": "^4.13.0",
     "@types/node": "^15.0.2",
