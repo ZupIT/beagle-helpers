@@ -17,7 +17,7 @@ class BeagleHeadersInterceptor: ServerInterceptor, Ordered {
     }
 
     @Override
-    override fun getOrder() = 10
+    override fun getOrder() = 1
 
     override fun <ReqT : Any?, RespT : Any?> interceptCall(
         call: ServerCall<ReqT, RespT>?,

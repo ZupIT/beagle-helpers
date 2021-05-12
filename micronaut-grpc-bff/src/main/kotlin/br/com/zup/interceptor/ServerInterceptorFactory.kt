@@ -11,6 +11,6 @@ class ServerInterceptorFactory {
     @Bean
     @Singleton
     fun mySeverInterceptor(): ServerInterceptor {
-        return  OrderedServerInterceptor ( MyInterceptor(), 10 )
+        return  OrderedServerInterceptor ( BeagleHeadersInterceptor(), 1 )
     }
 }
