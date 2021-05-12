@@ -13,7 +13,7 @@ import br.com.zup.beagle.widget.layout.Screen
 import br.com.zup.beagle.widget.layout.ScreenBuilder
 import br.com.zup.beagle.widget.ui.Button
 
-object SplashScreen : ScreenBuilder {
+class SplashScreen(private val headers: Map<String, String>) : ScreenBuilder {
     override fun build() = Screen(
         child = Container(
             children = listOf(
@@ -37,7 +37,7 @@ object SplashScreen : ScreenBuilder {
 
                 buttonWithAppearanceAndStyle(text = "Button with Appearance"),
                 buttonWithAppearanceAndStyle(
-                    text = "Button with Appearance and style",
+                    text = "Button with Appearance, style and headers: ${this.headers["content-type"]}",
                 )
             )
         )
@@ -68,7 +68,7 @@ object SplashScreen : ScreenBuilder {
             onPress = listOf(Navigate.PushView(Route.Remote("text", true)))
         )
 
-        if (style != null) {
+        if (style!=null) {
             button.applyStyle(style)
         }
 

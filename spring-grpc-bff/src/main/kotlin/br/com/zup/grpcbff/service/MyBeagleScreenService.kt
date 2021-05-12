@@ -14,7 +14,7 @@ class MyBeagleAppService: BeagleScreenService() {
 
         return mapOf(
             "home" to { params -> HomeScreen(params) },
-            "splash" to { SplashScreen },
+            "splash" to { SplashScreen(requestHeaders) },
         )
     }
 }
