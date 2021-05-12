@@ -22,7 +22,7 @@ export async function getView(name: string, client: ScreenServiceClient, fetchRe
       request.setName(name)
       request.setParameters(getParameters(fetchReq))
 
-      client.getScreen(request, new grpc.Metadata(fetchReq.headers), (error, response) => {
+      client.getScreen(request, (error, response) => {
         if (error || !response) {
           const rejectContent = error ? error : new Error(`Failed to get the screen named "${name}"`)
           reject(rejectContent)
