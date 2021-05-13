@@ -41,7 +41,8 @@ platform :ios do
 
     [
       { path: "BeagleDefaults.podspec" },
-      { path: "BeagleScaffold.podspec", depends_on_other_beagle_pod: true }
+      { path: "BeagleScaffold.podspec", depends_on_other_beagle_pod: true },
+      { path: "BeagleGRPC.podspec" }
     ]
     .each do |pod|
       update_podspec(path: pod[:path], version: version, tag: tag)
