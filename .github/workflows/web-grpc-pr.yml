@@ -18,4 +18,4 @@ jobs:
     - name: Test Beagle WEB gRPC
       shell: bash
       working-directory: ./web/beagle-web-grpc
-      run: yarn test --verbose --coverage
+      run: npm run test --verbose --coverage
