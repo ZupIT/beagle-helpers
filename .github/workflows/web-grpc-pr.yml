@@ -15,7 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Test Beagle WEB gRPC
-      shell: bash
-      working-directory: ./web/beagle-web-grpc
-      run: npm run test --verbose --coverage
+    
+    - name: install
+      run: cd web/beagle-grpc && yarn
+
+    - name: test
+      run: yarn test --verbose --coverage
