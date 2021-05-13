@@ -20,4 +20,4 @@ jobs:
       run: cd web/beagle-grpc && yarn
 
     - name: test
-      run: yarn test --verbose --coverage
+      run: cd web/beagle-grpc && yarn test --verbose --coverage
