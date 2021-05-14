@@ -16,6 +16,7 @@
 
 package br.com.zup.bff.builder
 
+import br.com.zup.beagle.annotation.BeaglePreview
 import br.com.zup.beagle.core.Style
 import br.com.zup.beagle.ext.applyStyle
 import br.com.zup.beagle.ext.unitReal
@@ -59,6 +60,7 @@ import br.com.zup.beagle.widget.layout.ScrollView
 import br.com.zup.beagle.widget.ui.Button
 
 object ComponentScreenBuilder : ScreenBuilder {
+    @BeaglePreview
     override fun build() = Screen(
         navigationBar = NavigationBar(
             title = "Choose a Component",
