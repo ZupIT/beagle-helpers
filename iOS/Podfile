@@ -8,14 +8,16 @@ target 'BeagleScaffold' do
   project 'beagle-scaffold/BeagleScaffold.xcodeproj'
 
   pod 'BeagleDefaults'
-  pod 'Beagle', '~> 1.6.1'
+  pod 'Beagle', '~> 1.7.0'
   target 'BeagleScaffoldTests' do
   end
 end
 
 target 'BeagleDefaults' do
   project 'beagle-defaults/BeagleDefaults.xcodeproj'
-  pod 'Beagle', '~> 1.6.1'
+
+  pod 'Beagle', '~> 1.7.0' 
+
   target 'BeagleDefaultsTests' do
   end
 end
@@ -24,6 +26,5 @@ target 'sampleScaffold' do
   project 'beagle-scaffold-sample/sampleScaffold.xcodeproj'
 
   pod 'BeagleScaffold'
-  pod 'Beagle', '~> 1.6.1'
-  pod 'YogaKit', :git => 'https://github.com/ZupIT/YogaKit'
+  pod 'Beagle'
 end
