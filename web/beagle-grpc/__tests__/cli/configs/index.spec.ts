@@ -3,7 +3,6 @@ import { configFileExists, createNewConfigurationFile, getConfigs } from '../../
 import fs from 'fs'
 import fsPromises from 'fs/promises'
 import { logger } from '../../../src/cli/utils/logger'
-import mock from 'mock-fs'
 import JestMock from 'jest-mock'
 import { baseConfigs } from '../../../src/cli/configs/models/configs'
 
@@ -50,19 +49,12 @@ describe('src/cli/configs/index.ts', () => {
   describe('configFileExists', () => {
     let accessSpy: JestMock.SpyInstance<Promise<void>, [path: fs.PathLike, mode?: number]>
 
-    beforeAll(() => {
-      accessSpy = jest.spyOn(fsPromises, "access")
-    })
-
     afterEach(() => {
-      accessSpy.mockClear()
-      mock.restore()
+      accessSpy.mockRestore()
     })
 
     test('It should call access and resolve telling that the file exists', async () => {
-      mock({
-        'beagle-grpc.config.json': 'content'
-      })
+      accessSpy = jest.spyOn(fsPromises, "access").mockImplementation(() => Promise.resolve())
 
       const fileExists = await configFileExists()
       expect(accessSpy).toHaveBeenCalledTimes(1)
@@ -70,6 +62,8 @@ describe('src/cli/configs/index.ts', () => {
     })
 
     test('It should call access and resolve telling that the file does not exists', async () => {
+      accessSpy = jest.spyOn(fsPromises, "access").mockImplementation(() => Promise.reject())
+
       const fileExists = await configFileExists()
       expect(accessSpy).toHaveBeenCalledTimes(1)
       expect(fileExists).toBeFalsy()
@@ -93,20 +87,13 @@ describe('src/cli/configs/index.ts', () => {
   describe('getConfigs', () => {
     let readFileSpy: JestMock.SpyInstance<Promise<string | Buffer>, any>
 
-    beforeAll(() => {
-      readFileSpy = jest.spyOn(fsPromises, "readFile")
-    })
-
     afterEach(() => {
-      readFileSpy.mockClear()
-      mock.restore()
+      readFileSpy.mockRestore()
     })
 
     test('It should call readFile and resolve the required configuration', async () => {
-      mock({
-        'beagle-grpc.config.json': JSON.stringify(baseConfigs, null, 2)
-      })
-
+      readFileSpy = jest.spyOn(fsPromises, "readFile").mockImplementation(() => Promise.resolve(JSON.stringify(baseConfigs, null, 2)))
+      
       const config = await getConfigs('development')
       expect(readFileSpy).toHaveBeenCalledTimes(1)
       expect(config).toBeDefined()
@@ -114,9 +101,7 @@ describe('src/cli/configs/index.ts', () => {
     })
 
     test('It should call readFile and resolve undefined when the mode does not exists', async () => {
-      mock({
-        'beagle-grpc.config.json': JSON.stringify(baseConfigs, null, 2)
-      })
+      readFileSpy = jest.spyOn(fsPromises, "readFile").mockImplementation(() => Promise.resolve(JSON.stringify(baseConfigs, null, 2)))
 
       const config = await getConfigs('test-mock')
       expect(readFileSpy).toHaveBeenCalledTimes(1)
@@ -124,6 +109,8 @@ describe('src/cli/configs/index.ts', () => {
     })
 
     test('It should call readFile and resolve undefined when the configuration file does not exists', async () => {
+      readFileSpy = jest.spyOn(fsPromises, "readFile").mockImplementation(() => Promise.resolve(''))
+
       const config = await getConfigs('development')
       expect(readFileSpy).toHaveBeenCalledTimes(1)
       expect(config).toBeUndefined()
