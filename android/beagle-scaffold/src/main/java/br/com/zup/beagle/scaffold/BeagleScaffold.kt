@@ -28,6 +28,7 @@ import br.com.zup.beagle.android.logger.BeagleLogger
 import br.com.zup.beagle.android.navigation.BeagleControllerReference
 import br.com.zup.beagle.android.navigation.DeepLinkHandler
 import br.com.zup.beagle.android.networking.HttpClient
+import br.com.zup.beagle.android.networking.HttpClientFactory
 import br.com.zup.beagle.android.networking.urlbuilder.UrlBuilder
 import br.com.zup.beagle.android.operation.Operation
 import br.com.zup.beagle.android.setup.BeagleConfig
@@ -49,9 +50,10 @@ class BeagleScaffold(private val beagleSdk: BeagleSdk) : BeagleSdk {
     override val deepLinkHandler: DeepLinkHandler? = beagleSdk.deepLinkHandler
     override val designSystem: DesignSystem? = beagleSdk.designSystem
     override val formLocalActionHandler: FormLocalActionHandler? = beagleSdk.formLocalActionHandler
-    override val httpClient: HttpClient? = beagleSdk.httpClient ?: HttpClientDefault()
+    override val httpClient: HttpClient = beagleSdk.httpClient ?: HttpClientDefault()
+    override val httpClientFactory: HttpClientFactory? = beagleSdk.httpClientFactory
     override val imageDownloader: BeagleImageDownloader? = beagleSdk.imageDownloader
-    override val logger: BeagleLogger? = beagleSdk.logger ?: BeagleLoggerDefault()
+    override val logger: BeagleLogger = beagleSdk.logger ?: BeagleLoggerDefault()
     override val serverDrivenActivity: Class<BeagleActivity> = beagleSdk.serverDrivenActivity
     override var storeHandler: StoreHandler? = beagleSdk.storeHandler
     override val typeAdapterResolver: TypeAdapterResolver? = beagleSdk.typeAdapterResolver

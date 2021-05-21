@@ -53,8 +53,6 @@ android {
         pickFirst 'META-INF/LICENSE-notice.md'
     }
 }
-// Add in your app level dependency
-ext.beagle_version = "1.6.0"
 
 dependencies {
 
