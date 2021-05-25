@@ -26,9 +26,8 @@ import java.lang.reflect.Type
 
 class MessageAdapter : JsonAdapter<Messages.ViewNode>() {
 
-    override fun fromJson(reader: JsonReader): Messages.ViewNode? {
-        TODO("Not yet implemented")
-    }
+    override fun fromJson(reader: JsonReader): Nothing =
+        throw Exception("It shouldn't have passed here.")
 
     override fun toJson(writer: JsonWriter, value: Messages.ViewNode?) {
         writer.beginObject()
@@ -49,7 +48,10 @@ class MessageAdapter : JsonAdapter<Messages.ViewNode>() {
 
             if (value.childrenList.isNotEmpty()) {
                 writer.name("children")
-                val type: Type = Types.newParameterizedType(MutableList::class.java, Messages.ViewNode::class.java)
+                val type: Type = Types.newParameterizedType(
+                    MutableList::class.java,
+                    Messages.ViewNode::class.java
+                )
                 val viewNodeAdapter: JsonAdapter<List<Messages.ViewNode>> = moshi.adapter(type)
                 viewNodeAdapter.toJson(writer, value.childrenList)
             }
@@ -60,7 +62,11 @@ class MessageAdapter : JsonAdapter<Messages.ViewNode>() {
             }
 
             if (value.style != null && value.style.isNotEmpty()) {
-                val type = Types.newParameterizedType(MutableMap::class.java, String::class.java, Any::class.java)
+                val type = Types.newParameterizedType(
+                    MutableMap::class.java,
+                    String::class.java,
+                    Any::class.java
+                )
                 val adapter: JsonAdapter<Map<String, Any>> = moshi.adapter(type)
                 val map = adapter.fromJson(value.style)
                 writer.name("style")
@@ -68,7 +74,11 @@ class MessageAdapter : JsonAdapter<Messages.ViewNode>() {
             }
 
             if (value.attributes != null && value.attributes.isNotEmpty()) {
-                val type = Types.newParameterizedType(MutableMap::class.java, String::class.java, Any::class.java)
+                val type = Types.newParameterizedType(
+                    MutableMap::class.java,
+                    String::class.java,
+                    Any::class.java
+                )
                 val adapter: JsonAdapter<Map<String, Any>> = moshi.adapter(type)
                 val map = adapter.fromJson(value.attributes)
                 map?.forEach { mapEntry ->
