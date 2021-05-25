@@ -27,7 +27,7 @@ import java.lang.reflect.Type
 class MessageAdapter : JsonAdapter<Messages.ViewNode>() {
 
     override fun fromJson(reader: JsonReader): Nothing =
-        throw Exception("It shouldn't have passed here.")
+        throw IllegalStateException("It shouldn't have passed here.")
 
     override fun toJson(writer: JsonWriter, value: Messages.ViewNode?) {
         writer.beginObject()
