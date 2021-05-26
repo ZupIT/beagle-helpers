@@ -22,16 +22,14 @@ jobs:
             -   name: Setup JDK 11
                 run: echo "JAVA_HOME=$JAVA_HOME_11_X64" >> $GITHUB_ENV
 
-            -   name: Cache maven dependences
-                uses: actions/cache@v2
-                env:
-                    maven-cache-key: maven-cache
-                    maven-path: ~/.m2
-                with:
-                    path: ${{ env.maven-path }}
-                    key: ${{ runner.os }}-build-${{ env.maven-cache-key }}-${{ hashFiles('backend/pom.xml') }}
-                    restore-keys: ${{ runner.os }}-build-${{ env.maven-cache-key }}
+            -   name: pr check micronaut grpc
+                working-directory: backend/examples/micronaut-grpc-bff
+                run: gradle clean check
 
-            -   name: Run pr check
-                working-directory: backend
+            -   name: pr check spring boot grpc
+                working-directory: backend/examples/spring-grpc-bff
+                run: gradle clean check
+
+            -   name: pr check sample bff
+                working-directory: backend/examples/bff-sample
                 run: mvn -B verify
