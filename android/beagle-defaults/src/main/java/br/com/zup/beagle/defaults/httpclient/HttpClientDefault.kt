@@ -129,9 +129,10 @@ open class HttpClientDefault : HttpClient, CoroutineScope {
     }
 
     private fun setRequestBody(urlConnection: HttpURLConnection, request: RequestData) {
-        urlConnection.setRequestProperty("Content-Length", request.httpAdditionalData.body?.length.toString())
         try {
+            urlConnection.doOutput = true
             urlConnection.outputStream.write(request.httpAdditionalData.body?.toByteArray())
+            urlConnection.outputStream.flush()
         } catch (e: Exception) {
             throw BeagleApiException(ResponseData(-1, data = byteArrayOf()), request)
         }

@@ -28,10 +28,7 @@ import br.com.zup.beagle.android.components.layout.Screen
 import br.com.zup.beagle.android.components.page.PageView
 import br.com.zup.beagle.android.context.ContextData
 import br.com.zup.beagle.android.context.expressionOf
-import br.com.zup.beagle.android.utils.toView
-import br.com.zup.beagle.scaffold.BeagleDeclarativeSample
 import br.com.zup.beagle.scaffold.BeagleIntent
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,10 +63,12 @@ class MainActivity : AppCompatActivity() {
                 ),
                 PageView(
                     currentPage = expressionOf("@{currentTab}"),
-                    onPageChange = listOf(SetContext(
-                        "currentTab",
-                        "@{onPageChange}"
-                    )),
+                    onPageChange = listOf(
+                        SetContext(
+                            "currentTab",
+                            "@{onPageChange}"
+                        )
+                    ),
                     children = listOf(
                         Text(
                             "Tab 1"
