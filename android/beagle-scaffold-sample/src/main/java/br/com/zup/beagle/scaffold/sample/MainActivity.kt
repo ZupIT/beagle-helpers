@@ -19,7 +19,19 @@ package br.com.zup.beagle.scaffold.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import br.com.zup.beagle.android.action.SetContext
+import br.com.zup.beagle.android.components.TabBar
+import br.com.zup.beagle.android.components.TabBarItem
+import br.com.zup.beagle.android.components.Text
+import br.com.zup.beagle.android.components.layout.Container
+import br.com.zup.beagle.android.components.layout.Screen
+import br.com.zup.beagle.android.components.page.PageView
+import br.com.zup.beagle.android.context.ContextData
+import br.com.zup.beagle.android.context.expressionOf
+import br.com.zup.beagle.android.utils.toView
+import br.com.zup.beagle.scaffold.BeagleDeclarativeSample
 import br.com.zup.beagle.scaffold.BeagleIntent
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,9 +39,47 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //Declarative screen
-        //server_driven_content_layout.addView((BeagleDeclarativeSample.screen).toView(this))
+        //server_driven_content_layout.addView((screenTabTest()).toView(this))
 
         //Server-driven Screen
         startActivity(BeagleIntent(this).toSample())
     }
+
+    fun screenTabTest(): Screen = Screen(
+        child = Container(
+            context = ContextData("currentTab", 0),
+            children = listOf(
+
+                TabBar(
+                    onTabSelection = listOf(
+                        SetContext(
+                            "currentTab",
+                            "@{onTabSelection}"
+                        )
+                    ),
+                    currentTab = expressionOf("@{currentTab}"),
+                    items = listOf(
+                        TabBarItem("Tab 1"),
+                        TabBarItem("Tab 2")
+                    ),
+                    styleId = "TabBarStyle"
+                ),
+                PageView(
+                    currentPage = expressionOf("@{currentTab}"),
+                    onPageChange = listOf(SetContext(
+                        "currentTab",
+                        "@{onPageChange}"
+                    )),
+                    children = listOf(
+                        Text(
+                            "Tab 1"
+                        ),
+                        Text(
+                            "Tab 2"
+                        )
+                    )
+                )
+            )
+        )
+    )
 }
