@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         //Declarative screen
         //server_driven_content_layout.addView((BeagleDeclarativeSample.screen).toView(this))
-        
+
         val intent = this.newServerDrivenIntent<ServerDrivenActivity>(ScreenRequest("/components"))
         startActivity(intent)
     }
