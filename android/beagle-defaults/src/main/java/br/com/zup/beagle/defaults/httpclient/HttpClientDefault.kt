@@ -18,7 +18,11 @@
 package br.com.zup.beagle.defaults.httpclient
 
 import br.com.zup.beagle.android.exception.BeagleApiException
-import br.com.zup.beagle.android.networking.*
+import br.com.zup.beagle.android.networking.HttpClient
+import br.com.zup.beagle.android.networking.HttpMethod
+import br.com.zup.beagle.android.networking.RequestCall
+import br.com.zup.beagle.android.networking.RequestData
+import br.com.zup.beagle.android.networking.ResponseData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
