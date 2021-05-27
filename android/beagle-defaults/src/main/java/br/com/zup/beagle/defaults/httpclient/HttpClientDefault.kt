@@ -18,11 +18,7 @@
 package br.com.zup.beagle.defaults.httpclient
 
 import br.com.zup.beagle.android.exception.BeagleApiException
-import br.com.zup.beagle.android.networking.HttpClient
-import br.com.zup.beagle.android.networking.HttpMethod
-import br.com.zup.beagle.android.networking.RequestCall
-import br.com.zup.beagle.android.networking.RequestData
-import br.com.zup.beagle.android.networking.ResponseData
+import br.com.zup.beagle.android.networking.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
@@ -88,10 +84,9 @@ open class HttpClientDefault : HttpClient, CoroutineScope {
             urlConnection.setRequestProperty(it.key, it.value)
         }
 
-        addRequestMethod(urlConnection, request.httpAdditionalData.method!!)
+        request.httpAdditionalData.method?.let { addRequestMethod(urlConnection, it) }
 
-        val body = request.httpAdditionalData.body
-        if (body != null) {
+        request.httpAdditionalData.body?.run {
             setRequestBody(urlConnection, request)
         }
 
@@ -111,8 +106,10 @@ open class HttpClientDefault : HttpClient, CoroutineScope {
         val response = urlConnection.getSafeError() ?: byteArrayOf()
         val statusCode = urlConnection.getSafeResponseCode()
         val statusText = urlConnection.getSafeResponseMessage()
-        val responseData = ResponseData( statusCode = statusCode,
-            data = response, statusText = statusText
+        val responseData = ResponseData(
+            statusCode = statusCode,
+            data = response,
+            statusText = statusText,
         )
         return BeagleApiException(responseData, request)
     }
