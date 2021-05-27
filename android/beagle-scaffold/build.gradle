@@ -86,4 +86,4 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:1.1.3-alpha04"
 }
 
-apply from: rootProject.file('maven-publish.gradle')
+apply from: rootProject.file('../maven-publish.gradle')
