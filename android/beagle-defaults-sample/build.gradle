@@ -62,7 +62,7 @@ dependencies {
     implementation "br.com.zup.beagle:android:$beagle_version"
     kapt "br.com.zup.beagle:android-processor:$beagle_version"
 
-    implementation "br.com.zup.beagle:beagle-defaults:1.7.0-borracha"
+    implementation project (":beagle-defaults")
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
 
