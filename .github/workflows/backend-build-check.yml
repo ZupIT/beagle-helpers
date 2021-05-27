@@ -1,4 +1,4 @@
-name: Build Check
+name: Build Check Backend
 
 on:
     push:
@@ -21,6 +21,10 @@ jobs:
                 
             -   name: Setup JDK 11
                 run: echo "JAVA_HOME=$JAVA_HOME_11_X64" >> $GITHUB_ENV
+
+            -   name: pr check micronaut grpc
+                working-directory: backend/grpc-backend-lib
+                run: gradle clean check
 
             -   name: pr check micronaut grpc
                 working-directory: backend/examples/micronaut-grpc-bff
