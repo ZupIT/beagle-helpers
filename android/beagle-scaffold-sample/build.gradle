@@ -48,10 +48,6 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    packagingOptions {
-        pickFirst 'META-INF/LICENSE.md'
-        pickFirst 'META-INF/LICENSE-notice.md'
-    }
 }
 
 dependencies {
