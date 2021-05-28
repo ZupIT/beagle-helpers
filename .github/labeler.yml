@@ -2,7 +2,7 @@ android:
     - android/**
 
 backend:
-    - BeagleScaffold/backend/**
+    - backend/**
 
 iOS:
     - ios/**
