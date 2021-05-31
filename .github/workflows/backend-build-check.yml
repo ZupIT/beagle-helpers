@@ -22,17 +22,17 @@ jobs:
             -   name: Setup JDK 11
                 run: echo "JAVA_HOME=$JAVA_HOME_11_X64" >> $GITHUB_ENV
 
-            -   name: pr check micronaut grpc
-                working-directory: backend/grpc-backend-lib
-                run: gradle clean check
+            -   name: pr check grpc backend lib
+                working-directory: backend
+                run: ./gradlew clean check
 
             -   name: pr check micronaut grpc
                 working-directory: backend/examples/micronaut-grpc-bff
-                run: gradle clean check
+                run: ./gradlew clean check
 
             -   name: pr check spring boot grpc
                 working-directory: backend/examples/spring-grpc-bff
-                run: gradle clean check
+                run: ./gradlew clean check
 
             -   name: pr check sample bff
                 working-directory: backend/examples/bff-sample
