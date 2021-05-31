@@ -1,7 +1,7 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.4.31"
+    id("org.jetbrains.kotlin.jvm")
     id("org.jetbrains.kotlin.plugin.allopen") version "1.4.31"
-    id "org.jetbrains.kotlin.kapt" version "1.4.31"
+    id("org.jetbrains.kotlin.kapt")
     id("com.github.johnrengelman.shadow") version "6.1.0"
     id("io.micronaut.application") version "1.4.2"
     id("com.google.protobuf") version "0.8.13"
@@ -9,11 +9,6 @@ plugins {
 
 version = "0.0.1"
 group = "br.com.zup"
-
-repositories {
-    mavenCentral()
-    mavenLocal()
-}
 
 micronaut {
     testRuntime("junit5")
@@ -30,7 +25,7 @@ dependencies {
     implementation("javax.annotation:javax.annotation-api")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
-    implementation("br.com.zup:beagle-grpc-backend:${beagleGrpcVersion}")
+    implementation("br.com.zup.beagle:beagle-grpc-backend:${beagleGrpcVersion}")
     implementation("io.micronaut:micronaut-validation")
     implementation("io.micronaut.grpc:micronaut-grpc-server-runtime")
     runtimeOnly("ch.qos.logback:logback-classic")
@@ -76,3 +71,5 @@ protobuf {
         all()*.plugins { grpc {} }
     }
 }
+
+apply from: rootProject.file('../maven-publish.gradle')

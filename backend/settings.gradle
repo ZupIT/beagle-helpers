@@ -15,4 +15,6 @@
  *
  */
 include ':grpc-backend-lib'
-rootProject.name = "Beagle Backend Libs"
+include ':examples:micronaut-grpc-bff'
+include ':examples:spring-grpc-bff'
+rootProject.name = "Beagle Helpers Backend Examples and Libs"
