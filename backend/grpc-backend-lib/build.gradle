@@ -1,9 +1,7 @@
 plugins {
     id 'com.google.protobuf' version '0.8.15'
-    id 'org.jetbrains.kotlin.jvm'
+    id 'org.jetbrains.kotlin.jvm' version "$kotlin_version"
 }
-
-apply plugin: 'kotlin-kapt'
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
@@ -11,7 +9,7 @@ dependencies {
     api "io.grpc:grpc-stub:${grpcVersion}"
     api "io.grpc:grpc-protobuf:${grpcVersion}"
     api "io.grpc:grpc-netty:${grpcVersion}"
-    api "br.com.zup.beagle:framework:${beagleVersion}"
+    api "br.com.zup.beagle:framework:$beagle_version"
     api "javax.annotation:javax.annotation-api:${javaxVersion}"
     api "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
     api "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
