@@ -13,8 +13,8 @@ class MyBeagleAppService: BeagleScreenService() {
         val requestHeaders = BeagleHeadersInterceptor.HEADERS_VALUE.get()
 
         return mapOf(
-            "splash" to { SplashScreen(requestHeaders) },
-            "home" to { params -> HomeScreen(params) }
+            "home" to { params -> HomeScreen(params) },
+            "splash" to { SplashScreen(requestHeaders) }
         )
     }
 }

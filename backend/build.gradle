@@ -14,18 +14,9 @@
  *   limitations under the License.
  *
  */
-
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext.kotlin_version = "1.4.31"
     ext.beagle_version = "1.7.0"
-    repositories {
-        google()
-        jcenter()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-    }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.20"
@@ -41,7 +32,7 @@ plugins {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenLocal()
         mavenCentral()
     }
 }
