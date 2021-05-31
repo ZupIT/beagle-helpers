@@ -42,7 +42,7 @@ open class HttpClientDefault : HttpClient, CoroutineScope {
     override fun execute(
         request: RequestData,
         onSuccess: OnSuccess,
-        onError: OnError
+        onError: OnError,
     ): RequestCall {
         if (getOrDeleteOrHeadHasData(request)) {
             onError(ResponseData(-1, data = byteArrayOf()))
@@ -73,7 +73,7 @@ open class HttpClientDefault : HttpClient, CoroutineScope {
 
     @Throws(BeagleApiException::class)
     private fun doHttpRequest(
-        request: RequestData
+        request: RequestData,
     ): ResponseData {
         val urlConnection: HttpURLConnection
 
