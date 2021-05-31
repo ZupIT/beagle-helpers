@@ -1,0 +1,23 @@
+name: Beagle WEB gRPC Pull Request
+
+on:
+  push:
+    branches:
+        - main
+    paths:
+        - 'web/beagle-grpc/**'
+  pull_request:
+    paths:
+        - 'web/beagle-grpc/**'
+
+jobs:
+  test-beagle-web-grpc:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test Beagle WEB gRPC
+      shell: bash
+      working-directory: ./web/beagle-grpc
+      run: | 
+        yarn
+        yarn test --verbose --coverage

@@ -1,0 +1,15 @@
+{
+  "extends": "@tsconfig/recommended/tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "./dist",
+    "noImplicitAny": true,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "typeRoots": ["node_modules/@types"]
+  },
+  "include": ["src/lib", "src/index.ts"],
+  "exclude": ["node_modules", "src/cli", "dist", "__tests__"]
+}
