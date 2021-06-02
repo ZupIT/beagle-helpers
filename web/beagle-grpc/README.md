@@ -5,7 +5,7 @@
 
 It is an open source framework to perform RPC (Remote Call Procedure) calls, through the HTTP2 protocol in a two-way streaming format, using Protobufs as interfaces between client and server.
 
-Protobufs, or Protocol Buffers, are a structured data serialization mechanism created by Google, which aim to keep contracts always valid and consistent regarding the implementations that consume a gRPC service.
+Protobufs, or Protocol Buffers, are a structured data serialization mechanism created by Google, which aims to keep contracts always valid and consistent, regarding the implementations that consumes a gRPC service.
 
 Proto files, in their content, are very similar to any interface we are used to on the daily basis, but with the .proto extension, where we define which objects and methods are likely to be used in the service's communication.
 
