@@ -80,7 +80,7 @@ yarn add --dev beagle-web-grpc
 ## CLI
 ------
 
-As gRPC is not compatible with the current structure of the Web, to support the technology, it is necessary to use a Proxy to establish the communication between the REST application and the gRPC Backend application, so we created a CLI (command-line interface), **beagle-web-grpc**, to facilitate the use of the proxy and provide all the necessary settings.
+As gRPC is not compatible with the current structure of the Web, to support the technology, it is necessary to use a proxy to establish the communication between the REST application and the gRPC backend application, so we created a CLI (command-line interface), **beagle-web-grpc**, to facilitate the use of the proxy and provide all the necessary settings.
 
 #### Available commands for **beagle-web-grpc**
 
