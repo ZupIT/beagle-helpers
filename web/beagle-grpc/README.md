@@ -74,7 +74,7 @@ yarn add --dev beagle-web-grpc
 3. Start your proxy running the following command on the root of the project: `beagle-web-grpc start-proxy` or `beagle-web-grpc spx` or `beagle-web-grpc start-proxy --mode your-mode`.
 4. Use the Beagle Web as usually.
 
-> **Observations**
+> **Note:**
 > Make sure that your BFF Application is running.
 
 ## CLI
