@@ -127,7 +127,7 @@ After running `beagle-web-grpc init` the file *./beagle-grpc.config.json* will b
 ## Client
 ----------
 
-The gRPC Client for Beagle Web is what redirects grpc requests to the proxy, the client is used through `BeagleService` in React and the `Beagle` module in Angular, using the `fetchData` property, which Beagle allows you to create custom HTTP requests, so the use goes like this: 
+The gRPC Client for Beagle Web redirects gRPC requests to the proxy. The client is used through `BeagleService` in React and the `Beagle` module in Angular, using the `fetchData` property. Beagle allows you to create custom HTTP requests, so the use goes like this: 
 
 ```typescript
 import { usingBeagleGrpcClient } from 'beagle-web-grpc'
