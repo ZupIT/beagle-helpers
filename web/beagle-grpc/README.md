@@ -86,7 +86,7 @@ As gRPC is not compatible with the current structure of the Web, to support the 
 
 | Command       | Alias      | Options     | Description                                                                                       |
 | ------------- | ---------- | ----------- | ------------------------------------------------------------------------------------------------- |
-| `init`        | `i`        |             | Creates the configuration file which define the settings to be used by the Beagle Web gRPC Proxy. |
+| `init`        | `i`        |             | Creates the configuration file which defines the settings to be used by the Beagle Web gRPC Proxy. |
 | `start-proxy` | `spx`      | *-m, --mode <mode>*, set the mode to be used on the configuration file, the default mode is **development**     | Start the gRPC Proxy service, on the port defined in the configuration file, to handle requests between your gRPC server and your application using Beagle Web Frontend (IMPORTANT: You must have all requirements installed) . |
 
 #### Configuration file *./beagle-grpc.config.json*
