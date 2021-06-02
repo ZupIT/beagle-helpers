@@ -37,7 +37,7 @@ class SplashScreen(private val headers: Map<String, String>) : ScreenBuilder {
 
                 buttonWithAppearanceAndStyle(text = "Button with Appearance"),
                 buttonWithAppearanceAndStyle(
-                    text = "Button with Appearance, style and headers: ${this.headers["content-type"]}",
+                    text = "Button with Appearance, style and content type: ${this.headers["content-type"]}",
                 )
             )
         )
