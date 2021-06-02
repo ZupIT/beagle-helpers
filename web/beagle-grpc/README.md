@@ -119,7 +119,7 @@ After running `beagle-web-grpc init` the file *./beagle-grpc.config.json* will b
 | Attribute               | Description                                                                   | 
 | ----------------------- | ----------------------------------------------------------------------------- |
 | `mode`                  | Defines the mode name for the settings to be used when running the gRPC Proxy |
-| `grpcBackendAddress`    | Defines the address of the backend server that communicates using gRPC. Remembering that all requests that match this route will be redirected to the Proxy |
+| `grpcBackendAddress`    | Defines the address of the backend server that communicates using gRPC. Keep it mind that all requests that match this route will be redirected to the proxy |
 | `tlsCertificatePath`    | Set path to TLS Certificate location                                          |
 | `tlsKeyPath`            | Set path to TLS Key location                                                  |
 | `runProxyOnPort`        | Defines the Port on which the gRPC Proxy will run                             |
