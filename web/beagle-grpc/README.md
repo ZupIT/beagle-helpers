@@ -3,7 +3,7 @@
 ## What is gRPC?
 ----------------
 
-It is an open source framework to perform RPC (Remote call procedure) calls, through the HTTP2 protocol in a two-way streaming format, using Protobufs as interfaces between client and server.
+It is an open source framework to perform RPC (Remote Call Procedure) calls, through the HTTP2 protocol in a two-way streaming format, using Protobufs as interfaces between client and server.
 
 Protobufs, or Protocol Buffers, are a structured data serialization mechanism created by Google, which aim to keep contracts always valid and consistent regarding the implementations that consume a gRPC service.
 
