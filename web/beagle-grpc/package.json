@@ -1,9 +1,11 @@
 {
-  "name": "beagle-web-grpc",
-  "version": "1.1.9",
-  "description": "Support GRPC for Beagle WEB",
+  "name": "@zup-it/beagle-web-grpc",
+  "version": "1.0.0",
+  "description": "Support gRPC for Beagle WEB",
   "main": "./dist/index.js",
-  "bin": "./dist/cli/index.js",
+  "bin": {
+    "beagle-web-grpc": "./dist/cli/index.js"
+  },
   "files": [
     "dist/**/*"
   ],
