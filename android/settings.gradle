@@ -19,6 +19,5 @@ include ':beagle-scaffold'
 include ':beagle-defaults-sample'
 include ':beagle-scaffold-sample'
 include ':android-test'
-include ':beagle-grpc'
 
 rootProject.name = "Beagle Libs"
