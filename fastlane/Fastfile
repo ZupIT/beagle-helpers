@@ -109,6 +109,8 @@ lane :deploy do
 
   (versionNumber, platformHotfix) = tagName.split("-")
 
+  ENV["VERSION_DEPLOY"] = versionNumber
+
   if platformHotfix == "iOS"
     puts "iOS release"
     sh "fastlane ios release_pods version:#{versionNumber} tag:#{tagName}"
