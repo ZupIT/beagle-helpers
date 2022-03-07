@@ -16,9 +16,10 @@
 
 import Foundation
 import Beagle
+import UIKit
 
 public var BeagleScaffoldDemoViewController: UIViewController {
     get {
-        return BeagleScreenViewController(.remote(.init(url: "/components")))
+        return BeagleScreenViewController(ScreenType.Remote(url: "/components"))
     }
 }

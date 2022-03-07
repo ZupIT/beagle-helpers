@@ -17,10 +17,10 @@
 
 import XCTest
 @testable import BeagleScaffold
-import Beagle
+@testable import Beagle
 import BeagleDefaults
 
-class DummyLogger: BeagleLoggerType {
+class DummyLogger: LoggerProtocol {
     func log(_ log: LogType) {
         // intentionally not implemented
     }
@@ -30,23 +30,7 @@ class DummyLogger: BeagleLoggerType {
     }
 }
 
-class DummyCacheManager: CacheManagerProtocol {
-    func addToCache(_ reference: CacheReference) {
-        // intentionally not implemented
-    }
-    
-    func getReference(identifiedBy id: String) -> CacheReference? {
-        // intentionally not implemented
-        return nil
-    }
-    
-    func isValid(reference: CacheReference) -> Bool {
-        // intentionally not implemented
-        return true
-    }
-}
-
-class DummyNetworkClient: NetworkClient {
+class DummyNetworkClient: NetworkClientProtocol {
     func executeRequest(_ request: Request, completion: @escaping RequestCompletion) -> RequestToken? {
         // intentionally not implemented
         return nil
@@ -57,7 +41,7 @@ class BeagleConfigTests: XCTestCase {
     
     /// These test cases suppose that a user creates a custom beagle dependencies, and we're seeing if this dependencies are actually set on Beagle.
     
-    let userDependencies = BeagleDependencies()
+    var userDependencies = BeagleDependencies()
     let baseUrl = "https://adopt-beagle.continuousplatform.com/scaffold"
     
     func test_whenUserGivesBaseUrl() {
@@ -68,22 +52,8 @@ class BeagleConfigTests: XCTestCase {
         BeagleConfig.start(dependencies: userDependencies)
 
         // Then
-        XCTAssertEqual(Beagle.dependencies.urlBuilder.baseUrl, URL(string: "BaseUrl"))
-        assertCacheManagerWasSet()
-        assertNetworkClientWasSet()
-        assertLoggerWasSet()
-    }
-    
-    func test_whenUserGivesCacheConfiguration() {
-        // Given
-        userDependencies.cacheManager = DummyCacheManager()
-        
-        // When
-        BeagleConfig.start(dependencies: userDependencies)
-        
-        // Then
-        XCTAssert(Beagle.dependencies.cacheManager is DummyCacheManager)
-        assertBaseUrlWasSet()
+        let urlBuilder: UrlBuilderProtocol = try! CurrentResolver.resolve()
+        XCTAssertEqual(urlBuilder.baseUrl, URL(string: "BaseUrl"))
         assertNetworkClientWasSet()
         assertLoggerWasSet()
     }
@@ -96,9 +66,9 @@ class BeagleConfigTests: XCTestCase {
         BeagleConfig.start(dependencies: userDependencies)
         
         // Then
-        XCTAssert(Beagle.dependencies.networkClient is DummyNetworkClient)
+        let networkClient: NetworkClientProtocol = try! CurrentResolver.resolve()
+        XCTAssert(networkClient is DummyNetworkClient)
         assertBaseUrlWasSet()
-        assertCacheManagerWasSet()
         assertLoggerWasSet()
     }
     
@@ -110,10 +80,9 @@ class BeagleConfigTests: XCTestCase {
         BeagleConfig.start(dependencies: userDependencies)
         
         // Then
-        let logger = (Beagle.dependencies.logger as? BeagleLoggerProxy)?.logger
-        XCTAssert(logger is DummyLogger)
+        let logger: LoggerProtocol = try! CurrentResolver.resolve()
+        XCTAssert((logger as? LoggerProxy)?.logger is DummyLogger)
         assertBaseUrlWasSet()
-        assertCacheManagerWasSet()
         assertNetworkClientWasSet()
     }
     
@@ -123,26 +92,23 @@ class BeagleConfigTests: XCTestCase {
         
         // Then
         assertBaseUrlWasSet()
-        assertCacheManagerWasSet()
         assertNetworkClientWasSet()
         assertLoggerWasSet()
     }
     
-    private func assertCacheManagerWasSet() {
-        XCTAssert(Beagle.dependencies.cacheManager is CacheManagerDefault)
-    }
-    
     private func assertLoggerWasSet() {
-        let logger = (Beagle.dependencies.logger as? BeagleLoggerProxy)?.logger
-        XCTAssert(logger is BeagleLoggerDefault)
+        let logger: LoggerProtocol = try! CurrentResolver.resolve()
+        XCTAssert((logger as? LoggerProxy)?.logger is BeagleLoggerDefault)
     }
     
     private func assertNetworkClientWasSet() {
-        XCTAssert(Beagle.dependencies.networkClient is NetworkClientDefault)
+        let networkClient: NetworkClientProtocol = try! CurrentResolver.resolve()
+        XCTAssert(networkClient is NetworkClientDefault)
     }
         
     private func assertBaseUrlWasSet() {
-        XCTAssertEqual(Beagle.dependencies.urlBuilder.baseUrl, URL(string: baseUrl))
+        let urlBuilder: UrlBuilderProtocol = try! CurrentResolver.resolve()
+        XCTAssertEqual(urlBuilder.baseUrl, URL(string: baseUrl))
     }
     
 }

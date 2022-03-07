@@ -17,7 +17,7 @@
 import Beagle
 import os.log
 
-public class BeagleLoggerDefault: BeagleLoggerType {
+public class BeagleLoggerDefault: LoggerProtocol {
 
     public init() {}
     

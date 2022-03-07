@@ -18,48 +18,24 @@ import Foundation
 import Beagle
 import BeagleDefaults
 
-public class BeagleConfig: DependencyLogger {
-    
-    public var logger: BeagleLoggerType = BeagleLoggerDefault()
+public class BeagleConfig {
     
     static private var baseURL = "https://adopt-beagle.continuousplatform.com/scaffold"
     
-    @discardableResult
-    static public func start(dependencies: BeagleDependencies? = nil) -> BeagleConfig {
-        let dependencyLogger = BeagleConfig()
-        Beagle.dependencies = scaffoldConfig(userDependencies: dependencies, with: dependencyLogger)
-        return dependencyLogger
-    }
-
-    static private func scaffoldConfig(userDependencies dependencies: BeagleDependencies?, with dependencyLogger: BeagleConfig) -> BeagleDependencies {
-        
-        let urlBuilder = { UrlBuilder(baseUrl: URL(string: baseURL)) }
-        let networkClient = { NetworkClientDefault(dependencies: dependencyLogger) }
-        let cacheManager = { CacheManagerDefault(dependencies: dependencyLogger) }
-        let logger = { BeagleLoggerDefault() }
-        
-        guard let dependencies = dependencies else {
-            let dependenciesNew = BeagleDependencies(networkClient: networkClient(), cacheManager: cacheManager(), logger: dependencyLogger.logger)
-            dependenciesNew.urlBuilder = urlBuilder()
-            return dependenciesNew
-        }
-        
-        if (dependencies.logger as? BeagleLoggerProxy)?.logger == nil {
-            dependencies.logger = logger()
-        }
+    static public func start(dependencies: BeagleDependencies = BeagleDependencies()) {
+        var dependencies = dependencies
         
         if dependencies.urlBuilder.baseUrl == nil {
-            dependencies.urlBuilder = urlBuilder()
+            dependencies.urlBuilder = UrlBuilder(baseUrl: URL(string: BeagleConfig.baseURL))
         }
-        
         if dependencies.networkClient == nil {
-            dependencies.networkClient = networkClient()
+            dependencies.networkClient = NetworkClientDefault()
         }
-        
-        if dependencies.cacheManager == nil {
-            dependencies.cacheManager = cacheManager()
+        if dependencies.logger == nil {
+            dependencies.logger = BeagleLoggerDefault()
         }
-
-        return dependencies
+            
+        BeagleConfigurator.setup(dependencies: dependencies)
     }
+
 }

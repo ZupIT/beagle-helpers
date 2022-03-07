@@ -2,15 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:beagle-scaffold-sample/sampleScaffold.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:beagle-defaults/BeagleDefaults.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:beagle-scaffold/BeagleScaffold.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
+      location = "group:beagle-scaffold-sample/sampleScaffold.xcodeproj">
    </FileRef>
 </Workspace>
