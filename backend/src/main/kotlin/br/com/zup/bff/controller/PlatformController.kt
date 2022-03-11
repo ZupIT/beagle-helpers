@@ -17,16 +17,12 @@
 package br.com.zup.bff.controller
 
 import br.com.zup.bff.constant.CUSTOM_PLATFORM_SAMPLE_ENDPOINT
-import br.com.zup.bff.constant.PLATFORM_SAMPLE_ENDPOINT
 import br.com.zup.bff.service.PlatformService
-import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class PlatformController(private val platformService: PlatformService) {
     @GetMapping(CUSTOM_PLATFORM_SAMPLE_ENDPOINT)
     fun renderComponentUsingPlatform() = this.platformService.renderComponentUsingPlatform()
-
-    @GetMapping(PLATFORM_SAMPLE_ENDPOINT)
-    fun renderComponent() = this.platformService.renderComponent()
 }

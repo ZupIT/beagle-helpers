@@ -17,48 +17,44 @@
 package br.com.zup.bff.component
 
 import br.com.zup.beagle.core.ServerDrivenComponent
-import br.com.zup.beagle.core.Style
-import br.com.zup.beagle.ext.applyFlex
-import br.com.zup.beagle.ext.applyStyle
-import br.com.zup.beagle.ext.unitReal
-import br.com.zup.bff.constant.LOGO_BEAGLE
+import br.com.zup.beagle.ext.setFlex
+import br.com.zup.beagle.ext.setStyle
 import br.com.zup.beagle.widget.Widget
 import br.com.zup.beagle.widget.core.AlignItems
 import br.com.zup.beagle.widget.core.EdgeValue
 import br.com.zup.beagle.widget.core.Flex
+import br.com.zup.beagle.widget.core.UnitValue
 import br.com.zup.beagle.widget.layout.ComposeComponent
 import br.com.zup.beagle.widget.layout.Container
 import br.com.zup.beagle.widget.ui.Image
 import br.com.zup.beagle.widget.ui.ImagePath.Local
 import br.com.zup.beagle.widget.ui.Text
+import br.com.zup.bff.constant.LOGO_BEAGLE
 
 class CustomComposeComponent : ComposeComponent {
     override fun build(): ServerDrivenComponent {
         return Container(
-            children = listOf(
-                buildTextBeagle(),
-                buildImageBeagle()
-            )
-        ).applyFlex(
-            flex = Flex(
-                alignItems = AlignItems.CENTER
-            )
-        )
+                children = listOf(
+                        buildTextBeagle(),
+                        buildImageBeagle()
+                )
+        ).setFlex {
+            alignItems = AlignItems.CENTER
+        }
+
     }
 
     private fun buildTextBeagle(): Widget {
         return Text("Beagle framework")
-            .applyStyle(
-                Style(
+                .setStyle {
                     flex = Flex(
-                        alignItems = AlignItems.CENTER
-                    ),
-                    margin = EdgeValue(
-                        top = 16.unitReal(),
-                        bottom = 16.unitReal()
+                            alignItems = AlignItems.CENTER
                     )
-                )
-            )
+                    margin = EdgeValue(
+                            top = UnitValue.real(16),
+                            bottom = UnitValue.real(16)
+                    )
+                }
     }
 
     private fun buildImageBeagle() = Image(Local.justMobile(LOGO_BEAGLE))

@@ -16,26 +16,19 @@
 
 package br.com.zup.bff.builder
 
-import br.com.zup.beagle.ext.applyFlex
-import br.com.zup.bff.constant.BLACK
-import br.com.zup.bff.constant.LIGHT_GREY
+import br.com.zup.beagle.ext.setFlex
 import br.com.zup.beagle.widget.action.Alert
 import br.com.zup.beagle.widget.action.SetContext
 import br.com.zup.beagle.widget.context.ContextData
 import br.com.zup.beagle.widget.context.expressionOf
 import br.com.zup.beagle.widget.core.AlignSelf
-import br.com.zup.beagle.widget.core.Flex
 import br.com.zup.beagle.widget.core.TextAlignment
-import br.com.zup.beagle.widget.layout.Container
-import br.com.zup.beagle.widget.layout.NavigationBar
-import br.com.zup.beagle.widget.layout.NavigationBarItem
-import br.com.zup.beagle.widget.layout.PageView
-import br.com.zup.beagle.widget.layout.Screen
-import br.com.zup.beagle.widget.layout.ScreenBuilder
+import br.com.zup.beagle.widget.layout.*
 import br.com.zup.beagle.widget.pager.PageIndicator
 import br.com.zup.beagle.widget.ui.Button
-import br.com.zup.beagle.widget.ui.ImagePath.Local
 import br.com.zup.beagle.widget.ui.Text
+import br.com.zup.bff.constant.BLACK
+import br.com.zup.bff.constant.LIGHT_GREY
 
 object PageViewScreenBuilder : ScreenBuilder {
     override fun build() = Screen(
@@ -45,13 +38,13 @@ object PageViewScreenBuilder : ScreenBuilder {
             navigationBarItems = listOf(
                 NavigationBarItem(
                     text = "",
-                    image = Local.justMobile("informationImage"),
-                    action = Alert(
+                    image = "informationImage",
+                    onPress = listOf(Alert(
                         title = "PageView",
                         message = "This component is a specialized container " +
                             "to hold pages (views) that may be swiped.",
                         labelOk = "OK"
-                    )
+                    ))
                 )
             )
         ),
@@ -63,12 +56,10 @@ object PageViewScreenBuilder : ScreenBuilder {
                 ),
                 PageView(
                     children = (1..3).map {
-                        Text("Page $it", alignment = TextAlignment.CENTER).applyFlex(
-                            Flex(
-                                alignSelf = AlignSelf.CENTER,
-                                grow = 1.0
-                            )
-                        )
+                        Text("Page $it", alignment = TextAlignment.CENTER).setFlex {
+                                    alignSelf = AlignSelf.CENTER
+                                    grow = 1.0
+                        }
                     },
                     onPageChange = listOf(SetContext("context", "@{onPageChange}")),
                     currentPage = expressionOf("@{context}")
@@ -81,6 +72,6 @@ object PageViewScreenBuilder : ScreenBuilder {
                 )
             ),
             context = ContextData("context", 0)
-        ).applyFlex(Flex(grow = 1.0))
+        ).setFlex { grow = 1.0 }
     )
 }

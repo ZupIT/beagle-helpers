@@ -17,47 +17,18 @@
 package br.com.zup.bff.builder
 
 import br.com.zup.beagle.annotation.BeaglePreview
-import br.com.zup.beagle.core.Style
-import br.com.zup.beagle.ext.applyStyle
-import br.com.zup.beagle.ext.unitReal
-import br.com.zup.bff.constant.ACCESSIBILITY_SCREEN_ENDPOINT
-import br.com.zup.bff.constant.BUTTON_STYLE
-import br.com.zup.bff.constant.CUSTOM_PLATFORM_SAMPLE_ENDPOINT
-import br.com.zup.bff.constant.NAVIGATION_TYPE_ENDPOINT
-import br.com.zup.bff.constant.PLATFORM_SAMPLE_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_ACTION_ADD_CHILDREN
-import br.com.zup.bff.constant.SCREEN_ACTION_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_ANALYTICS_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_BFF_NETWORK_IMAGE_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_BUILDER_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_BUTTON_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_COMPOSE_COMPONENT_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_CONTEXT_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_FORM_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_IMAGE_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_LAZY_COMPONENT_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_LIST_VIEW_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_NAVIGATION_BAR_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_NETWORK_IMAGE_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_PAGE_VIEW_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_SAFE_AREA_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_SCROLL_VIEW_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_SIMPLE_FORM_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_TAB_BAR_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_TAB_VIEW_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_TEXT_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_TEXT_INPUT_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_TOUCHABLE_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_WEB_VIEW_ENDPOINT
+import br.com.zup.beagle.ext.setStyle
 import br.com.zup.beagle.widget.action.Navigate
 import br.com.zup.beagle.widget.action.Route
 import br.com.zup.beagle.widget.core.EdgeValue
 import br.com.zup.beagle.widget.core.ScrollAxis
+import br.com.zup.beagle.widget.core.UnitValue
 import br.com.zup.beagle.widget.layout.NavigationBar
 import br.com.zup.beagle.widget.layout.Screen
 import br.com.zup.beagle.widget.layout.ScreenBuilder
 import br.com.zup.beagle.widget.layout.ScrollView
 import br.com.zup.beagle.widget.ui.Button
+import br.com.zup.bff.constant.*
 
 object ComponentScreenBuilder : ScreenBuilder {
     @BeaglePreview
@@ -106,10 +77,9 @@ object ComponentScreenBuilder : ScreenBuilder {
         onPress = listOf(Navigate.PushView(Route.Remote(path))
         ),
         styleId = BUTTON_STYLE
-    ).applyStyle(Style(
+    ).setStyle {
         margin = EdgeValue(
-            top = 8.unitReal()
+                top = UnitValue.real(8)
         )
-    )
-    )
+    }
 }

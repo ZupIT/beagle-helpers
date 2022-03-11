@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 ZUP IT SERVICOS EM TECNOLOGIA E INOVACAO SA
+ * Copyright 2020, 2022 ZUP IT SERVICOS EM TECNOLOGIA E INOVACAO SA
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,22 +16,19 @@
 
 package br.com.zup.bff.builder
 
-import br.com.zup.beagle.core.Style
-import br.com.zup.beagle.ext.applyStyle
-import br.com.zup.beagle.ext.unitPercent
-import br.com.zup.beagle.ext.unitReal
-import br.com.zup.bff.constant.TEXT_FONT_MAX
+import br.com.zup.beagle.ext.setStyle
 import br.com.zup.beagle.widget.action.Alert
 import br.com.zup.beagle.widget.core.ScrollAxis
 import br.com.zup.beagle.widget.core.Size
+import br.com.zup.beagle.widget.core.UnitValue
 import br.com.zup.beagle.widget.layout.Container
 import br.com.zup.beagle.widget.layout.NavigationBar
 import br.com.zup.beagle.widget.layout.NavigationBarItem
 import br.com.zup.beagle.widget.layout.Screen
 import br.com.zup.beagle.widget.layout.ScreenBuilder
 import br.com.zup.beagle.widget.layout.ScrollView
-import br.com.zup.beagle.widget.ui.ImagePath.Local
 import br.com.zup.beagle.widget.ui.Text
+import br.com.zup.bff.constant.TEXT_FONT_MAX
 
 object ScrollViewScreenBuilder : ScreenBuilder {
     override fun build() = Screen(
@@ -41,18 +38,19 @@ object ScrollViewScreenBuilder : ScreenBuilder {
             navigationBarItems = listOf(
                 NavigationBarItem(
                     text = "",
-                    image = Local.justMobile("informationImage"),
-                    action = Alert(
-                        title = "ScrollView",
-                        message = "This component is a specialized container that will display its " +
-                            "components in a Scroll like view.",
-                        labelOk = "OK"
+                    image = "informationImage",
+                    onPress = listOf(
+                        Alert(
+                            title = "ScrollView",
+                            message = "This component is a specialized container that will display its " +
+                                "components in a Scroll like view.",
+                            labelOk = "OK"
+                        )
                     )
                 )
             )
         ),
-        child = ScrollView(
-            scrollDirection = ScrollAxis.VERTICAL,
+        child = Container(
             children = listOf(
                 getVerticalScrollView(),
                 getHorizontalScrollView()
@@ -74,13 +72,11 @@ object ScrollViewScreenBuilder : ScreenBuilder {
                 scrollDirection = ScrollAxis.VERTICAL
             )
         )
-    ).applyStyle(Style(
-            size = Size(
-                height = 130.unitReal(),
-                width = 100.unitPercent()
-            )
+    ).setStyle {
+        size = Size(
+            height = UnitValue.real(130)
         )
-    )
+    }
 
     private fun getHorizontalScrollView() = Container(
         children = listOf(
@@ -91,13 +87,21 @@ object ScrollViewScreenBuilder : ScreenBuilder {
                     createText("Hello 2"),
                     createText("Hello 3"),
                     createText("Hello 4"),
-                    createText("Hello 5")
-
+                    createText("Hello 5"),
+                    createText("Hello 6"),
+                    createText("Hello 7"),
+                    createText("Hello 8"),
+                    createText("Hello 9"),
+                    createText("Hello 10"),
                 ),
                 scrollDirection = ScrollAxis.HORIZONTAL
             )
         )
-    )
+    ).setStyle {
+        size = Size(
+            height = UnitValue.real(130)
+        )
+    }
 
     private fun createText(text: String) = Text(text, TEXT_FONT_MAX)
 }

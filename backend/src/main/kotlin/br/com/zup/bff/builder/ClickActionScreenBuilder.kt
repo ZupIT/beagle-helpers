@@ -16,15 +16,14 @@
 
 package br.com.zup.bff.builder
 
-import br.com.zup.beagle.ext.applyFlex
-import br.com.zup.bff.constant.SCREEN_ACTION_CLICK_ENDPOINT
+import br.com.zup.beagle.ext.setFlex
 import br.com.zup.beagle.widget.core.AlignItems
-import br.com.zup.beagle.widget.core.Flex
 import br.com.zup.beagle.widget.core.JustifyContent
 import br.com.zup.beagle.widget.layout.NavigationBar
 import br.com.zup.beagle.widget.layout.Screen
 import br.com.zup.beagle.widget.layout.ScreenBuilder
 import br.com.zup.beagle.widget.ui.Text
+import br.com.zup.bff.constant.SCREEN_ACTION_CLICK_ENDPOINT
 
 object ClickActionScreenBuilder : ScreenBuilder {
     override fun build() = Screen(
@@ -35,11 +34,9 @@ object ClickActionScreenBuilder : ScreenBuilder {
         child = Text(
             text = "You clicked right",
             styleId = SCREEN_ACTION_CLICK_ENDPOINT
-        ).applyFlex(
-            flex = Flex(
-                justifyContent = JustifyContent.CENTER,
-                alignItems = AlignItems.CENTER
-            )
-        )
+        ).setFlex {
+            justifyContent = JustifyContent.CENTER
+            alignItems = AlignItems.CENTER
+        }
     )
 }

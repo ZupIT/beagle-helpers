@@ -16,45 +16,42 @@
 
 package br.com.zup.bff.builder
 
+import br.com.zup.beagle.ext.setFlex
 import br.com.zup.beagle.widget.action.Alert
-import br.com.zup.beagle.ext.applyFlex
-import br.com.zup.bff.constant.PATH_LAZY_COMPONENT_ENDPOINT
 import br.com.zup.beagle.widget.core.AlignSelf
-import br.com.zup.beagle.widget.core.Flex
 import br.com.zup.beagle.widget.core.JustifyContent
 import br.com.zup.beagle.widget.layout.NavigationBar
 import br.com.zup.beagle.widget.layout.NavigationBarItem
 import br.com.zup.beagle.widget.layout.Screen
 import br.com.zup.beagle.widget.layout.ScreenBuilder
 import br.com.zup.beagle.widget.lazy.LazyComponent
-import br.com.zup.beagle.widget.ui.ImagePath.Local
 import br.com.zup.beagle.widget.ui.Text
+import br.com.zup.bff.constant.PATH_LAZY_COMPONENT_ENDPOINT
 
 object LazyComponentScreenBuilder : ScreenBuilder {
     override fun build() = Screen(
-        navigationBar = NavigationBar(
-            title = "Beagle LazyComponent",
-            showBackButton = true,
-            navigationBarItems = listOf(
-                NavigationBarItem(
-                    text = "",
-                    image = Local.justMobile("informationImage"),
-                    action = Alert(
-                        title = "Lazy Component",
-                        message = "A widget that implements loading.",
-                        labelOk = "OK"
+            navigationBar = NavigationBar(
+                    title = "Beagle LazyComponent",
+                    showBackButton = true,
+                    navigationBarItems = listOf(
+                            NavigationBarItem(
+                                    text = "",
+                                    image = "informationImage",
+                                    onPress = listOf(Alert(
+                                            title = "Lazy Component",
+                                            message = "A widget that implements loading.",
+                                            labelOk = "OK"
+                                    ))
+                            )
                     )
-                )
+            ),
+            child = LazyComponent(
+                    path = PATH_LAZY_COMPONENT_ENDPOINT,
+                    initialState = Text("Loading...").setFlex {
+                        justifyContent = JustifyContent.CENTER
+                        alignSelf = AlignSelf.CENTER
+                    }
             )
-        ),
-        child = LazyComponent(
-            path = PATH_LAZY_COMPONENT_ENDPOINT,
-            initialState = Text("Loading...").applyFlex(
-                flex = Flex(
-                    justifyContent = JustifyContent.CENTER,
-                    alignSelf = AlignSelf.CENTER
-                )
-            )
-        )
     )
+
 }

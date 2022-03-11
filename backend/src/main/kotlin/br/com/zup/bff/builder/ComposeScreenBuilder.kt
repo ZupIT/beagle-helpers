@@ -17,12 +17,11 @@
 package br.com.zup.bff.builder
 
 import br.com.zup.beagle.widget.action.Alert
-import br.com.zup.bff.component.CustomComposeComponent
 import br.com.zup.beagle.widget.layout.NavigationBar
 import br.com.zup.beagle.widget.layout.NavigationBarItem
 import br.com.zup.beagle.widget.layout.Screen
 import br.com.zup.beagle.widget.layout.ScreenBuilder
-import br.com.zup.beagle.widget.ui.ImagePath.Local
+import br.com.zup.bff.component.CustomComposeComponent
 
 object ComposeScreenBuilder : ScreenBuilder {
     override fun build() = Screen(
@@ -32,12 +31,12 @@ object ComposeScreenBuilder : ScreenBuilder {
             navigationBarItems = listOf(
                 NavigationBarItem(
                     text = "",
-                    image = Local.justMobile("informationImage"),
-                    action = Alert(
+                    image = "informationImage",
+                    onPress = listOf(Alert(
                         title = "Compose Component",
                         message = "Creates components to call in different places.",
                         labelOk = "OK"
-                    )
+                    ))
                 )
             )
         ),

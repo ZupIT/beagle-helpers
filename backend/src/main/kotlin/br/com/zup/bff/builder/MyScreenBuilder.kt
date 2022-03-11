@@ -21,7 +21,6 @@ import br.com.zup.beagle.widget.layout.NavigationBar
 import br.com.zup.beagle.widget.layout.NavigationBarItem
 import br.com.zup.beagle.widget.layout.Screen
 import br.com.zup.beagle.widget.layout.ScreenBuilder
-import br.com.zup.beagle.widget.ui.ImagePath.Local
 import br.com.zup.beagle.widget.ui.Text
 
 class MyScreenBuilder(private val title: String) : ScreenBuilder {
@@ -32,12 +31,12 @@ class MyScreenBuilder(private val title: String) : ScreenBuilder {
             navigationBarItems = listOf(
                 NavigationBarItem(
                     text = "",
-                    image = Local.justMobile("informationImage"),
-                    action = Alert(
+                    image = "informationImage",
+                    onPress = listOf(Alert(
                         title = "Screen",
                         message = "This component description and attribute details",
                         labelOk = "OK"
-                    )
+                    ))
                 )
             )
         ),

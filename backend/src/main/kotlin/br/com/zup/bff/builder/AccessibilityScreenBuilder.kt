@@ -16,110 +16,95 @@
 
 package br.com.zup.bff.builder
 
+import br.com.zup.beagle.ext.setAccessibility
+import br.com.zup.beagle.ext.setStyle
 import br.com.zup.beagle.widget.action.Alert
-import br.com.zup.beagle.core.Accessibility
-import br.com.zup.beagle.core.Style
-import br.com.zup.beagle.ext.applyAccessibility
-import br.com.zup.beagle.ext.applyStyle
-import br.com.zup.beagle.ext.unitReal
-import br.com.zup.bff.constant.BUTTON_STYLE_ACCESSIBILITY
-import br.com.zup.beagle.widget.core.AlignItems
-import br.com.zup.beagle.widget.core.EdgeValue
-import br.com.zup.beagle.widget.core.Flex
-import br.com.zup.beagle.widget.core.Size
-import br.com.zup.beagle.widget.layout.Container
-import br.com.zup.beagle.widget.layout.NavigationBar
-import br.com.zup.beagle.widget.layout.NavigationBarItem
-import br.com.zup.beagle.widget.layout.Screen
-import br.com.zup.beagle.widget.layout.ScreenBuilder
+import br.com.zup.beagle.widget.core.*
+import br.com.zup.beagle.widget.layout.*
 import br.com.zup.beagle.widget.ui.Button
-import br.com.zup.beagle.widget.ui.ImagePath.Local
 import br.com.zup.beagle.widget.ui.Text
+import br.com.zup.bff.constant.BUTTON_STYLE_ACCESSIBILITY
 
 object AccessibilityScreenBuilder : ScreenBuilder {
     override fun build() = Screen(
-        navigationBar = NavigationBar(
-            title = "Beagle Accessibility Screen",
-            showBackButton = true,
-            navigationBarItems = listOf(
-                NavigationBarItem(
-                    text = "",
-                    image = Local.justMobile("informationImage"),
-                    action = Alert(
-                        title = "Accessibility Screen",
-                        message = "This method applies accessibility in a widget",
-                        labelOk = "OK"
+            navigationBar = NavigationBar(
+                    title = "Beagle Accessibility Screen",
+                    showBackButton = true,
+                    navigationBarItems = listOf(
+                            NavigationBarItem(
+                                    text = "",
+                                    image = "informationImage",
+                                    onPress = listOf(Alert(
+                                            title = "Accessibility Screen",
+                                            message = "This method applies accessibility in a widget",
+                                            labelOk = "OK"
+                                    ))
+                            )
                     )
-                )
+            ),
+            child = Container(
+                    children = listOf(
+                            textAccessibility(
+                                    text = "Accessibility Testing",
+                                    accessibilityLabel = "first text",
+                                    accessible = true
+                            ),
+                            textAccessibility(
+                                    text = "Accessibility disabled test",
+                                    accessibilityLabel = "second text",
+                                    accessible = false
+                            ),
+                            buttonAccessibility(
+                                    textButton = "First Text button",
+                                    accessibilityLabel = "This is a button as title",
+                                    accessible = true
+                            ),
+                            buttonAccessibility(
+                                    textButton = "Second Text button",
+                                    accessible = true
+                            )
+                    )
             )
-        ),
-        child = Container(
-            children = listOf(
-                textAccessibility(
-                    text = "Accessibility Testing",
-                    accessibilityLabel = "first text",
-                    accessible = true
-                ),
-                textAccessibility(
-                    text = "Accessibility disabled test",
-                    accessibilityLabel = "second text",
-                    accessible = false
-                ),
-                buttonAccessibility(
-                    textButton = "First Text button",
-                    accessibilityLabel = "This is a button as title",
-                    accessible = true
-                ),
-                buttonAccessibility(
-                    textButton = "Second Text button",
-                    accessible = true
-                )
-            )
-        )
     )
 
     private fun textAccessibility(
-        text: String,
-        accessibilityLabel: String,
-        accessible: Boolean
+            text: String,
+            accessibilityLabel: String,
+            accessible: Boolean
     ) =
-        Text(
-            text = text
-        ).applyAccessibility(
-            accessibility = Accessibility(
-                accessible = accessible,
-                accessibilityLabel = accessibilityLabel
-            )
-        ).applyStyle(Style(
+            Text(
+                    text = text
+            ).setAccessibility {
+                this.accessible = accessible
+                this.accessibilityLabel = accessibilityLabel
+            }.setStyle {
                 margin = EdgeValue(
-                    top = 8.unitReal(),
-                    bottom = 8.unitReal()),
-                flex = Flex( alignItems = AlignItems.CENTER))
-        )
+                        top = UnitValue.real(8),
+                        bottom = UnitValue.real(8)
+                )
+                flex = Flex(alignItems = AlignItems.CENTER)
+            }
 
     private fun buttonAccessibility(
-        textButton: String,
-        accessibilityLabel: String? = null,
-        accessible: Boolean
+            textButton: String,
+            accessibilityLabel: String? = null,
+            accessible: Boolean
     ) =
-        Button(
-            text = textButton,
-            styleId = BUTTON_STYLE_ACCESSIBILITY
-        ).applyStyle(Style(
-            margin = EdgeValue(
-                top = 8.unitReal(),
-                bottom = 8.unitReal()
-            ),
-            size = Size(
-                height = 40.unitReal()
-            ),
-            flex = Flex(
-                alignItems = AlignItems.CENTER)
-        )
-        ).applyAccessibility(
-            accessibility = Accessibility(
-                accessible = accessible,
-                accessibilityLabel = accessibilityLabel
-            )
-        )
+            Button(
+                    text = textButton,
+                    styleId = BUTTON_STYLE_ACCESSIBILITY
+            ).setStyle {
+                margin = EdgeValue(
+                        top = UnitValue.real(8),
+                        bottom = UnitValue.real(8)
+                )
+                size = Size(
+                        height = UnitValue.real(40),
+                )
+                flex = Flex(
+                        alignItems = AlignItems.CENTER)
+            }.setAccessibility {
+                this.accessible = accessible
+                this.accessibilityLabel = accessibilityLabel
+            }
 }

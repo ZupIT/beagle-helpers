@@ -17,7 +17,7 @@
 package br.com.zup.bff.widget
 
 import br.com.zup.beagle.annotation.RegisterWidget
-import br.com.zup.beagle.widget.form.InputWidget
+import br.com.zup.beagle.widget.Widget
 
 @RegisterWidget
-class SampleTextField(val placeholder: String) : InputWidget()
+class SampleTextField(val placeholder: String) : Widget()

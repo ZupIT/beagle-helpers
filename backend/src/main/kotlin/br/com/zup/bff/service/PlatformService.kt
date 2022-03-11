@@ -18,12 +18,9 @@ package br.com.zup.bff.service
 
 import br.com.zup.beagle.spring.util.BeagleSessionUtil
 import br.com.zup.bff.builder.CustomPlatformBuilder
-import br.com.zup.bff.builder.PlatformBuilder
 import org.springframework.stereotype.Service
 
 @Service
 class PlatformService {
     fun renderComponentUsingPlatform() = CustomPlatformBuilder(BeagleSessionUtil.getBeaglePlatformFromSession())
-
-    fun renderComponent() = PlatformBuilder
 }

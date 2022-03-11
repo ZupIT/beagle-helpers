@@ -48,7 +48,7 @@ class SampleNavigationBarService {
         navigationBarItems = listOf(
             NavigationBarItem(
                 text = "Entrar",
-                action = Navigate.PushView(Route.Remote(SCREEN_ACTION_CLICK_ENDPOINT))
+                onPress = listOf(Navigate.PushView(Route.Remote(SCREEN_ACTION_CLICK_ENDPOINT)))
             )
         )
     )
@@ -59,8 +59,8 @@ class SampleNavigationBarService {
         navigationBarItems = listOf(
             NavigationBarItem(
                 text = "",
-                image = Local.justMobile(LOGO_BEAGLE),
-                action = Navigate.PushView(Route.Remote(SCREEN_ACTION_CLICK_ENDPOINT))
+                image = LOGO_BEAGLE,
+                onPress = listOf(Navigate.PushView(Route.Remote(SCREEN_ACTION_CLICK_ENDPOINT)))
             )
         )
     )

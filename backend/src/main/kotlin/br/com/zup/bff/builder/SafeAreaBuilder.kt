@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 ZUP IT SERVICOS EM TECNOLOGIA E INOVACAO SA
+ * Copyright 2020, 2022 ZUP IT SERVICOS EM TECNOLOGIA E INOVACAO SA
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,19 +16,16 @@
 
 package br.com.zup.bff.builder
 
-import br.com.zup.beagle.core.Style
-import br.com.zup.beagle.ext.applyStyle
-import br.com.zup.beagle.ext.unitReal
-import br.com.zup.bff.constant.LOGO_BEAGLE
-import br.com.zup.bff.constant.SCREEN_SAFE_AREA_FALSE_ENDPOINT
-import br.com.zup.bff.constant.SCREEN_SAFE_AREA_TRUE_ENDPOINT
+import br.com.zup.beagle.ext.setStyle
 import br.com.zup.beagle.widget.action.Alert
 import br.com.zup.beagle.widget.action.Navigate
 import br.com.zup.beagle.widget.action.Route
+import br.com.zup.beagle.widget.context.constant
 import br.com.zup.beagle.widget.core.AlignItems
 import br.com.zup.beagle.widget.core.AlignSelf
 import br.com.zup.beagle.widget.core.EdgeValue
 import br.com.zup.beagle.widget.core.Flex
+import br.com.zup.beagle.widget.core.UnitValue
 import br.com.zup.beagle.widget.layout.Container
 import br.com.zup.beagle.widget.layout.NavigationBar
 import br.com.zup.beagle.widget.layout.SafeArea
@@ -38,8 +35,11 @@ import br.com.zup.beagle.widget.ui.Button
 import br.com.zup.beagle.widget.ui.Image
 import br.com.zup.beagle.widget.ui.ImagePath
 import br.com.zup.beagle.widget.ui.Text
+import br.com.zup.bff.constant.LOGO_BEAGLE
+import br.com.zup.bff.constant.SCREEN_SAFE_AREA_FALSE_ENDPOINT
+import br.com.zup.bff.constant.SCREEN_SAFE_AREA_TRUE_ENDPOINT
 
-object SafeAreaBuilder: ScreenBuilder {
+object SafeAreaBuilder : ScreenBuilder {
     override fun build() = Screen(
         navigationBar = NavigationBar(
             title = "Beagle Safe Area",
@@ -68,35 +68,29 @@ object SafeAreaBuilder: ScreenBuilder {
     )
 
     fun createScreen(safeArea: Boolean): Screen = Screen(
-            navigationBar = NavigationBar(
-                title = "Beagle Safe Area",
-                showBackButton = true
-            ),
-            child = Container(
-                listOf(
-                    Text("Safe area $safeArea").applyStyle(
-                        Style(
-                            margin = EdgeValue(top = 100.unitReal()),
-                            flex = Flex(
-                                alignSelf = AlignSelf.CENTER
-                            )
-                        )
-                    ),
-                    Image(ImagePath.Local.justMobile(LOGO_BEAGLE)).applyStyle(
-                        Style(
-                            margin = EdgeValue(top = 100.unitReal())
-                        )
-                    )
-                )
-        ).applyStyle(
-            Style(
-                backgroundColor = "#b7efcd",
-                flex = Flex(
-                    grow = 1.0,
-                    alignItems = AlignItems.CENTER
-                )
-            )
+        navigationBar = NavigationBar(
+            title = "Beagle Safe Area",
+            showBackButton = true
         ),
+        child = Container(
+            listOf(
+                Text("Safe area $safeArea").setStyle {
+                    margin = EdgeValue(top = UnitValue.real(100))
+                    flex = Flex(
+                        alignSelf = AlignSelf.CENTER
+                    )
+                },
+                Image(ImagePath.Local.justMobile(LOGO_BEAGLE)).setStyle {
+                    margin = EdgeValue(top = UnitValue.real(100))
+                }
+            )
+        ).setStyle {
+            backgroundColor = constant("#b7efcd")
+            flex = Flex(
+                grow = 1.0,
+                alignItems = AlignItems.CENTER
+            )
+        },
         safeArea = SafeArea(
             top = safeArea,
             bottom = safeArea,

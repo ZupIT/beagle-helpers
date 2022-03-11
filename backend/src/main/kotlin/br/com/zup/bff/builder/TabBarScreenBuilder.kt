@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 ZUP IT SERVICOS EM TECNOLOGIA E INOVACAO SA
+ * Copyright 2020, 2022 ZUP IT SERVICOS EM TECNOLOGIA E INOVACAO SA
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,8 @@ import br.com.zup.beagle.widget.ui.ImagePath.Local
 import br.com.zup.beagle.widget.ui.TabBar
 import br.com.zup.beagle.widget.ui.TabBarItem
 import br.com.zup.beagle.widget.ui.Text
-import br.com.zup.bff.dto.TabBarSimpleObject
+
+data class TabBarSimpleObject(val page: Int, val image: String)
 
 object TabBarScreenBuilder : ScreenBuilder {
     private val tab1 = TabBarItem(
@@ -61,12 +62,14 @@ object TabBarScreenBuilder : ScreenBuilder {
             navigationBarItems = listOf(
                 NavigationBarItem(
                     text = "",
-                    image = Local.justMobile("informationImage"),
-                    action = Alert(
-                        title = "TabBar",
-                        message = " Is a component that will make the navigation between views. It may happen by " +
-                            "sliding through screens or by clicking at the tabs shown. ",
-                        labelOk = "OK"
+                    image = "informationImage",
+                    onPress = listOf(
+                        Alert(
+                            title = "TabBar",
+                            message = " Is a component that will make the navigation between views. It may happen by " +
+                                "sliding through screens or by clicking at the tabs shown. ",
+                            labelOk = "OK"
+                        )
                     )
                 )
             )

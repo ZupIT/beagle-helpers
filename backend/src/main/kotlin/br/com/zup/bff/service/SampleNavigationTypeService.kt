@@ -17,32 +17,21 @@
 package br.com.zup.bff.service
 
 import br.com.zup.beagle.core.CornerRadius
-import br.com.zup.beagle.core.Style
-import br.com.zup.beagle.ext.applyStyle
-import br.com.zup.beagle.ext.unitReal
-import br.com.zup.bff.constant.BUTTON_STYLE_APPEARANCE
-import br.com.zup.bff.constant.CYAN_BLUE
-import br.com.zup.bff.constant.CYAN_GREEN
-import br.com.zup.bff.constant.LIGHT_ORANGE
-import br.com.zup.bff.constant.LIGHT_RED
-import br.com.zup.bff.constant.NAVIGATION_TYPE_ENDPOINT
-import br.com.zup.bff.constant.RED
-import br.com.zup.bff.constant.RED_ORANGE
-import br.com.zup.bff.constant.REPRESENTATION_NAVIGATION_TYPE_STEP2_ENDPOINT
-import br.com.zup.bff.constant.REPRESENTATION_NAVIGATION_TYPE_STEP3_ENDPOINT
-import br.com.zup.bff.constant.REPRESENTATION_PRESENT_ENDPOINT
+import br.com.zup.beagle.ext.setStyle
 import br.com.zup.beagle.widget.action.Alert
 import br.com.zup.beagle.widget.action.Navigate
 import br.com.zup.beagle.widget.action.Route
+import br.com.zup.beagle.widget.context.Bind
 import br.com.zup.beagle.widget.context.ContextData
 import br.com.zup.beagle.widget.context.expressionOf
 import br.com.zup.beagle.widget.core.EdgeValue
+import br.com.zup.beagle.widget.core.UnitValue
 import br.com.zup.beagle.widget.layout.Container
 import br.com.zup.beagle.widget.layout.NavigationBar
 import br.com.zup.beagle.widget.layout.NavigationBarItem
 import br.com.zup.beagle.widget.layout.Screen
 import br.com.zup.beagle.widget.ui.Button
-import br.com.zup.beagle.widget.ui.ImagePath.Local
+import br.com.zup.bff.constant.*
 import org.springframework.stereotype.Service
 
 @Service
@@ -68,12 +57,12 @@ class SampleNavigationTypeService {
             navigationBarItems = listOf(
                 NavigationBarItem(
                     text = "",
-                    image = Local.justMobile("informationImage"),
-                    action = Alert(
-                        title = "Navigation Type",
-                        message = "Decide the type of navigation.",
-                        labelOk = "OK"
-                    )
+                    image = "informationImage",
+                    onPress = listOf(Alert(
+                            title = "Navigation Type",
+                            message = "Decide the type of navigation.",
+                            labelOk = "OK"
+                    ))
                 )
             )
         ),
@@ -162,15 +151,14 @@ class SampleNavigationTypeService {
             text = text,
             styleId = BUTTON_STYLE_APPEARANCE,
             onPress = listOf(navigate)
-        ).applyStyle(
-            Style(
-                backgroundColor = backgroundColor,
-                cornerRadius = CornerRadius(radius = 10.0),
-                margin = EdgeValue(
-                    left = 30.unitReal(),
-                    right = 30.unitReal(),
-                    top = 15.unitReal()
-                )
+        ).setStyle{
+            this.backgroundColor = Bind.constant(backgroundColor)
+            cornerRadius = CornerRadius(radius = Bind.constant(10.0))
+            margin = EdgeValue(
+                left = UnitValue.real(30),
+                right = UnitValue.real(30),
+                top = UnitValue.real(15)
             )
-        )
+
+    }
 }

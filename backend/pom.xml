@@ -17,7 +17,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<kotlin.version>1.4.21</kotlin.version>
-		<beagle.version>1.5.0</beagle.version>
+		<beagle.version>1.10.2-SNAPSHOT</beagle.version>
 		<log4j2.version>2.17.1</log4j2.version>
 	</properties>
 
@@ -76,5 +76,11 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<repositories>
+		<repository>
+			<id>beagle-snapshots</id>
+			<name>Beagle Repository Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</repository>
+	</repositories>
 </project>

@@ -16,15 +16,14 @@
 
 package br.com.zup.bff.builder
 
-import br.com.zup.beagle.ext.applyFlex
-import br.com.zup.bff.constant.TEXT_FONT_MAX
+import br.com.zup.beagle.ext.setFlex
 import br.com.zup.beagle.widget.core.AlignItems
-import br.com.zup.beagle.widget.core.Flex
 import br.com.zup.beagle.widget.layout.NavigationBar
 import br.com.zup.beagle.widget.layout.NavigationBarItem
 import br.com.zup.beagle.widget.layout.Screen
 import br.com.zup.beagle.widget.layout.ScreenBuilder
 import br.com.zup.beagle.widget.ui.Text
+import br.com.zup.bff.constant.TEXT_FONT_MAX
 
 class NavigationBarScreenBuilder(
     private val titleNavigation: String,
@@ -43,9 +42,7 @@ class NavigationBarScreenBuilder(
     )
 
     private fun createBeagleText(text: String) = Text(text = text, styleId = TEXT_FONT_MAX)
-        .applyFlex(
-            flex = Flex(
-                alignItems = AlignItems.CENTER
-            )
-        )
+        .setFlex {
+            alignItems = AlignItems.CENTER
+        }
 }
