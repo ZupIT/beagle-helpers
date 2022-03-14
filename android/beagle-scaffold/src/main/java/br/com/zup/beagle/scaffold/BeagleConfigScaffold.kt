@@ -18,16 +18,9 @@
 package br.com.zup.beagle.scaffold
 
 import br.com.zup.beagle.android.setup.BeagleConfig
-import br.com.zup.beagle.android.setup.Cache
 import br.com.zup.beagle.android.setup.Environment
 
 open class BeagleConfigScaffold(
     override val environment: Environment = Environment.DEBUG,
-    override val baseUrl: String = "https://adopt-beagle.continuousplatform.com/scaffold",
-    override val isLoggingEnabled: Boolean = true,
-    override val cache: Cache = Cache(
-        enabled = false,
-        maxAge = 300,
-        size = 15
-    )
+    override val baseUrl: String = "https://adopt-beagle.continuousplatform.com/scaffold"
 ) : BeagleConfig

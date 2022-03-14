@@ -15,25 +15,21 @@
  *
  */
 
-package br.com.zup.beagle.defaults.cache
+package br.com.zup.beagle.defaults.sample.beagle
 
-import br.com.zup.beagle.android.store.LocalStore
+import br.com.zup.beagle.android.annotation.BeagleComponent
+import br.com.zup.beagle.android.networking.HttpClient
+import br.com.zup.beagle.android.networking.HttpClientFactory
+import br.com.zup.beagle.defaults.httpclient.HttpClientDefault
 
-object MemoryLocalStore : LocalStore {
-    private val cache = mutableMapOf<String, String>()
-    override fun save(key: String, value: String) {
-        cache[key] = value
+@BeagleComponent
+class HttpClientFactoryDefault : HttpClientFactory {
+
+    override fun create(): HttpClient {
+        return HTTP_CLIENT
     }
 
-    override fun restore(key: String): String? {
-        return cache[key]
-    }
-
-    override fun delete(key: String) {
-        cache.remove(key)
-    }
-
-    override fun getAll(): Map<String, String> {
-        return cache.toMap()
+    companion object {
+        val HTTP_CLIENT = HttpClientDefault()
     }
 }
