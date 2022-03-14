@@ -30,6 +30,7 @@ import kotlinx.coroutines.launch
 import java.io.EOFException
 import java.net.HttpURLConnection
 import java.net.URI
+import kotlin.collections.forEach as kForEach
 
 typealias OnSuccess = (responseData: ResponseData) -> Unit
 typealias OnError = (responseData: ResponseData) -> Unit
@@ -84,11 +85,11 @@ open class HttpClientDefault : HttpClient, CoroutineScope {
             throw BeagleApiException(ResponseData(-1, data = byteArrayOf()), request)
         }
 
-        request.httpAdditionalData.headers?.forEach {
-            urlConnection.setRequestProperty(it.key, it.value)
+        request.httpAdditionalData.headers.kForEach {(key, value) ->
+            urlConnection.setRequestProperty(key, value)
         }
 
-        request.httpAdditionalData.method?.let { addRequestMethod(urlConnection, it) }
+        request.httpAdditionalData.method.let { addRequestMethod(urlConnection, it) }
 
         request.httpAdditionalData.body?.run {
             setRequestBody(urlConnection, request)
@@ -132,7 +133,7 @@ open class HttpClientDefault : HttpClient, CoroutineScope {
     private fun setRequestBody(urlConnection: HttpURLConnection, request: RequestData) {
         try {
             urlConnection.doOutput = true
-            urlConnection.outputStream.write(request.httpAdditionalData.body?.toByteArray())
+            urlConnection.outputStream.write(request.httpAdditionalData.body?.toString()?.toByteArray())
             urlConnection.outputStream.flush()
         } catch (e: Exception) {
             throw BeagleApiException(ResponseData(-1, data = byteArrayOf()), request)

@@ -17,17 +17,19 @@
 
 package br.com.zup.beagle.defaults.httpclient
 
+import br.com.zup.beagle.android.networking.HttpAdditionalData
 import br.com.zup.beagle.android.networking.HttpMethod
-import br.com.zup.beagle.android.networking.RequestCall
 import br.com.zup.beagle.android.networking.RequestData
 import br.com.zup.beagle.android.networking.ResponseData
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
-import org.junit.Rule
-import org.junit.jupiter.api.*
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import java.io.EOFException
 import java.io.InputStream
 import java.io.OutputStream
@@ -50,6 +52,8 @@ class HttpClientDefaultTest {
 
     @MockK
     private lateinit var url: URL
+
+    private var urlString: String = "https://www.sample.com"
 
     @MockK
     private lateinit var inputStream: InputStream
@@ -116,8 +120,8 @@ class HttpClientDefaultTest {
             Pair("header2", "value2")
         )
         val requestData = RequestData(
-            uri = uri,
-            headers = headers
+            url = urlString,
+            httpAdditionalData = HttpAdditionalData(headers = headers)
         )
 
         // When
@@ -137,9 +141,8 @@ class HttpClientDefaultTest {
         val data = "data"
         val outputStream = mockk<OutputStream>()
         val requestData = RequestData(
-            uri = uri,
-            body = data,
-            method = HttpMethod.POST
+            url = urlString,
+            httpAdditionalData = HttpAdditionalData(method = HttpMethod.POST, body = "body")
         )
         every { httpURLConnection.outputStream } returns outputStream
         every { outputStream.write(any<ByteArray>()) } just Runs
@@ -161,125 +164,125 @@ class HttpClientDefaultTest {
     }
 
     @Test
-    fun `Given request with method type POST and with body content WHEN call execute request should return error`() = runBlockingTest {
-        // Given
-        val requestData = RequestData(
-            uri = uri,
-            body = "body",
-            method = HttpMethod.POST
-        )
-        every { httpURLConnection.outputStream } throws UnknownServiceException()
+    fun `Given request with method type POST and with body content WHEN call execute request should return error`() =
+        runBlockingTest {
+            // Given
+            val requestData = RequestData(
+                url = urlString,
+                httpAdditionalData = HttpAdditionalData(method = HttpMethod.POST, body = "body")
+            )
+            every { httpURLConnection.outputStream } throws UnknownServiceException()
 
-        // When
-        urlRequestDispatchingDefault.execute(requestData, onSuccess = {
-        }, onError = {
-            assertEquals(ResponseData(-1, data = byteArrayOf()), it)
-        })
+            // When
+            urlRequestDispatchingDefault.execute(requestData, onSuccess = {
+            }, onError = {
+                assertEquals(ResponseData(-1, data = byteArrayOf()), it)
+            })
 
-    }
-
-    @Test
-    fun execute_should_throw_IllegalArgumentException_when_data_is_set_for_HttpMethod_GET() = runBlockingTest {
-        // Given
-        val method = HttpMethod.GET
-        val requestData = RequestData(
-            uri = uri,
-            body = "body",
-            method = method
-        )
-
-        // When
-        urlRequestDispatchingDefault.execute(requestData, onSuccess = {}, onError = {
-            // Then
-            assertEquals(-1, it.statusCode)
-            assertEquals(0, it.data.size)
-            assertEquals(0, it.headers.size)
-        })
-    }
+        }
 
     @Test
-    fun execute_should_throw_IllegalArgumentException_when_data_is_set_for_HttpMethod_DELETE() = runBlockingTest {
-        // Given
-        val method = HttpMethod.DELETE
-        val requestData = RequestData(
-            uri = uri,
-            body = "body",
-            method = method
-        )
+    fun execute_should_throw_IllegalArgumentException_when_data_is_set_for_HttpMethod_GET() =
+        runBlockingTest {
+            // Given
+            val method = HttpMethod.GET
+            val requestData = RequestData(
+                url = urlString,
+                httpAdditionalData = HttpAdditionalData(method = method, body = "body")
+            )
 
-        // When
-        urlRequestDispatchingDefault.execute(requestData, onSuccess = {}, onError = {
-            // Then
-            assertEquals(-1, it.statusCode)
-            assertEquals(0, it.data.size)
-            assertEquals(0, it.headers.size)
-        })
-    }
-
-    @Test
-    fun execute_should_throw_IllegalArgumentException_when_data_is_set_for_HttpMethod_HEAD() = runBlockingTest {
-        // Given
-        val method = HttpMethod.HEAD
-        val requestData = RequestData(
-            uri = uri,
-            body = "body",
-            method = method
-        )
-
-        // When
-        urlRequestDispatchingDefault.execute(requestData, onSuccess = {}, onError = {
-            // Then
-            assertEquals(-1, it.statusCode)
-            assertEquals(0, it.data.size)
-            assertEquals(0, it.headers.size)
-        })
-    }
+            // When
+            urlRequestDispatchingDefault.execute(requestData, onSuccess = {}, onError = {
+                // Then
+                assertEquals(-1, it.statusCode)
+                assertEquals(0, it.data.size)
+                assertEquals(0, it.headers.size)
+            })
+        }
 
     @Test
-    fun `GIVEN request data with invalid uri when execute request THEN it should throw exception`() = runBlockingTest {
-        // Given
-        every { uri.toURL() } throws IllegalArgumentException("URI is not absolute")
-        val method = HttpMethod.GET
-        val requestData = RequestData(
-            uri = uri,
-            body = "body",
-            method = method
-        )
+    fun execute_should_throw_IllegalArgumentException_when_data_is_set_for_HttpMethod_DELETE() =
+        runBlockingTest {
+            // Given
+            val method = HttpMethod.DELETE
+            val requestData = RequestData(
+                url = urlString,
+                httpAdditionalData = HttpAdditionalData(method = method, body = "body")
+            )
 
-        // When
-        urlRequestDispatchingDefault.execute(requestData, onSuccess = {}, onError = {
-            // Then
-            assertEquals(-1, it.statusCode)
-            assertEquals(0, it.data.size)
-            assertEquals(0, it.headers.size)
-        })
-    }
+            // When
+            urlRequestDispatchingDefault.execute(requestData, onSuccess = {}, onError = {
+                // Then
+                assertEquals(-1, it.statusCode)
+                assertEquals(0, it.data.size)
+                assertEquals(0, it.headers.size)
+            })
+        }
 
     @Test
-    fun execute_should_throw_IllegalStateException_when_data_is_set_for_HttpMethod_DELETE() = runBlockingTest {
-        // Given
-        val method = HttpMethod.GET
-        val requestData = RequestData(
-            uri = uri,
-            body = "body",
-            method = method
-        )
+    fun execute_should_throw_IllegalArgumentException_when_data_is_set_for_HttpMethod_HEAD() =
+        runBlockingTest {
+            // Given
+            val method = HttpMethod.HEAD
+            val requestData = RequestData(
+                url = urlString,
+                httpAdditionalData = HttpAdditionalData(method = method, body = "body")
+            )
 
-        // When
-        urlRequestDispatchingDefault.execute(requestData, onSuccess = {}, onError = {
-            // Then
-            assertEquals(-1, it.statusCode)
-            assertEquals(0, it.data.size)
-            assertEquals(0, it.headers.size)
-        })
-    }
+            // When
+            urlRequestDispatchingDefault.execute(requestData, onSuccess = {}, onError = {
+                // Then
+                assertEquals(-1, it.statusCode)
+                assertEquals(0, it.data.size)
+                assertEquals(0, it.headers.size)
+            })
+        }
+
+    @Test
+    fun `GIVEN request data with invalid uri when execute request THEN it should throw exception`() =
+        runBlockingTest {
+            // Given
+            every { uri.toURL() } throws IllegalArgumentException("URI is not absolute")
+            val method = HttpMethod.GET
+            val requestData = RequestData(
+                url = urlString,
+                httpAdditionalData = HttpAdditionalData(method = method, body = "body")
+            )
+
+            // When
+            urlRequestDispatchingDefault.execute(requestData, onSuccess = {}, onError = {
+                // Then
+                assertEquals(-1, it.statusCode)
+                assertEquals(0, it.data.size)
+                assertEquals(0, it.headers.size)
+            })
+        }
+
+    @Test
+    fun execute_should_throw_IllegalStateException_when_data_is_set_for_HttpMethod_DELETE() =
+        runBlockingTest {
+            // Given
+            val method = HttpMethod.GET
+            val requestData = RequestData(
+                url = urlString,
+                httpAdditionalData = HttpAdditionalData(method = method, body = "body")
+            )
+
+            // When
+            urlRequestDispatchingDefault.execute(requestData, onSuccess = {}, onError = {
+                // Then
+                assertEquals(-1, it.statusCode)
+                assertEquals(0, it.data.size)
+                assertEquals(0, it.headers.size)
+            })
+        }
 
     @Test
     fun execute_should_set_HttpMethod_GET() = runBlockingTest {
         // Given
         val requestData = RequestData(
-            uri = uri,
-            method = HttpMethod.GET
+            url = urlString,
+            httpAdditionalData = HttpAdditionalData(method = HttpMethod.GET)
         )
 
         // When
@@ -301,8 +304,8 @@ class HttpClientDefaultTest {
     fun execute_should_set_HttpMethod_POST() = runBlockingTest {
         // Given
         val requestData = RequestData(
-            uri = uri,
-            method = HttpMethod.POST
+            url = urlString,
+            httpAdditionalData = HttpAdditionalData(method = HttpMethod.POST)
         )
 
         // When
@@ -325,8 +328,8 @@ class HttpClientDefaultTest {
     fun execute_should_set_HttpMethod_PUT() = runBlockingTest {
         // Given
         val requestData = RequestData(
-            uri = uri,
-            method = HttpMethod.PUT
+            url = urlString,
+            httpAdditionalData = HttpAdditionalData(method = HttpMethod.PUT)
         )
 
         // When
@@ -349,8 +352,8 @@ class HttpClientDefaultTest {
     fun execute_should_set_HttpMethod_DELETE() = runBlockingTest {
         // Given
         val requestData = RequestData(
-            uri = uri,
-            method = HttpMethod.DELETE
+            url = urlString,
+            httpAdditionalData = HttpAdditionalData(method = HttpMethod.DELETE)
         )
 
         // When
@@ -373,8 +376,8 @@ class HttpClientDefaultTest {
     fun execute_should_set_HttpMethod_HEAD() = runBlockingTest {
         // Given
         val requestData = RequestData(
-            uri = uri,
-            method = HttpMethod.HEAD
+            url = urlString,
+            httpAdditionalData = HttpAdditionalData(method = HttpMethod.HEAD)
         )
 
         // When
@@ -397,8 +400,8 @@ class HttpClientDefaultTest {
     fun execute_should_set_HttpMethod_PATCH() = runBlockingTest {
         // Given
         val requestData = RequestData(
-            uri = uri,
-            method = HttpMethod.PATCH
+            url = urlString,
+            httpAdditionalData = HttpAdditionalData(method = HttpMethod.PATCH)
         )
 
         // When
@@ -420,8 +423,10 @@ class HttpClientDefaultTest {
     @Test
     fun execute_should_be_executed_with_error() {
         // Given
-        val expectedData = ResponseData(statusCode = 404,
-            data = BYTE_ARRAY_DATA, statusText = "error")
+        val expectedData = ResponseData(
+            statusCode = 404,
+            data = BYTE_ARRAY_DATA, statusText = "error"
+        )
         val runtimeException = RuntimeException()
         every { httpURLConnection.inputStream } throws runtimeException
         every { httpURLConnection.responseCode } returns expectedData.statusCode!!
@@ -458,5 +463,5 @@ class HttpClientDefaultTest {
 
     }
 
-    private fun makeSimpleRequestData() = RequestData(uri)
+    private fun makeSimpleRequestData() = RequestData(url = urlString)
 }

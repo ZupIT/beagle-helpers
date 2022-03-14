@@ -19,8 +19,8 @@ package br.com.zup.beagle.defaults.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import br.com.zup.beagle.android.networking.RequestData
 import br.com.zup.beagle.android.utils.newServerDrivenIntent
-import br.com.zup.beagle.android.view.ScreenRequest
 import br.com.zup.beagle.android.view.ServerDrivenActivity
 
 
@@ -29,10 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Declarative screen
-        //server_driven_content_layout.addView((BeagleDeclarativeSample.screen).toView(this))
-
-        val intent = this.newServerDrivenIntent<ServerDrivenActivity>(ScreenRequest("/components"))
+        val intent = this.newServerDrivenIntent<ServerDrivenActivity>(RequestData("/components"))
         startActivity(intent)
     }
 }

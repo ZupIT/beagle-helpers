@@ -18,7 +18,6 @@
 package br.com.zup.beagle.defaults.sample
 
 import android.app.Application
-import br.com.zup.beagle.defaults.sample.beagle.BeagleSetup
 
 class AppApplication : Application() {
     override fun onCreate() {

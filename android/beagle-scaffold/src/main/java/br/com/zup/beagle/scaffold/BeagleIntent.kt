@@ -19,14 +19,14 @@ package br.com.zup.beagle.scaffold
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import br.com.zup.beagle.android.networking.RequestData
 import br.com.zup.beagle.android.utils.newServerDrivenIntent
-import br.com.zup.beagle.android.view.ScreenRequest
 import br.com.zup.beagle.android.view.ServerDrivenActivity
 
 class BeagleIntent(
     private val activity: AppCompatActivity,
-    private val screenRequest: ScreenRequest = ScreenRequest("/components")
+    private val requestData: RequestData = RequestData("/components")
 ) {
     fun toSample(): Intent =
-        activity.newServerDrivenIntent<ServerDrivenActivity>(screenRequest)
+        activity.newServerDrivenIntent<ServerDrivenActivity>(requestData)
 }
