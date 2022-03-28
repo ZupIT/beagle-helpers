@@ -1,34 +1,32 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "Beagle",
-        "repositoryURL": "https://github.com/ZupIT/beagle-ios",
-        "state": {
-          "branch": null,
-          "revision": "8de89c32d792af3c150442b7c6ae2cf871babf47",
-          "version": "2.0.0-rc.1"
-        }
-      },
-      {
-        "package": "SnapshotTesting",
-        "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
-        "state": {
-          "branch": null,
-          "revision": "114882386a815f4a2e6d8f2f7ee4857acd372438",
-          "version": "1.7.2"
-        }
-      },
-      {
-        "package": "YogaKit",
-        "repositoryURL": "https://github.com/ZupIT/yoga.git",
-        "state": {
-          "branch": null,
-          "revision": "ed609289e4351f5e809d165989d1c607874a5151",
-          "version": "1.19.0"
-        }
+  "pins" : [
+    {
+      "identity" : "beagle-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ZupIT/beagle-ios",
+      "state" : {
+        "revision" : "ebf2d77e0bc1d6e9e2831cfb9a5e696f177dddc9",
+        "version" : "2.0.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "swift-snapshot-testing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-snapshot-testing.git",
+      "state" : {
+        "revision" : "114882386a815f4a2e6d8f2f7ee4857acd372438",
+        "version" : "1.7.2"
+      }
+    },
+    {
+      "identity" : "yoga",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ZupIT/yoga.git",
+      "state" : {
+        "revision" : "ed609289e4351f5e809d165989d1c607874a5151",
+        "version" : "1.19.0"
+      }
+    }
+  ],
+  "version" : 2
 }
